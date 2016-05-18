@@ -94,8 +94,13 @@ module.run(['$templateCache', function($templateCache) {
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
+        $scope.onDropdownSelect = onDropdownSelect;
 
         return;
+
+        function onDropdownSelect(state) {
+            onNavigationSelect(state.state);
+        }
 
         function appHeader () {
             pipAppBar.showMenuNavIcon();
