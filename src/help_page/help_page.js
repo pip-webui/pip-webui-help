@@ -54,7 +54,7 @@
         function appHeader () {
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Help');
-            pipAppBar.hideShadow();
+            pipAppBar.showShadowSm();
             pipAppBar.showLocalActions(null,[]);
         };
 
