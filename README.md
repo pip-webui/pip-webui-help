@@ -1,4 +1,4 @@
-# Pip.WebUI Help Components http://github.com/pip-webui/pip-webui-help
+# Pip.WebUI Help Components
 
 Help Web components to be used in applications developed on Pip.Services platform
 
@@ -9,43 +9,71 @@ The module contains the following functionality:
 In the version 1.0.0 the implementation was cleaned up and covered with unit tests.
 Implementation became fully portable across browser and devices. 
 
-Quick Links:
 
-* [Documentation](#documentation)
-* [Contributing](#contributing)
-* [Building](#building)
-* [Installing](#installing)
+#### The complete library
 
-## <a name="documentation"></a> Online Documentation
+ * https://github.com/pip-webui/pip-webui
+ 
+ 
+### Module components
+------
 
-- Visit [documentation](doc/index.md) page
-- Or build the project, launch and open samples; see [Building](#building) for details
-   
-## <a name="contributing"></a> Contributing
+The current module includes next components:
+ 
+ * [Help Page](docs/directive.md)
+ * [Help Service](docs/service.md)
+
+ 
+### Demos
+------
+
+[Examples Online](http://webui.pipdevs.com/pip-webui-help/index.html)
+ 
+ 
+### Compatibility
+-----
+
+PIP.WEBUI has been thoroughly tested against all major browsers and supports:
+
+ * IE11+,
+ * Edge
+ * Chrome 47+, 
+ * Firefox 43
+ * Opera 35
+
+### Community
+------
+
+* Follow [@pip.webui on Twitter](http://link.com)
+* Subscribe to the [PIP.WebUI Newsletter](http://link.com)
+* Have a question that's not a feature request or bug report? Discuss on the [PIP Forum](https://groups.google.com/forum/#!forum/pipdevs)
+* Have a feature request or find a bug? [Submit an issue](http://link.com)
+* Join our Community Slack Group! [PIP Worldwide](http://link.com)
+ 
+
+### Contributing
+------
 
 Developers interested in contributing should read the following guidelines:
 
-- [Issue Guidelines](docs/guides/CONTRIBUTING.md#submit)
-- [Contributing Guidelines](docs/guides/CONTRIBUTING.md)
-- [Coding Guidelines](docs/guides/CODING.md)
-- [ChangeLog](CHANGELOG.md)
+* [Issue Guidelines](http://somelink.com)
+* [Contributing Guidelines](http://somelink.com)
+* [Coding guidelines](http://somelink.com)
 
 > Please do **not** ask general questions in an issue. Issues are only to report bugs, request
   enhancements, or request new features. For general questions and discussions, use the
   [Pip Devs Forum](https://groups.google.com/forum/#!forum/pipdevs).
-
+  
 It is important to note that for each release, the [ChangeLog](CHANGELOG.md) is a resource that will
 itemize all:
 
 - Bug Fixes
 - New Features
 - Breaking Changes
-   
-## <a name="building"></a> Building
 
-Developers can easily build the project using NPM and gulp.
-
-* [Builds - Under the Hood](docs/guides/BUILD.md)
+### Build
+-----
+Projects environment deploy is occurred using npm and gulp.
 
 First install or update your local project's **npm** tools:
 
@@ -73,26 +101,8 @@ gulp launch
 For more details on how the build process works and additional commands (available for testing and
 debugging) developers should read the [Build Instructions](docs/guides/BUILD.md).
 
-## <a name="installing"></a> Installing Build (Distribution Files)
 
-#### NPM
+### License
 
-Core services have dependency on 3rd party libraries included into pip-webui-lib library.
-Also the entire Pip WebUI framework is packaged into pip-webui library.
+PIP.WebUI is under [MIT licensed](LICENSE).
 
-Change to your project's root directory.
-
-```bash
-# To install only core services with dependencies.
-npm install git+ssh://git@github.com:pip-core/pip-webui-lib.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-core.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-controls.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-rest.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-layouts.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-pictures.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-locations.git
-npm install git+ssh://git@github.com:pip-core/pip-webui-help.git
-
-# To install the entire pip-webui library
-npm install git+ssh://git@github.com:pip-core/pip-webui.git
-```
