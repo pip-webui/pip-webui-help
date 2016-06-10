@@ -1,5 +1,8 @@
 # <_COMPONENT_NAME>
 
+<div style="border: 3px ridge #c8d2df">
+    <img src="images/help-page-visual-component.png"/>
+</div>
 
 Component description, its objectives.
 
@@ -10,7 +13,7 @@ Here is an online [example](http://link.com).
 ### Usage
 
 ```html
-<pip-sample 
+<pip-sample
        ng-model="string"
        [pip-name="string"]
        [pip-min="string"]
@@ -23,18 +26,18 @@ Here is an online [example](http://link.com).
 
 #### **pipName**
 
-| Type          | Restrict | Required | Default value | Isolated scope | 
+| Type          | Restrict | Required | Default value | Isolated scope |
 |:-------------:|:--------:|:--------:|:-------------:|:--------------:|
 | string        | EA       | true     | john_doe      | true           |
 
-> *Description:* <br/> 
+> *Description:* <br/>
 > Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi distinctio dolores non numquam omnis quas similique tempore! Alias aliquamdoloremque labore repudiandae. Accusantium amet debitis, delectus dolor eligendi,fugit in, nemo nihil officiis vitae voluptatem voluptatibus! Dignissimos, qui,vero. Aliquam ducimus eius minus mollitia nam soluta veniam! Facilis, illum!
 
 <br/>
 
 #### **pipMin**
 
-| Type          | Restrict | Required | Default value | Isolated scope | 
+| Type          | Restrict | Required | Default value | Isolated scope |
 |:-------------:|:--------:|:--------:|:-------------:|:--------------:|
 | string        | EA       | true     | john_doe      | true           |
 
