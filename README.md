@@ -36,18 +36,18 @@ Implementation became fully portable across browser and devices.
 
 ## <a name="dependencies"></a>Module dependencies
 
-* Helpful tasks for development (<a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a>)
-* Vendor libraries (<a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a>)
-* CSS Framework (<a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a>)
-* Core platform module (<a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a>)
-* REST API module (<a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a>)
-* Assets of control components (<a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a>)
-* Document layouts (<a href="https://github.com/pip-webui/pip-webui-layouts">pip-webui-layouts</a>)
-* All-sufficient UI navigation components (<a href="https://github.com/pip-webui/pip-webui-nav">pip-webui-nav</a>)
-* UI picture components (<a href="https://github.com/pip-webui/pip-webui-pictures">pip-webui-pictures</a>)
-* UI components to define and show users location (<a href="https://github.com/pip-webui/pip-webui-locations">pip-webui-locations</a>)
-* All-sufficient UI component for any authenticate states (<a href="https://github.com/pip-webui/pip-webui-entry">pip-webui-entry</a>)
-* Provides mocked data needed for unit testing (<a href="https://github.com/pip-webui/pip-webui-test">pip-webui-test</a>)
+* <a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a> - Helpful tasks for development
+* <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a> - Vendor libraries
+* <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a> - CSS Framework
+* <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a> - Core platform module
+* <a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a> - REST API module
+* <a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a> - Assets of control components
+* <a href="https://github.com/pip-webui/pip-webui-layouts">pip-webui-layouts</a> - Document layouts
+* <a href="https://github.com/pip-webui/pip-webui-nav">pip-webui-nav</a> - All-sufficient UI navigation components
+* <a href="https://github.com/pip-webui/pip-webui-pictures">pip-webui-pictures</a> - UI picture components
+* <a href="https://github.com/pip-webui/pip-webui-locations">pip-webui-locations</a> - UI components to define and show users location
+* <a href="https://github.com/pip-webui/pip-webui-entry">pip-webui-entry</a> - All-sufficient UI component for any authenticate states
+* <a href="https://github.com/pip-webui/pip-webui-test">pip-webui-test</a> - Provides mocked data needed for unit testing
 
 
 ## <a name="components"></a>Module components
