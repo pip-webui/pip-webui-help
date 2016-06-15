@@ -53,9 +53,9 @@ Implementation became fully portable across browser and devices.
 ## <a name="components"></a>Module components
 
 ### <a name="help-page-component"></a>Help page visual component
-<div style="border: 3px ridge #c8d2df">
-    <img src="docs/images/help-page-visual-component.png"/>
-</div>
+<a href="doc/images/help-page-visual-component.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="doc/images/help-page-visual-component.png"/>
+</a>
 
 Help component renders simple document with navigation list and content area. This components requires user's authentication.
 The component markup has responsive layout. This components is interacted with page header component, supports
