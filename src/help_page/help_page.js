@@ -14,15 +14,13 @@
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state, $mdMedia, pipAppBar, pipHelp) {
-        $scope.$mdMedia = $mdMedia;
+    function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
-            if (page.visible === true && (page.access ? page.access($rootScope.$user, page) : true)) {
+            if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
-
         $scope.selected = {};
 
         if ($state.current.name != 'help')

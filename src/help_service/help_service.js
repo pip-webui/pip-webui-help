@@ -44,14 +44,14 @@
             }
 
             function getDefaultPage() {
-                return _.clone(_.find(pages, function(page) { return page.state == defaultPage; }), true);
+                return _.clone(_.find(pages, function(page) { return page.state === defaultPage; }), true);
             }
 
 
             function addPage(pageObj) {
                 validatePage(pageObj);
 
-                if (_.find(pages, function(page) { return page.state == getFullStateName(pageObj.state); })) {
+                if (_.find(pages, function(page) { return page.state === getFullStateName(pageObj.state); })) {
                     throw new Error('Page with state name "' + pageObj.state + '" is already registered');
                 }
 
@@ -66,13 +66,13 @@
                 pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
 
                 // if we just added first state and no default state is specified
-                if (typeof defaultPage === 'undefined' && pages.length === 1) {
+                if ( _.isUndefined(defaultPage) && pages.length === 1) {
                     setDefaultPage(pageObj.state);
                 }
             }
 
             function setDefaultPage(name) {
-                if (!_.find(pages, function(page) { return page.state == getFullStateName(name); })) {
+                if (!_.find(pages, function(page) { return page.state === getFullStateName(name); })) {
                     throw new Error('Page with state name "' + name + '" is not registered');
                 }
 
