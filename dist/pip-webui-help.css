@@ -70,6 +70,7 @@
 .pip-help .pip-body {
   padding-left: 24px !important;
   padding-right: 24px !important;
+  max-width: none !important;
 }
 @media (max-width: 768px) {
   .pip-help .pip-body {
