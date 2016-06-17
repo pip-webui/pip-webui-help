@@ -1,4 +1,4 @@
-(function () {
+(function (angular, _) {
     'use strict';
 
     angular.module('pipHelp.Service', ['pipState'])
@@ -101,4 +101,4 @@
         });
 
 
-})();
+})(window.angular, window._);
