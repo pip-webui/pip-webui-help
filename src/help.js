@@ -5,7 +5,7 @@
 
 /* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     angular.module('pipHelp', [
@@ -13,4 +13,4 @@
         'pipHelp.Page'
     ]);
     
-})();
+})(window.angular);

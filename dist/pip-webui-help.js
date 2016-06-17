@@ -5,7 +5,7 @@
 
 /* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     angular.module('pipHelp', [
@@ -13,7 +13,7 @@
         'pipHelp.Page'
     ]);
     
-})();
+})(window.angular);
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -47,22 +47,11 @@ module.run(['$templateCache', function($templateCache) {
 }]);
 })();
 
-// ==========================================================
-//  Title: help_page.js
-//  Description: Application help page module
-//  Copyright (c) 2004-2015 Modular Mining Systems, Inc.
-//  All Rights Reserved
-// ==========================================================
-//  The information described in this document is furnished as proprietary
-//  information and may not be copied or sold without the written permission
-//  of Modular Mining Systems, Inc.
-// ==========================================================
-
 (function (angular, _) {
     'use strict';
 
     config.$inject = ['pipStateProvider'];
-    HelpPageController.$inject = ['$scope', '$rootScope', '$state', '$mdMedia', 'pipAppBar', 'pipHelp'];
+    HelpPageController.$inject = ['$scope', '$rootScope', '$state', 'pipAppBar', 'pipHelp'];
     angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service',  'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
@@ -76,15 +65,13 @@ module.run(['$templateCache', function($templateCache) {
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state, $mdMedia, pipAppBar, pipHelp) {
-        $scope.$mdMedia = $mdMedia;
+    function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
-            if (page.visible === true && (page.access ? page.access($rootScope.$user, page) : true)) {
+            if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
-
         $scope.selected = {};
 
         if ($state.current.name != 'help')
@@ -124,7 +111,7 @@ module.run(['$templateCache', function($templateCache) {
         }
     }
 })(window.angular, window._);
-(function () {
+(function (angular, _) {
     'use strict';
 
     angular.module('pipHelp.Service', ['pipState'])
@@ -170,14 +157,14 @@ module.run(['$templateCache', function($templateCache) {
             }
 
             function getDefaultPage() {
-                return _.clone(_.find(pages, function(page) { return page.state == defaultPage; }), true);
+                return _.clone(_.find(pages, function(page) { return page.state === defaultPage; }), true);
             }
 
 
             function addPage(pageObj) {
                 validatePage(pageObj);
 
-                if (_.find(pages, function(page) { return page.state == getFullStateName(pageObj.state); })) {
+                if (_.find(pages, function(page) { return page.state === getFullStateName(pageObj.state); })) {
                     throw new Error('Page with state name "' + pageObj.state + '" is already registered');
                 }
 
@@ -192,13 +179,13 @@ module.run(['$templateCache', function($templateCache) {
                 pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
 
                 // if we just added first state and no default state is specified
-                if (typeof defaultPage === 'undefined' && pages.length === 1) {
+                if ( _.isUndefined(defaultPage) && pages.length === 1) {
                     setDefaultPage(pageObj.state);
                 }
             }
 
             function setDefaultPage(name) {
-                if (!_.find(pages, function(page) { return page.state == getFullStateName(name); })) {
+                if (!_.find(pages, function(page) { return page.state === getFullStateName(name); })) {
                     throw new Error('Page with state name "' + name + '" is not registered');
                 }
 
@@ -227,5 +214,5 @@ module.run(['$templateCache', function($templateCache) {
         }]);
 
 
-})();
+})(window.angular, window._);
 //# sourceMappingURL=pip-webui-help.js.map
