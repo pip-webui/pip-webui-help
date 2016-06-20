@@ -26,7 +26,7 @@
     "build": "gulp build",
     "lint": "gulp lint",
     "samples": "gulp launch",
-    "test": "mocha -t 5000 -R spec --recursive ./test"
+    "test": "karma start"
   },
   "dependencies": {
   },
@@ -47,8 +47,11 @@
     "karma": "*",
     "karma-chrome-launcher": "*",
     "karma-mocha": "*",
+    "mocha": "*",
     "karma-chai": "*",
+    "chai": "*",
     "karma-sinon": "*",
+    "sinon": "*",
     "jshint": "*",
     "gulp": "*",
     "gulp-concat": "*",
