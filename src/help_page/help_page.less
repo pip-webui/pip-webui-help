@@ -4,7 +4,6 @@
 @pip-help-list-width: 350px;
 @pip-help-document-width: 1100px;
 
-
 .pip-help {
 
   font-size: @font-size-body2;
@@ -14,6 +13,7 @@
       width: @pip-help-list-width;
       min-width: @pip-help-list-width;
     }
+
     .pip-content-container {
       width: @pip-help-document-width - @pip-help-list-width;
     }
@@ -24,21 +24,17 @@
       width: @pip-help-list-width;
       min-width: 0;
     }
+
     .pip-content-container {
       width: ~"calc(100% - 350px)";
     }
   }
 
-
-  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body{
+  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body {
     .tp(24px);
-    //padding-top: 24px !important;
   }
 
-
-  .pip-body{
-    //.p24-flex();
-
+  .pip-body {
     max-width: none !important
   }
 
@@ -46,6 +42,7 @@
     md-list:first-of-type {
       width: @pip-help-list-width;
     }
+
     .pip-content-container {
       width: @pip-help-document-width - @pip-help-list-width;
       position: absolute;
@@ -65,6 +62,7 @@
     md-list:first-of-type {
       width: 30%;
     }
+
     .pip-content-container {
       width: 70%;
       position: absolute;
@@ -74,9 +72,7 @@
     }
   }
 
-
-  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body{
+  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body {
     .tp(24px);
-    //padding-top: 24px !important;
   }
 }
