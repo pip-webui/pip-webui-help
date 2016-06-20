@@ -19,7 +19,7 @@
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state, pipAppBar, pipHelp) {
+    function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
 
