@@ -9,7 +9,7 @@
 
     angular.module('pipHelp.Service', ['pipState'])
         .provider('pipHelp',
-        function(pipAuthStateProvider) {
+        function (pipAuthStateProvider) {
             var defaultPage,
                 pages = [];
 
@@ -39,25 +39,28 @@
                     /** @see setDefaultPage */
                     setDefaultPage: setDefaultPage
                 }
-            }
+            };
 
             function getFullStateName(state) {
                 return 'help.' + state;
             }
 
-            function getPages () {
+            function getPages() {
                 return _.clone(pages, true);
             }
 
             function getDefaultPage() {
-                return _.clone(_.find(pages, function(page) { return page.state === defaultPage; }), true);
+                return _.clone(_.find(pages, function (page) {
+                    return page.state === defaultPage;
+                }), true);
             }
-
 
             function addPage(pageObj) {
                 validatePage(pageObj);
 
-                if (_.find(pages, function(page) { return page.state === getFullStateName(pageObj.state); })) {
+                if (_.find(pages, function (page) {
+                        return page.state === getFullStateName(pageObj.state);
+                    })) {
                     throw new Error('Page with state name "' + pageObj.state + '" is already registered');
                 }
 
@@ -72,13 +75,15 @@
                 pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
 
                 // if we just added first state and no default state is specified
-                if ( _.isUndefined(defaultPage) && pages.length === 1) {
+                if (_.isUndefined(defaultPage) && pages.length === 1) {
                     setDefaultPage(pageObj.state);
                 }
             }
 
             function setDefaultPage(name) {
-                if (!_.find(pages, function(page) { return page.state === getFullStateName(name); })) {
+                if (!_.find(pages, function (page) {
+                        return page.state === getFullStateName(name);
+                    })) {
                     throw new Error('Page with state name "' + name + '" is not registered');
                 }
 
@@ -100,7 +105,7 @@
                     throw new Error('"access" should be a function');
                 }
 
-                if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig )) {
+                if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig)) {
                     throw new Error('Invalid state configuration object');
                 }
             }
