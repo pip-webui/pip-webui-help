@@ -49,7 +49,7 @@
                     links: [
                         {title: 'Signout', url: '/signout'}
                     ]
-                },
+                }
             ]);
 
             // Register custom help page

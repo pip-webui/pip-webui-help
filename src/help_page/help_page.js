@@ -1,3 +1,8 @@
+/**
+ * @file Page template for help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
 (function (angular, _) {
     'use strict';
 

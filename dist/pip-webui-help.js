@@ -3,8 +3,6 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
 (function (angular) {
     'use strict';
 
@@ -22,6 +20,11 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('help_page/help_page.html',
+    '<!--\n' +
+    '@file Help page\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
     '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
     '\n' +
     '<pip-document width="800" min-height="400">\n' +
@@ -53,6 +56,11 @@ module.run(['$templateCache', function($templateCache) {
     '</pip-document>');
 }]);
 })();
+
+/**
+ * @file Page template for help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
 
 (function (angular, _) {
     'use strict';
@@ -118,6 +126,12 @@ module.run(['$templateCache', function($templateCache) {
         }
     }
 })(window.angular, window._);
+/**
+ * @file Service for help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+
 (function (angular, _) {
     'use strict';
 
