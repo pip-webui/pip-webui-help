@@ -28,7 +28,7 @@ module.run(['$templateCache', function($templateCache) {
     '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
     '\n' +
     '<pip-document width="800" min-height="400">\n' +
-    '    <div ng-hide="manager === false"\n' +
+    '    <div ng-if="!manager || manager === true"\n' +
     '         class="pip-menu-container pip-help">\n' +
     '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
     '                 pip-selected="selected.pageIndex"\n' +
@@ -49,7 +49,7 @@ module.run(['$templateCache', function($templateCache) {
     '            <div class="pip-body layout-column flex" ui-view></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '    <div ng-show="manager === false"\n' +
+    '    <div ng-if="manager === false"\n' +
     '         class="layout-column layout-align-center-center flex">\n' +
     '        {{::\'ERROR_400\' | translate}}\n' +
     '    </div>\n' +
@@ -82,7 +82,9 @@ module.run(['$templateCache', function($templateCache) {
 
     function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
 
+        console.log($state);
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
+
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
