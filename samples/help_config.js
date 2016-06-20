@@ -13,7 +13,7 @@
         auth: true,
         stateConfig: {
             url: '/test',
-            template: '<h1>This is test page in help inserted through provider</h1>'
+            templateUrl: 'help_test1.html'
         }
     });
 
