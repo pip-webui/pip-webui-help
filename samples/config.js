@@ -7,12 +7,12 @@
     'use strict';
 
     var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav', 
-        'pipAppBar', 'pipHelp' ]);
+        'pipAppBar', 'pipHelp', 'pipHelpConfig' ]);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider, 
-                  pipAppBarProvider, pipEntryProvider, $mdIconProvider, pipHelpProvider) {
+                  pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
@@ -51,29 +51,6 @@
                     ]
                 }
             ]);
-
-            // Register custom help page
-            pipHelpProvider.addPage({
-                state: 'test',
-                title: 'Test help page',
-                auth: true,
-                stateConfig: {
-                    url: '/test',
-                    template: '<h1>This is test page in help inserted through provider</h1>'
-                }
-            });
-
-            pipHelpProvider.addPage({
-                state: 'test2',
-                title: 'Test2 help page',
-                auth: true,
-                stateConfig: {
-                    url: '/test2',
-                    template: '<h1>This is test2 page in help inserted through provider</h1>'
-                }
-            });
-
-            pipHelpProvider.setDefaultPage('test');
 
         }
     );
