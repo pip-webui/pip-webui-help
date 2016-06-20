@@ -1,56 +1,55 @@
 // CSS styles for help module
 // (ñ) Digital Living Software Corp. 2014-2016
 
+@pip-help-list-width: 350px;
+@pip-help-document-width: 1100px;
+
+
 .pip-help {
+
+  font-size: @font-size-body2;
 
   @media (min-width: 1200px ) {
     md-list.pip-menu {
-      width: 300px;
-      min-width: 300px;
+      width: @pip-help-list-width;
+      min-width: @pip-help-list-width;
     }
     .pip-content-container {
-      width: 1100px - 300px;
+      width: @pip-help-document-width - @pip-help-list-width;
     }
   }
 
   @media (min-width: 768px) and (max-width: 1200px) {
     md-list.pip-menu {
-      width: 300px;
+      width: @pip-help-list-width;
       min-width: 0;
     }
     .pip-content-container {
-      width: ~"calc(100% - 300px)";
+      width: ~"calc(100% - 350px)";
     }
   }
 
 
   &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body{
-    padding-top: 24px !important;
+    .tp(24px);
+    //padding-top: 24px !important;
   }
 
-}
-
-.pip-help{
-  font-size: @font-size-body2;
 
   .pip-body{
-    padding-left: 24px !important;
-    padding-right: 24px !important;
-    @media (max-width: 768px) {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
-    }
+    //.p24-flex();
+
     max-width: none !important
   }
 
   @media (min-width: 1200px ) {
     md-list:first-of-type {
-      width: 350px;
+      width: @pip-help-list-width;
     }
     .pip-content-container {
-      width: 1100px - 350px;
+      width: @pip-help-document-width - @pip-help-list-width;
       position: absolute;
-      left: 350px;
+      left: @pip-help-list-width;
       max-height: 100%;
       -ms-overflow-y: auto;
     }
@@ -77,6 +76,7 @@
 
 
   &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body{
-    padding-top: 24px !important;
+    .tp(24px);
+    //padding-top: 24px !important;
   }
 }
