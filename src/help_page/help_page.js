@@ -6,7 +6,7 @@
 (function (angular, _) {
     'use strict';
 
-    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service',  'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
+    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
@@ -19,9 +19,10 @@
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
+    function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
+
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
@@ -43,23 +44,25 @@
             onNavigationSelect(state.state);
         }
 
-        function appHeader () {
+        function appHeader() {
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Help');
             pipAppBar.showShadowSm();
-            pipAppBar.showLocalActions(null,[]);
-        };
+            pipAppBar.showLocalActions(null, []);
+        }
 
-        function onNavigationSelect  (state) {
+        function onNavigationSelect(state) {
             initSelect(state);
 
             if ($scope.selected.page) {
                 $state.go(state);
             }
-        };
+        }
 
         function initSelect(state) {
-            $scope.selected.page = _.find($scope.pages, function(page) { return page.state == state; });
+            $scope.selected.page = _.find($scope.pages, function (page) {
+                return page.state == state;
+            });
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
             $scope.selected.pageId = state;
         }

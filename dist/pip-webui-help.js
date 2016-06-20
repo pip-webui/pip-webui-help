@@ -28,14 +28,15 @@ module.run(['$templateCache', function($templateCache) {
     '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
     '\n' +
     '<pip-document width="800" min-height="400">\n' +
-    '    <div ng-hide="manager === false"\n' +
-    '         class="pip-menu-container pip-help">\n' +
+    '    <div class="pip-menu-container pip-help"\n' +
+    '            ng-if="!manager || manager === true">\n' +
     '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
     '                 pip-selected="selected.pageIndex"\n' +
     '                 pip-selected-watch="selected.navId"\n' +
     '                 pip-select="onNavigationSelect($event.id)">\n' +
-    '            <md-list-item class="pip-simple-list-item pip-selectable" md-ink-ripple\n' +
+    '            <md-list-item class="pip-simple-list-item pip-selectable"\n' +
     '                          ng-repeat="page in pages track by page.state"\n' +
+    '                          md-ink-ripple\n' +
     '                          pip-id="{{::page.state }}">\n' +
     '                <p> {{::page.title | translate}} </p>\n' +
     '            </md-list-item>\n' +
@@ -49,8 +50,8 @@ module.run(['$templateCache', function($templateCache) {
     '            <div class="pip-body layout-column flex" ui-view></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '    <div ng-show="manager === false"\n' +
-    '         class="layout-column layout-align-center-center flex">\n' +
+    '    <div class="layout-column layout-align-center-center flex"\n' +
+    '         ng-if="manager === false">\n' +
     '        {{::\'ERROR_400\' | translate}}\n' +
     '    </div>\n' +
     '</pip-document>');
@@ -67,7 +68,7 @@ module.run(['$templateCache', function($templateCache) {
 
     config.$inject = ['pipStateProvider'];
     HelpPageController.$inject = ['$scope', '$rootScope', '$state', 'pipAppBar', 'pipHelp'];
-    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service',  'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
+    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
@@ -80,9 +81,10 @@ module.run(['$templateCache', function($templateCache) {
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
+    function HelpPageController($scope, $rootScope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
+
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
@@ -104,23 +106,25 @@ module.run(['$templateCache', function($templateCache) {
             onNavigationSelect(state.state);
         }
 
-        function appHeader () {
+        function appHeader() {
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Help');
             pipAppBar.showShadowSm();
-            pipAppBar.showLocalActions(null,[]);
-        };
+            pipAppBar.showLocalActions(null, []);
+        }
 
-        function onNavigationSelect  (state) {
+        function onNavigationSelect(state) {
             initSelect(state);
 
             if ($scope.selected.page) {
                 $state.go(state);
             }
-        };
+        }
 
         function initSelect(state) {
-            $scope.selected.page = _.find($scope.pages, function(page) { return page.state == state; });
+            $scope.selected.page = _.find($scope.pages, function (page) {
+                return page.state == state;
+            });
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
             $scope.selected.pageId = state;
         }
@@ -137,7 +141,7 @@ module.run(['$templateCache', function($templateCache) {
 
     angular.module('pipHelp.Service', ['pipState'])
         .provider('pipHelp',
-        ['pipAuthStateProvider', function(pipAuthStateProvider) {
+        ['pipAuthStateProvider', function (pipAuthStateProvider) {
             var defaultPage,
                 pages = [];
 
@@ -167,25 +171,28 @@ module.run(['$templateCache', function($templateCache) {
                     /** @see setDefaultPage */
                     setDefaultPage: setDefaultPage
                 }
-            }
+            };
 
             function getFullStateName(state) {
                 return 'help.' + state;
             }
 
-            function getPages () {
+            function getPages() {
                 return _.clone(pages, true);
             }
 
             function getDefaultPage() {
-                return _.clone(_.find(pages, function(page) { return page.state === defaultPage; }), true);
+                return _.clone(_.find(pages, function (page) {
+                    return page.state === defaultPage;
+                }), true);
             }
-
 
             function addPage(pageObj) {
                 validatePage(pageObj);
 
-                if (_.find(pages, function(page) { return page.state === getFullStateName(pageObj.state); })) {
+                if (_.find(pages, function (page) {
+                        return page.state === getFullStateName(pageObj.state);
+                    })) {
                     throw new Error('Page with state name "' + pageObj.state + '" is already registered');
                 }
 
@@ -200,13 +207,15 @@ module.run(['$templateCache', function($templateCache) {
                 pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
 
                 // if we just added first state and no default state is specified
-                if ( _.isUndefined(defaultPage) && pages.length === 1) {
+                if (_.isUndefined(defaultPage) && pages.length === 1) {
                     setDefaultPage(pageObj.state);
                 }
             }
 
             function setDefaultPage(name) {
-                if (!_.find(pages, function(page) { return page.state === getFullStateName(name); })) {
+                if (!_.find(pages, function (page) {
+                        return page.state === getFullStateName(name);
+                    })) {
                     throw new Error('Page with state name "' + name + '" is not registered');
                 }
 
@@ -228,7 +237,7 @@ module.run(['$templateCache', function($templateCache) {
                     throw new Error('"access" should be a function');
                 }
 
-                if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig )) {
+                if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig)) {
                     throw new Error('Invalid state configuration object');
                 }
             }

@@ -6,14 +6,15 @@
 <md-toolbar class="pip-appbar-ext"></md-toolbar>
 
 <pip-document width="800" min-height="400">
-    <div ng-hide="manager === false"
-         class="pip-menu-container pip-help">
+    <div class="pip-menu-container pip-help"
+            ng-if="!manager || manager === true">
         <md-list class="pip-menu pip-simple-list hide-xs"
                  pip-selected="selected.pageIndex"
                  pip-selected-watch="selected.navId"
                  pip-select="onNavigationSelect($event.id)">
-            <md-list-item class="pip-simple-list-item pip-selectable" md-ink-ripple
+            <md-list-item class="pip-simple-list-item pip-selectable"
                           ng-repeat="page in pages track by page.state"
+                          md-ink-ripple
                           pip-id="{{::page.state }}">
                 <p> {{::page.title | translate}} </p>
             </md-list-item>
@@ -27,8 +28,8 @@
             <div class="pip-body layout-column flex" ui-view></div>
         </div>
     </div>
-    <div ng-show="manager === false"
-         class="layout-column layout-align-center-center flex">
+    <div class="layout-column layout-align-center-center flex"
+         ng-if="manager === false">
         {{::'ERROR_400' | translate}}
     </div>
 </pip-document>
