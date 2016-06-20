@@ -21,7 +21,9 @@
 
     function HelpPageController($scope, $rootScope, $state,  pipAppBar, pipHelp) {
 
+        console.log($state);
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
+
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }

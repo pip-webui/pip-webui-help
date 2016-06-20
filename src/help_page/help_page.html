@@ -6,7 +6,7 @@
 <md-toolbar class="pip-appbar-ext"></md-toolbar>
 
 <pip-document width="800" min-height="400">
-    <div ng-hide="manager === false"
+    <div ng-if="!manager || manager === true"
          class="pip-menu-container pip-help">
         <md-list class="pip-menu pip-simple-list hide-xs"
                  pip-selected="selected.pageIndex"
@@ -27,7 +27,7 @@
             <div class="pip-body layout-column flex" ui-view></div>
         </div>
     </div>
-    <div ng-show="manager === false"
+    <div ng-if="manager === false"
          class="layout-column layout-align-center-center flex">
         {{::'ERROR_400' | translate}}
     </div>
