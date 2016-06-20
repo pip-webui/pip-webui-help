@@ -3,8 +3,6 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
 (function (angular) {
     'use strict';
 
@@ -22,30 +20,47 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('help_page/help_page.html',
+    '<!--\n' +
+    '@file Help page\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
     '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
     '\n' +
     '<pip-document width="800" min-height="400">\n' +
-    '    <div class="pip-menu-container pip-help" ng-hide="manager === false">\n' +
-    '        <md-list class="pip-menu pip-simple-list hide-xs" pip-selected="selected.pageIndex"\n' +
-    '                 pip-selected-watch="selected.navId" pip-select="onNavigationSelect($event.id)">\n' +
-    '            <md-list-item class="pip-simple-list-item pip-selectable" md-ink-ripple pip-id="{{ page.state }}"\n' +
-    '                          ng-repeat="page in pages track by page.state">\n' +
-    '                <p> {{page.title | translate}} </p>\n' +
+    '    <div ng-hide="manager === false"\n' +
+    '         class="pip-menu-container pip-help">\n' +
+    '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
+    '                 pip-selected="selected.pageIndex"\n' +
+    '                 pip-selected-watch="selected.navId"\n' +
+    '                 pip-select="onNavigationSelect($event.id)">\n' +
+    '            <md-list-item class="pip-simple-list-item pip-selectable" md-ink-ripple\n' +
+    '                          ng-repeat="page in pages track by page.state"\n' +
+    '                          pip-id="{{::page.state }}">\n' +
+    '                <p> {{::page.title | translate}} </p>\n' +
     '            </md-list-item>\n' +
     '        </md-list>\n' +
     '\n' +
     '        <div class="pip-content-container">\n' +
-    '            <pip-dropdown pip-actions="pages" class="hide-gt-xs" pip-dropdown-select="onDropdownSelect"\n' +
+    '            <pip-dropdown class="hide-gt-xs"\n' +
+    '                          pip-actions="pages"\n' +
+    '                          pip-dropdown-select="onDropdownSelect"\n' +
     '                          pip-active-index="selected.pageIndex"></pip-dropdown>\n' +
-    '            <div class="pip-body p24-flex" ui-view layout="column" flex style="max-width: none !important"></div>\n' +
+    '            <div class="pip-body layout-column flex" ui-view></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
-    '    <div ng-show="manager === false" layout="column" layout-align="center center" flex>\n' +
+    '    <div ng-show="manager === false"\n' +
+    '         class="layout-column layout-align-center-center flex">\n' +
     '        {{::\'ERROR_400\' | translate}}\n' +
     '    </div>\n' +
     '</pip-document>');
 }]);
 })();
+
+/**
+ * @file Page template for help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
 
 (function (angular, _) {
     'use strict';
@@ -111,6 +126,12 @@ module.run(['$templateCache', function($templateCache) {
         }
     }
 })(window.angular, window._);
+/**
+ * @file Service for help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+
 (function (angular, _) {
     'use strict';
 
