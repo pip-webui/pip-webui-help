@@ -67,7 +67,7 @@ module.run(['$templateCache', function($templateCache) {
     'use strict';
 
     config.$inject = ['pipStateProvider'];
-    HelpPageController.$inject = ['$scope', '$rootScope', '$state', 'pipAppBar', 'pipHelp'];
+    HelpPageController.$inject = ['$rootScope', '$scope', '$state', 'pipAppBar', 'pipHelp'];
     angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
@@ -81,7 +81,7 @@ module.run(['$templateCache', function($templateCache) {
         });
     }
 
-    function HelpPageController($scope, $rootScope, $state, pipAppBar, pipHelp) {
+    function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
 
