@@ -67,7 +67,7 @@
                 pages.push({
                     state: getFullStateName(pageObj.state),
                     title: pageObj.title,
-                    access: pageObj.access,
+                    access: pageObj.access || angular.noop,
                     visible: pageObj.visible || true,
                     stateConfig: _.clone(pageObj.stateConfig, true)
                 });
