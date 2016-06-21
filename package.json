@@ -46,7 +46,7 @@
     "angular-mocks": "*",
     "karma": "*",
     "karma-phantomjs-launcher": "*",
-    "phantomjs": "*",
+    "phantomjs-prebuilt": "*",
     "karma-mocha": "*",
     "mocha": "*",
     "karma-chai": "*",

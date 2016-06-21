@@ -19,14 +19,13 @@ module.exports = function(config) {
       '../node_modules/pip-webui-core/dist/pip-webui-core.js',
       '../node_modules/pip-webui-rest/dist/pip-webui-rest.js',
       '../node_modules/pip-webui-controls/dist/pip-webui-controls.js',
-      '../node_modules/pip-webui-connected/dist/pip-webui-connected.js',
+      '../node_modules/pip-webui-nav/dist/pip-webui-nav.js',
       '../node_modules/pip-webui-test/dist/pip-webui-test.js',
       '../node_modules/angular-mocks/angular-mocks.js',
-      '../build/pip-webui-pages-html.js',
+      '../temp/pip-webui-help-html.js',
       '../node_modules/pip-webui-lib/dist/pip-webui-lib-test.js',
       '**/*.js',
       { pattern: '**/*.html', included: false },
-      '../test/test_config.js',
       '../test/**/*.js'
     ],
 
