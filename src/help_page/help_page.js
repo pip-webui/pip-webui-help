@@ -21,7 +21,7 @@
 
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
-        $scope.pages = _.filter(pipHelp.getPages(), function (page) {
+        $scope.pages    = _.filter(pipHelp.getPages(), function (page) {
 
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
@@ -36,7 +36,7 @@
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
-        $scope.onDropdownSelect = onDropdownSelect;
+        $scope.onDropdownSelect   = onDropdownSelect;
 
         return;
 
@@ -60,11 +60,11 @@
         }
 
         function initSelect(state) {
-            $scope.selected.page = _.find($scope.pages, function (page) {
+            $scope.selected.page      = _.find($scope.pages, function (page) {
                 return page.state == state;
             });
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
-            $scope.selected.pageId = state;
+            $scope.selected.pageId    = state;
         }
     }
 })(window.angular, window._);

@@ -38,18 +38,18 @@
     </style>
 </head>
 
-<body ng-app="pipSample" ng-controller="pipSampleController" >
-    <pip-main ng-if="!$reset">
-        <pip-appbar title="Sample Application" show-menu="true">
-        </pip-appbar>
+<body ng-app="pipSample" ng-controller="pipSampleController">
+<pip-main ng-if="!$reset">
+    <pip-appbar title="Sample Application" show-menu="true">
+    </pip-appbar>
 
-        <pip-sidenav>
-        </pip-sidenav>
+    <pip-sidenav>
+    </pip-sidenav>
 
-        <pip-main-body class="layout-column" ui-view ng-cloak>
-        </pip-main-body>
-    </pip-main>
+    <pip-main-body class="layout-column" ui-view ng-cloak>
+    </pip-main-body>
+</pip-main>
 
-    <pip-routing-progress></pip-routing-progress>
+<pip-routing-progress></pip-routing-progress>
 </body>
 </html>

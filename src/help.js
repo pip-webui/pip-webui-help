@@ -10,5 +10,5 @@
         'pipHelp.Service',
         'pipHelp.Page'
     ]);
-    
+
 })(window.angular);

@@ -22,7 +22,7 @@
 
     thisModule.controller('pipSampleController',
         function ($scope, $rootScope) {
-
+            // Sample controller code here...
         }
     );
 

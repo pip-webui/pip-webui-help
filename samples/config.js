@@ -6,12 +6,12 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav', 
-        'pipAppBar', 'pipHelp', 'pipHelpConfig' ]);
+    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav',
+        'pipAppBar', 'pipHelp', 'pipHelpConfig']);
 
     // Configure application services before start
     thisModule.config(
-        function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider, 
+        function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider,
                   pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);

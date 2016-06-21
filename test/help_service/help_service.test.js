@@ -21,10 +21,10 @@ describe('Help', function () {
                     template: '<h1>This is test page in help inserted through provider</h1>'
                 }
             };
-        
+
         module('pipState', function (pipAuthStateProvider) {
             stateProvider = pipAuthStateProvider;
-            stateSpy = sinon.spy(stateProvider, 'state');
+            stateSpy      = sinon.spy(stateProvider, 'state');
             //spyOn(stateProvider, 'state').and.callThrough();
             //spyOn(stateProvider, 'redirect').and.callThrough();
         });
@@ -74,7 +74,7 @@ describe('Help', function () {
         });
 
         service.setDefaultPage('test2');
-        
+
         expect(stateSpy.called).to.exist;
 
         expect(service.getDefaultPage().state).to.equal('help.test2');
