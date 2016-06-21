@@ -1,16 +1,16 @@
 'use strict';
 
-suite('Help', function () {
+describe('Help', function () {
     var stateProvider,
         service, stateSpy;
     var signoutSpy, configureAppBarSpy, initScopeSpy, beginTransactionSpy;
 
-    setup(module('pipTest.UserParty'));
-    setup(module('pipTest.General'));
-    setup(module('pipRest'));
+    beforeEach(module('pipit.UserParty'));
+    beforeEach(module('pipit.General'));
+    beforeEach(module('pipRest'));
 
 
-    setup(function () {
+    beforeEach(function () {
         module('pipState', function (pipAuthStateProvider) {
             stateProvider = pipAuthStateProvider;
             stateSpy = sinon.spy(stateProvider, 'state');
@@ -21,28 +21,28 @@ suite('Help', function () {
         module('pipHelp');
     });
 
-    setup(inject(function (pipHelp) {
+    beforeEach(inject(function (pipHelp) {
         service = pipHelp;
     }));
 
 
-    test('should be able to add new page and get list of added pages', function (done) {
+    it('should be able to add new page and get list of added pages', function (done) {
         var access = function () {
         };
 
         var page1 = {
-            state: 'test',
-            title: 'Test help page',
+            state: 'it',
+            title: 'it help page',
             stateConfig: {
-                url: '/test',
-                template: '<h1>This is test page in help inserted through provider</h1>'
+                url: '/it',
+                template: '<h1>This is it page in help inserted through provider</h1>'
             }
         };
 
         service.addPage(page1);
 
         service.addPage({
-            state: 'test2',
+            state: 'it2',
             visible: false,
             access: access,
             stateConfig: {}
@@ -56,7 +56,7 @@ suite('Help', function () {
 
         assert.throws( function () {
                 service.addPage({
-                    state: 'test',
+                    state: 'it',
                     stateConfig: {}
                 })
             }, true);
@@ -64,33 +64,33 @@ suite('Help', function () {
         done();
     });
 
-    test('should be able to add new page and get list of added pages', function (done) {
+    it('should be able to add new page and get list of added pages', function (done) {
         var access = function () {
         };
 
         var page1 = {
-            state: 'test',
-            title: 'Test help page',
+            state: 'it',
+            title: 'it help page',
             stateConfig: {
-                url: '/test',
-                template: '<h1>This is test page in help inserted through provider</h1>'
+                url: '/it',
+                template: '<h1>This is it page in help inserted through provider</h1>'
             }
         };
 
         service.addPage(page1);
 
         service.addPage({
-            state: 'test2',
+            state: 'it2',
             visible: false,
             access: access,
             stateConfig: {}
         });
 
-        service.setDefaultPage('test2');
+        service.setDefaultPage('it2');
 
         assert.isDefined(stateSpy.called);
 
-        assert.equal(service.getDefaultPage().state, 'help.test2');
+        assert.equal(service.getDefaultPage().state, 'help.it2');
 
         assert.throws( function () {
             service.setDefaultPage('abc');
