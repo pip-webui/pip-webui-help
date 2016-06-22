@@ -3,4 +3,5 @@
 /build
 /lib
 /temp
+/coverage
 npm-debug.log
