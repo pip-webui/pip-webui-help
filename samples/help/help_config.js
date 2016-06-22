@@ -11,7 +11,7 @@
             auth: true,
             stateConfig: {
                 url: '/test',
-                templateUrl: 'help_test1.html'
+                templateUrl: '/help/help_test1.html'
             }
         });
 
