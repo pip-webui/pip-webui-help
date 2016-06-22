@@ -20,6 +20,20 @@
         });
     }
 
+    /**
+     * @ngdoc controller
+     * @name pipHelp.Page.pipHelpPageController
+     *
+     * @description
+     * The controller is used for the root Help component.
+     *
+     * @requires $scope
+     * @requires $rootScope
+     * @requires $state
+     *
+     * @param {Object} pipAppBar    Service provides an interface to manage on application bar header.
+     * @param {Object} pipHelp      Service to manage this component behaviour
+     */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
@@ -41,6 +55,16 @@
 
         return;
 
+        /**
+         * @ngdoc method
+         * @name pipHelp.Page.pipHelpPageController#onDropdownSelect
+         * @methodOf pipHelp.Page.pipHelpPageController
+         *
+         * @description
+         * It redirects to a passed state.
+         *
+         * @param {Object} state    State configuration object
+         */
         function onDropdownSelect(state) {
             onNavigationSelect(state.state);
         }
@@ -52,6 +76,16 @@
             pipAppBar.showLocalActions(null, []);
         }
 
+        /**
+         * @ngdoc method
+         * @name pipHelp.Page.pipHelpPageController#onNavigationSelect
+         * @methodOf pipHelp.Page.pipHelpPageController
+         *
+         * @description
+         * It redirects to a passed state.
+         *
+         * @param {string} state    Name of the target state.
+         */
         function onNavigationSelect(state) {
             initSelect(state);
 

@@ -1,0 +1,73 @@
+<h1><code ng:non-bindable="">pipHelp</code>
+<div><span class="hint">service in module <code ng:non-bindable="">pipHelp.Service</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="piphelp-service-piphelp-page"><p>This service is provided an interface to manage the Help component.
+It is available on the config and run application phases. On the both phases the interface is the same.
+This module requires the &#39;pipState&#39; module.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="api/pipState">pipState</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addpage">addPage(pageObj)</h3>
+<div class="addpage"><div class="piphelp-service-piphelp-addpage-page"><p>This method allows add new page into navigation menu. It accepts config object to define new state
+with needed params.</p>
+</div><h5 id="methods_addpage_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>pageObj</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Configuration object contains settings for another page</p>
+</div></td></tr><tr><td>pageObj.state</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;string&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Name of page state which is available via UI router</p>
+</div></td></tr><tr><td>pageObj.title</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;string&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Page title in the navigation menu.</p>
+</div></td></tr><tr><td>pageObj.access</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;boolean&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>If it is true it will be available only for logged in users</p>
+</div></td></tr><tr><td>pageObj.visible</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;boolean&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>If it is true the page will be visible</p>
+</div></td></tr><tr><td>pageObj.stateConfig</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;Object&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Configuration object in format like UI Router state</p>
+</div></td></tr></tbody></table><h4 id="methods_addpage_example">Example</h4>
+<div class="example"><div class="piphelp-service-piphelp-addpage-page"><pre class="prettyprint linenums">
+pipHelpProvider.addPage({
+    state: 'test',
+    title: 'Test help page',
+    auth: true,
+    stateConfig: {
+        url: '/test',
+        templateUrl: 'help/help_test1.html'
+    }
+});
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_getdefaultpage">getDefaultPage()</h3>
+<div class="getdefaultpage"><div class="piphelp-service-piphelp-getdefaultpage-page"><p>This method return name of the default state.</p>
+</div><h5 id="methods_getdefaultpage_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piphelp-service-piphelp-getdefaultpage-page"><p>Name of the state</p>
+</div></td></tr></table><h4 id="methods_getdefaultpage_example">Example</h4>
+<div class="example"><div class="piphelp-service-piphelp-getdefaultpage-page"><pre class="prettyprint linenums">
+pipHelpProvider.getDefaultPage();
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_getpages">getPages()</h3>
+<div class="getpages"><div class="piphelp-service-piphelp-getpages-page"><p>This method returns asset of all pages registered in the Help component.</p>
+</div><h5 id="methods_getpages_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array&lt;Object&gt;</a></td><td><div class="piphelp-service-piphelp-getpages-page"><p>List of registered states</p>
+</div></td></tr></table><h4 id="methods_getpages_example">Example</h4>
+<div class="example"><div class="piphelp-service-piphelp-getpages-page"><pre class="prettyprint linenums">
+pipHelpProvider.getPages();
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_setdefaultpage">setDefaultPage(name)</h3>
+<div class="setdefaultpage"><div class="piphelp-service-piphelp-setdefaultpage-page"><p>This method establishes passed state as default which is redirected at after transfer on abstract
+state</p>
+</div><h5 id="methods_setdefaultpage_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piphelp-service-piphelp-setdefaultpage-page"><p>Name of the state</p>
+</div></td></tr></tbody></table><h4 id="methods_setdefaultpage_example">Example</h4>
+<div class="example"><div class="piphelp-service-piphelp-setdefaultpage-page"><pre class="prettyprint linenums">
+pipHelpProvider.setDefaultPage('test');
+</pre>
+</div></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
