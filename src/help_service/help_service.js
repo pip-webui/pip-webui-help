@@ -1,5 +1,5 @@
 /**
- * * @file Service for help components
+ * @file Service for help components
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
