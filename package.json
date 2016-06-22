@@ -28,8 +28,7 @@
     "samples": "gulp launch",
     "test": "karma start"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git",
     "pip-webui-lib": "git+https://github.com/pip-webui/pip-webui-lib.git",
@@ -44,6 +43,8 @@
     "pip-webui-entry": "git+https://github.com/pip-webui/pip-webui-entry.git",
     "pip-webui-test": "git+https://github.com/pip-webui/pip-webui-test.git",
     "angular-mocks": "*",
+    "eslint": "^2.13.1",
+    "eslint-config-standard": "^5.3.1",
     "karma": "*",
     "karma-phantomjs-launcher": "*",
     "phantomjs-prebuilt": "*",
@@ -53,7 +54,6 @@
     "chai": "*",
     "karma-sinon": "*",
     "sinon": "*",
-    "jshint": "*",
     "gulp": "*",
     "gulp-concat": "*",
     "gulp-less": "*",
@@ -67,7 +67,6 @@
     "gulp-ng-html2js": "*",
     "gulp-merge": "*",
     "gulp-typescript": "*",
-    "gulp-jshint": "*",
     "gulp-eslint": "*",
     "gulp-replace": "*",
     "gulp-add-src": "*",
