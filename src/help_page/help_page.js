@@ -22,17 +22,17 @@
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages    = _.filter(pipHelp.getPages(), function (page) {
-
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
         $scope.selected = {};
 
-        if ($state.current.name != 'help')
+        if ($state.current.name != 'help') {
             initSelect($state.current.name);
-        else
+        } else {
             initSelect(pipHelp.getDefaultPage().state);
+        }
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
