@@ -6,7 +6,8 @@
 (function (angular, _) {
     'use strict';
 
-    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate', 'pipHelp.Templates'])
+    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
+        'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
@@ -21,14 +22,14 @@
 
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
-        $scope.pages    = _.filter(pipHelp.getPages(), function (page) {
+        $scope.pages = _.filter(pipHelp.getPages(), function (page) {
             if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
         $scope.selected = {};
 
-        if ($state.current.name != 'help') {
+        if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
             initSelect(pipHelp.getDefaultPage().state);
@@ -36,7 +37,7 @@
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
-        $scope.onDropdownSelect   = onDropdownSelect;
+        $scope.onDropdownSelect = onDropdownSelect;
 
         return;
 
@@ -60,11 +61,11 @@
         }
 
         function initSelect(state) {
-            $scope.selected.page      = _.find($scope.pages, function (page) {
-                return page.state == state;
+            $scope.selected.page = _.find($scope.pages, function (page) {
+                return page.state === state;
             });
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
-            $scope.selected.pageId    = state;
+            $scope.selected.pageId = state;
         }
     }
 })(window.angular, window._);

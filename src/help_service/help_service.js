@@ -1,8 +1,7 @@
 /**
- * @file Service for help components
+ * * @file Service for help components
  * @copyright Digital Living Software Corp. 2014-2016
  */
-
 
 (function (angular, _) {
     'use strict';
@@ -38,7 +37,7 @@
 
                         /** @see setDefaultPage */
                         setDefaultPage: setDefaultPage
-                    }
+                    };
                 };
 
                 function getFullStateName(state) {
@@ -56,11 +55,14 @@
                 }
 
                 function addPage(pageObj) {
+                    var page;
+
                     validatePage(pageObj);
 
-                    if (_.find(pages, function (page) {
-                            return page.state === getFullStateName(pageObj.state);
-                        })) {
+                    page = _.find(pages, function (page) {
+                        return page.state === getFullStateName(pageObj.state);
+                    });
+                    if (page) {
                         throw new Error('Page with state name "' + pageObj.state + '" is already registered');
                     }
 
@@ -81,10 +83,14 @@
                 }
 
                 function setDefaultPage(name) {
-                    if (!_.find(pages, function (page) {
-                            return page.state === getFullStateName(name);
-                        })) {
-                        throw new Error('Page with state name "' + name + '" is not registered');
+                    var page, error;
+
+                    page = _.find(pages, function (page) {
+                        return page.state === getFullStateName(name);
+                    });
+                    if (!page) {
+                        error = new Error('Page with state name "' + name + '" is not registered');
+                        throw error;
                     }
 
                     defaultPage = getFullStateName(name);
@@ -97,7 +103,7 @@
                         throw new Error('Invalid object');
                     }
 
-                    if (pageObj.state == null || pageObj.state == '') {
+                    if (!pageObj.state || pageObj.state === '') {
                         throw new Error('Page should have valid Angular UI router state name');
                     }
 
