@@ -3,7 +3,6 @@
 
     var thisModule = angular.module('pipHelpConfig', ['pipHelp']);
 
-
     thisModule.config(function (pipHelpProvider) {
         // Register custom help page
         pipHelpProvider.addPage({

@@ -23,19 +23,20 @@
             ]);
 
             // Configure REST API
-            //pipRestProvider.version('1.0');
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure entry pages
-            //pipEntryProvider.fixedServerUrl('http://alpha.pipservices.net');
 
             // Configure default states
             pipAuthStateProvider.unauthorizedState('signin');
             pipAuthStateProvider.authorizedState('help');
 
             $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path == '') return '/signin';
-                else  return '/help';
+                if ($location.$$path === '') {
+                    return '/signin';
+                }
+
+                return '/help';
             });
 
             // Configure navigation menu
@@ -56,4 +57,3 @@
     );
 
 })(window.angular);
-
