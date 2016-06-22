@@ -11,7 +11,7 @@
             auth: true,
             stateConfig: {
                 url: '/test',
-                templateUrl: '/help/help_test1.html'
+                templateUrl: 'help/help_test1.html'
             }
         });
 
@@ -19,6 +19,7 @@
             state: 'test2',
             title: 'Test2 help page',
             auth: true,
+            visible: true,
             stateConfig: {
                 url: '/test2',
                 template: '<h1>This is test2 page in help inserted through provider</h1>'

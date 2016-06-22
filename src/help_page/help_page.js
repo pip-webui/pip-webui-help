@@ -23,7 +23,7 @@
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
-            if (page.visible && (page.access ? page.access($rootScope.$user, page) : true)) {
+            if (page.visible && (page.access !== angular.noop ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
