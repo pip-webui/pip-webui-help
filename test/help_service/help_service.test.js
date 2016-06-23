@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Help', function () {
+describe('HelpService', function () {
     var access, page1,
         stateProvider,
         service, stateSpy;
@@ -10,6 +10,7 @@ describe('Help', function () {
     beforeEach(module('pipState'));
     beforeEach(module('pipRest'));
     beforeEach(function () {
+
         access = angular.noop;
         page1 = {
             state: 'test',
@@ -29,6 +30,8 @@ describe('Help', function () {
     });
 
     beforeEach(inject(function (pipHelp) {
+
+        this.timeout(3000);
         service = pipHelp;
     }));
     it('should be able to add new page and get list of added pages', function () {
