@@ -28,7 +28,6 @@ module.exports = function (config) {
             { pattern: '**/*.html', included: false },
             '../test/**/*.js'
         ],
-
         // list of files to exclude
         exclude: [],
 
