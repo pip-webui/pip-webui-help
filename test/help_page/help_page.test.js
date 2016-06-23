@@ -2,7 +2,7 @@
 
 describe('Help', function () {
     var access, page1, stateSpy,  mockPipAppBar,  mockPipHelp,
-        stateProvider, $controller, scope;
+        stateProvider, $controller, scope, $rootScope;
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
@@ -41,20 +41,21 @@ describe('Help', function () {
     beforeEach(inject(function () {
         this.timeout(3000);
     }));
-    beforeEach(inject(function (_$controller_, pipAppBar, pipHelp) {
+    beforeEach(inject(function (_$controller_, pipAppBar, pipHelp, _$rootScope_) {
         $controller = _$controller_;
         mockPipAppBar = pipAppBar;
         mockPipHelp = pipHelp;
+        $rootScope = _$rootScope_;
     }));
 
-    beforeEach(function($state){
-
+    beforeEach(function(){
+        scope = {};
         $controller('pipHelpPageController', {
             $scope: scope,
-            $rootScope: {},
+            $rootScope: $rootScope,
             pipHelp: mockPipHelp,
             pipAppBar: mockPipAppBar,
-            $state: $state
+            $state: {current:{name: 'help1'}}
         });
     });
     it.only('init', function () {
