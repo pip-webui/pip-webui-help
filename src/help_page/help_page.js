@@ -53,8 +53,6 @@
         $scope.onNavigationSelect = onNavigationSelect;
         $scope.onDropdownSelect = onDropdownSelect;
 
-        return;
-
         /**
          * @ngdoc method
          * @name pipHelp.Page.pipHelpPageController#onDropdownSelect
