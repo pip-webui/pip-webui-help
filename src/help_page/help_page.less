@@ -5,10 +5,9 @@
 @pip-help-document-width: 1100px;
 
 .pip-help {
-
   font-size: @font-size-body2;
 
-  @media (min-width: 1200px ) {
+  @media (min-width: 1200px) {
     md-list.pip-menu {
       width: @pip-help-list-width;
       min-width: @pip-help-list-width;
@@ -26,11 +25,12 @@
     }
 
     .pip-content-container {
-      width: ~"calc(100% - 300px)";
+      width: ~"calc(100% - @{pip-help-list-width})";
     }
   }
 
-  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body {
+  &.pip-card .pip-header ~ .pip-body,
+  &.pip-document .pip-header ~ .pip-body {
     .tp(24px);
   }
 
@@ -38,7 +38,7 @@
     max-width: none !important
   }
 
-  @media (min-width: 1200px ) {
+  @media (min-width: 1200px) {
     md-list:first-of-type {
       width: @pip-help-list-width;
     }
@@ -54,10 +54,11 @@
 
   @media (min-width: 1000px) and (max-width: 1200px) {
     .pip-content-container {
-      width: ~"calc(100% - 300px)";
+      width: ~"calc(100% - @{pip-help-list-width})";
       -ms-overflow-y: auto;
     }
   }
+
   @media (min-width: 768px) and (max-width: 1200px) {
     md-list:first-of-type {
       width: 30%;
@@ -72,7 +73,8 @@
     }
   }
 
-  &.pip-card .pip-header ~ .pip-body, &.pip-document .pip-header ~ .pip-body {
+  &.pip-card .pip-header ~ .pip-body,
+  &.pip-document .pip-header ~ .pip-body {
     .tp(24px);
   }
 }
