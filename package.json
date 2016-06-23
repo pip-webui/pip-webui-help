@@ -24,7 +24,7 @@
   "private": true,
   "scripts": {
     "build": "gulp build",
-    "lint": "gulp lint",
+    "lint": "gulp less-lint && gulp js-lint",
     "samples": "gulp launch",
     "test": "karma start"
   },
