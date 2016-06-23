@@ -7,12 +7,11 @@ describe('Help', function () {
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
+    beforeEach(module('pipState'));
     beforeEach(module('pipRest'));
-
-
     beforeEach(function () {
         access = angular.noop;
-        page1  = {
+        page1 = {
             state: 'test',
             title: 'test help page',
             stateConfig: {
@@ -23,7 +22,7 @@ describe('Help', function () {
 
         module('pipState', function (pipAuthStateProvider) {
             stateProvider = pipAuthStateProvider;
-            stateSpy      = sinon.spy(stateProvider, 'state');
+            stateSpy = sinon.spy(stateProvider, 'state');
         });
 
         module('pipHelp');
@@ -32,8 +31,6 @@ describe('Help', function () {
     beforeEach(inject(function (pipHelp) {
         service = pipHelp;
     }));
-
-
     it('should be able to add new page and get list of added pages', function () {
         service.addPage(page1);
 
@@ -55,7 +52,7 @@ describe('Help', function () {
             service.addPage({
                 state: 'test',
                 stateConfig: {}
-            })
+            });
         }).to.throw(true);
     });
 
@@ -79,6 +76,6 @@ describe('Help', function () {
         expect(function () {
             service.setDefaultPage('abc');
         }).to.throw(true);
-    })
+    });
 
 });
