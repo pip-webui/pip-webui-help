@@ -19,7 +19,7 @@
             // Set global constants
             pipAppBarProvider.appTitleText('Sample Application');
             pipAppBarProvider.globalSecondaryActions([
-                {name: 'global.signout', title: 'SIGNOUT', state: 'signout'}
+                {name: 'global.signout', title: 'Signout', state: 'signout'}
             ]);
 
             // Configure REST API
@@ -42,14 +42,10 @@
             // Configure navigation menu
             pipSideNavProvider.sections([
                 {
-                    links: [
-                        {title: 'Help', url: '/help'}
-                    ]
+                    links: [{title: 'Help', url: '/help'}]
                 },
                 {
-                    links: [
-                        {title: 'Signout', url: '/signout'}
-                    ]
+                    links: [{title: 'Signout', url: '/signout'}]
                 }
             ]);
 
