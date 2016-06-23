@@ -70,6 +70,7 @@
                  *
                  * @example
                  * <pre>
+                 * // on the config phase
                  * pipHelpProvider.getPages();
                  * </pre>
                  */
@@ -89,6 +90,7 @@
                  *
                  * @example
                  * <pre>
+                 * // on the config phase
                  * pipHelpProvider.getDefaultPage();
                  * </pre>
                  */
@@ -116,6 +118,7 @@
                  *
                  * @example
                  * <pre>
+                 *  // on the config phase
                  *  pipHelpProvider.addPage({
                  *      state: 'test',
                  *      title: 'Test help page',

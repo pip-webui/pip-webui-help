@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "controller",
       "moduleName": "pipHelp.Page",
       "shortDescription": "The controller is used for the root Help component.",
-      "keywords": "$rootscope $scope $state api application bar behaviour component configuration controller header help interface manage method object ondropdownselect onnavigationselect passed pipappbar piphelp piphelppagecontroller redirects root service target"
+      "keywords": "$rootscope $scope $state api application bar behaviour component configuration controller current header help interface manage manages method navigation object ondropdownselect onnavigationselect passed pipappbar piphelp piphelppagecontroller provide redirects root router scope service target ui"
     },
     {
       "section": "api",
@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "pipHelp.Service",
       "shortDescription": "This service is provided an interface to manage the Help component.",
-      "keywords": "abstract accepts access add addpage allows api application asset component config configuration default define establishes format getdefaultpage getpages help html interface list logged manage menu method module navigation needed object pageobj params passed phases piphelp piphelpprovider pipstate provided redirected registered requires return returns router service setdefaultpage settings stateconfig templateurl test title transfer true ui url users visible"
+      "keywords": "abstract accepts access add addpage allows api application asset component config configuration default define establishes format getdefaultpage getpages help html interface list logged manage menu method module navigation needed object pageobj params passed phase phases piphelp piphelpprovider pipstate provided redirected registered requires return returns router service setdefaultpage settings stateconfig templateurl test title transfer true ui url users visible"
     }
   ],
   "apis": {
