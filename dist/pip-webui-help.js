@@ -83,6 +83,20 @@ module.run(['$templateCache', function($templateCache) {
         });
     }
 
+    /**
+     * @ngdoc controller
+     * @name pipHelp.Page.pipHelpPageController
+     *
+     * @description
+     * The controller is used for the root Help component.
+     * It manages available pages provide navigation through those ones.
+     *
+     * @param {Object} $rootScope   Root scope object
+     * @param {Object} $scope       Scope for the current controller
+     * @param {Object} $state       UI Router service
+     * @param {Object} pipAppBar    Service provides an interface to manage on application bar header.
+     * @param {Object} pipHelp      Service to manage this component behaviour
+     */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
@@ -102,12 +116,23 @@ module.run(['$templateCache', function($templateCache) {
         $scope.onNavigationSelect = onNavigationSelect;
         $scope.onDropdownSelect = onDropdownSelect;
 
-        return;
-
+        /**
+         * @ngdoc method
+         * @name pipHelp.Page.pipHelpPageController#onDropdownSelect
+         * @methodOf pipHelp.Page.pipHelpPageController
+         *
+         * @description
+         * It redirects to a passed state.
+         *
+         * @param {Object} state    State configuration object
+         */
         function onDropdownSelect(state) {
             onNavigationSelect(state.state);
         }
 
+        /**
+         * Config appBar due to this page
+         */
         function appHeader() {
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Help');
@@ -115,6 +140,16 @@ module.run(['$templateCache', function($templateCache) {
             pipAppBar.showLocalActions(null, []);
         }
 
+        /**
+         * @ngdoc method
+         * @name pipHelp.Page.pipHelpPageController#onNavigationSelect
+         * @methodOf pipHelp.Page.pipHelpPageController
+         *
+         * @description
+         * It redirects to a passed state.
+         *
+         * @param {string} state    Name of the target state.
+         */
         function onNavigationSelect(state) {
             initSelect(state);
 
@@ -123,6 +158,9 @@ module.run(['$templateCache', function($templateCache) {
             }
         }
 
+        /**
+         * Set selected item for highlighting in the nav menu
+         */
         function initSelect(state) {
             $scope.selected.page = _.find($scope.pages, function (page) {
                 return page.state === state;
@@ -141,6 +179,17 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _) {
     'use strict';
 
+    /**
+     * @ngdoc service
+     * @name pipHelp.Service.pipHelp
+     *
+     * @description
+     * This service is provided an interface to manage the Help component.
+     * It is available on the config and run application phases. On the both phases the interface is the same.
+     * This module requires the 'pipState' module.
+     *
+     * @requires pipState
+     */
     angular.module('pipHelp.Service', ['pipState'])
         .provider('pipHelp',
             ['pipAuthStateProvider', function (pipAuthStateProvider) {
@@ -175,20 +224,85 @@ module.run(['$templateCache', function($templateCache) {
                     };
                 };
 
+                /**
+                 * This method build the full name of state within the abstract 'help' state
+                 */
                 function getFullStateName(state) {
                     return 'help.' + state;
                 }
 
+                /**
+                 * @ngdoc method
+                 * @name pipHelp.Service.pipHelp#getPages
+                 * @methodOf pipHelp.Service.pipHelp
+                 *
+                 * @description
+                 * This method returns asset of all pages registered in the Help component.
+                 *
+                 * @returns {Array<Object>} List of registered states
+                 *
+                 * @example
+                 * <pre>
+                 * // on the config phase
+                 * pipHelpProvider.getPages();
+                 * </pre>
+                 */
                 function getPages() {
                     return _.clone(pages, true);
                 }
 
+                /**
+                 * @ngdoc method
+                 * @name pipHelp.Service.pipHelp#getDefaultPage
+                 * @methodOf pipHelp.Service.pipHelp
+                 *
+                 * @description
+                 * This method return name of the default state.
+                 *
+                 * @returns {string} Name of the state
+                 *
+                 * @example
+                 * <pre>
+                 * // on the config phase
+                 * pipHelpProvider.getDefaultPage();
+                 * </pre>
+                 */
                 function getDefaultPage() {
                     return _.clone(_.find(pages, function (page) {
                         return page.state === defaultPage;
                     }), true);
                 }
 
+                /**
+                 * @ngdoc method
+                 * @name pipHelp.Service.pipHelp#addPage
+                 * @methodOf pipHelp.Service.pipHelp
+                 *
+                 * @description
+                 * This method allows add new page into navigation menu. It accepts config object to define new state
+                 * with needed params.
+                 *
+                 * @param {Object} pageObj Configuration object contains settings for another page
+                 * @param {Object.<string>} pageObj.state   Name of page state which is available via UI router
+                 * @param {Object.<string>} pageObj.title   Page title in the navigation menu.
+                 * @param {Object.<boolean>} pageObj.access If it is true it will be available only for logged in users
+                 * @param {Object.<boolean>} pageObj.visible If it is true the page will be visible
+                 * @param {Object.<Object>} pageObj.stateConfig  Configuration object in format like UI Router state
+                 *
+                 * @example
+                 * <pre>
+                 *  // on the config phase
+                 *  pipHelpProvider.addPage({
+                 *      state: 'test',
+                 *      title: 'Test help page',
+                 *      auth: true,
+                 *      stateConfig: {
+                 *          url: '/test',
+                 *          templateUrl: 'help/help_test1.html'
+                 *      }
+                 *  });
+                 * </pre>
+                 */
                 function addPage(pageObj) {
                     var page;
 
@@ -217,6 +331,22 @@ module.run(['$templateCache', function($templateCache) {
                     }
                 }
 
+                /**
+                 * @ngdoc method
+                 * @name pipHelp.Service.pipHelp#setDefaultPage
+                 * @methodOf pipHelp.Service.pipHelp
+                 *
+                 * @description
+                 * This method establishes passed state as default which is redirected at after transfer on abstract
+                 * state
+                 *
+                 * @param {Object} name     Name of the state
+                 *
+                 * @example
+                 * <pre>
+                 * pipHelpProvider.setDefaultPage('test');
+                 * </pre>
+                 */
                 function setDefaultPage(name) {
                     var page, error;
 
@@ -233,6 +363,10 @@ module.run(['$templateCache', function($templateCache) {
                     pipAuthStateProvider.redirect('help', getFullStateName(name));
                 }
 
+                /**
+                 * This method validates passed state.
+                 * If it is incorrect it will throw an error.
+                 */
                 function validatePage(pageObj) {
                     if (!pageObj || !_.isObject(pageObj)) {
                         throw new Error('Invalid object');

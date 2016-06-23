@@ -24,6 +24,7 @@ with needed params.</p>
 </div></td></tr><tr><td>pageObj.stateConfig</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;Object&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Configuration object in format like UI Router state</p>
 </div></td></tr></tbody></table><h4 id="methods_addpage_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-addpage-page"><pre class="prettyprint linenums">
+// on the config phase
 pipHelpProvider.addPage({
     state: 'test',
     title: 'Test help page',
@@ -42,6 +43,7 @@ pipHelpProvider.addPage({
 </div><h5 id="methods_getdefaultpage_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piphelp-service-piphelp-getdefaultpage-page"><p>Name of the state</p>
 </div></td></tr></table><h4 id="methods_getdefaultpage_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-getdefaultpage-page"><pre class="prettyprint linenums">
+// on the config phase
 pipHelpProvider.getDefaultPage();
 </pre>
 </div></div>
@@ -52,6 +54,7 @@ pipHelpProvider.getDefaultPage();
 </div><h5 id="methods_getpages_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array&lt;Object&gt;</a></td><td><div class="piphelp-service-piphelp-getpages-page"><p>List of registered states</p>
 </div></td></tr></table><h4 id="methods_getpages_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-getpages-page"><pre class="prettyprint linenums">
+// on the config phase
 pipHelpProvider.getPages();
 </pre>
 </div></div>

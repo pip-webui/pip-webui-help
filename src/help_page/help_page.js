@@ -26,11 +26,11 @@
      *
      * @description
      * The controller is used for the root Help component.
+     * It manages available pages provide navigation through those ones.
      *
-     * @requires $scope
-     * @requires $rootScope
-     * @requires $state
-     *
+     * @param {Object} $rootScope   Root scope object
+     * @param {Object} $scope       Scope for the current controller
+     * @param {Object} $state       UI Router service
      * @param {Object} pipAppBar    Service provides an interface to manage on application bar header.
      * @param {Object} pipHelp      Service to manage this component behaviour
      */
@@ -67,6 +67,9 @@
             onNavigationSelect(state.state);
         }
 
+        /**
+         * Config appBar due to this page
+         */
         function appHeader() {
             pipAppBar.showMenuNavIcon();
             pipAppBar.showTitleText('Help');
@@ -92,6 +95,9 @@
             }
         }
 
+        /**
+         * Set selected item for highlighting in the nav menu
+         */
         function initSelect(state) {
             $scope.selected.page = _.find($scope.pages, function (page) {
                 return page.state === state;

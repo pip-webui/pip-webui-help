@@ -11,7 +11,7 @@
             auth: true,
             stateConfig: {
                 url: '/test',
-                templateUrl: 'help/help_test1.html'
+                templateUrl: 'help/help_test.html'
             }
         });
 
@@ -22,7 +22,7 @@
             visible: true,
             stateConfig: {
                 url: '/test2',
-                template: '<h1>This is test2 page in help inserted through provider</h1>'
+                template: '<h1>Test page 2</h1>\n<h2>Code to add this page</h2>\n\n<pre>\n     pipHelpProvider.addPage({\n            state: \'test2\',\n            title: \'Test2 help page\',\n            auth: true,\n            visible: true,\n            stateConfig: {\n                url: \'/test2\',\n                template: \'&lt;h1>Tets page 2&lt;/h1>\'\n            }\n        });\n</pre>'
             }
         });
 

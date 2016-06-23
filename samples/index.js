@@ -19,8 +19,9 @@
     ]);
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope) {
+        function ($scope, $rootScope, pipTheme) {
             // Sample controller code here...
+            pipTheme.setCurrentTheme('blue');
         }
     );
 
