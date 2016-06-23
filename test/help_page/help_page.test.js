@@ -58,7 +58,7 @@ describe('Help', function () {
             $state: {current:{name: 'help1'}}
         });
     });
-    it.only('init', function () {
+    it('init', function () {
 
     });
 
