@@ -35,7 +35,7 @@ describe('Help', function () {
         scope = $rootScope.$new();
     }));
 
-    describe('if current state not help', function () {
+    describe('if current state do not equal help', function () {
         beforeEach(function () {
             getPagesStub = sinon.stub(mockPipHelp, 'getPages').returns([{
                 state: 'test',
@@ -66,7 +66,7 @@ describe('Help', function () {
             });
         });
 
-        it('init', function () {
+        it('if current state not help initialization', function () {
             expect(getPagesStub.called).to.equal(true);
             expect(scope.pages.length).to.equal(1);
             expect(getDefaultPageStub.called).to.equal(false);
@@ -74,7 +74,7 @@ describe('Help', function () {
         });
     });
 
-    describe('if current state help', function () {
+    describe('if current state equal help', function () {
         beforeEach(function () {
             getPagesStub = sinon.stub(mockPipHelp, 'getPages').returns([{
                 state: 'test',
@@ -115,34 +115,37 @@ describe('Help', function () {
             });
         });
 
-        it('init', function () {
+        it('if current state help initialization', function () {
             expect(getPagesStub.called).to.equal(true);
             expect(scope.pages.length).to.equal(1);
             expect(getDefaultPageStub.calledOnce).to.equal(true);
 
         });
 
-        it('onNavigationSelect when have state', function () {
-            scope.onNavigationSelect('test');
-            expect(scope.selected.page.state).to.equal('test');
-            expect(scope.selected.page.stateConfig.url).to.equal('/test');
-        });
+        describe('testing navigationSelect function', function () {
+            it('when in navigationSelect in arg have state', function () {
+                scope.onNavigationSelect('test');
+                expect(scope.selected.page.state).to.equal('test');
+                expect(scope.selected.page.stateConfig.url).to.equal('/test');
+            });
 
-        it("onNavigationSelect when don't have state", function () {
-            scope.onNavigationSelect();
-            expect(scope.selected.page).to.be.undefined;
+            it('when in navigationSelect in arg do not have state', function () {
+                scope.onNavigationSelect();
+                expect(scope.selected.page).to.be.undefined;
+            });
         });
+        describe('testing dropdownSelect function', function () {
+            it('when in dropdownSelect in arg in function have field "state"', function () {
+                scope.onDropdownSelect({state: 'test'});
+                expect(scope.selected.page.state).to.equal('test');
+                expect(scope.selected.page.stateConfig.url).to.equal('/test');
+            });
 
-        it('onDropdownSelect when have state', function () {
-            scope.onDropdownSelect({state: 'test'});
-            expect(scope.selected.page.state).to.equal('test');
-            expect(scope.selected.page.stateConfig.url).to.equal('/test');
-        });
-
-        it("onDropdownSelect when don't have state", function () {
-            scope.onDropdownSelect({});
-            expect(scope.selected.page).to.be.undefined;
-        });
+            it('when in dropdownSelect in arg in function do not have field "state"', function () {
+                scope.onDropdownSelect({});
+                expect(scope.selected.page).to.be.undefined;
+            });
+        })
     });
 
 
