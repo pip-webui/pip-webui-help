@@ -6,25 +6,27 @@ describe('Help', function () {
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
-    beforeEach(module('pipState'));
-    beforeEach(module('pipRest'));
+
     beforeEach(function () {
-
-        module('pipState', function (pipAuthStateProvider) {
-            stateProvider = pipAuthStateProvider;
-            stateSpy = sinon.spy(stateProvider, 'state');
-        });
-
-        module('pipHelp');
         module(function($provide){
-            $provide.service('pipAppBar', function(){
-                this.showMenuNavIcon = angular.noop;
-                this.showTitleText = angular.noop;
-                this.showShadowSm = angular.noop;
-                this.showLocalActions = angular.noop;
+            stateSpy = sinon.spy();
+
+            $provide.provider('pipAuthState', function () {
+                this.state = stateSpy;
+                this.redirect = angular.noop;
+
+                this.$get = {};
             });
 
+            $provide.provider('pipState', function () {
+                this.state = angular.noop;
+                this.$get = {};
+            });
+
+            $provide.service('pipAppBar', angular.noop);
+            $provide.service('pipSelected', angular.noop);
         });
+        module('pipHelp');
     });
 
     beforeEach(inject(function (_$controller_, pipAppBar, pipHelp, _$rootScope_) {
