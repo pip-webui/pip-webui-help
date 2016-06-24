@@ -1,14 +1,12 @@
-
-
 describe('Help', function () {
-    var access, page1, stateSpy,  mockPipAppBar,  mockPipHelp, getDefaultPageStub,
-        stateProvider, $controller, scope, $rootScope, getPagesStub;
+    var stateSpy, mockPipAppBar, mockPipHelp, getDefaultPageStub,
+        $controller, scope, $rootScope, getPagesStub;
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
 
     beforeEach(function () {
-        module(function($provide){
+        module(function ($provide) {
             stateSpy = sinon.spy();
 
             $provide.provider('pipAuthState', function () {
@@ -36,7 +34,6 @@ describe('Help', function () {
         $rootScope = _$rootScope_;
         scope = $rootScope.$new();
     }));
-
 
     describe('if current state not help', function () {
         beforeEach(function () {
@@ -131,10 +128,20 @@ describe('Help', function () {
             expect(scope.selected.page.stateConfig.url).to.equal('/test');
         });
 
+        it("onNavigationSelect when don't have state", function () {
+            scope.onNavigationSelect();
+            expect(scope.selected.page).to.be.undefined;
+        });
+
         it('onDropdownSelect when have state', function () {
-            scope.onDropdownSelect({state:'test'});
+            scope.onDropdownSelect({state: 'test'});
             expect(scope.selected.page.state).to.equal('test');
             expect(scope.selected.page.stateConfig.url).to.equal('/test');
+        });
+
+        it("onDropdownSelect when don't have state", function () {
+            scope.onDropdownSelect({});
+            expect(scope.selected.page).to.be.undefined;
         });
     });
 
