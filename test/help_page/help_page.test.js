@@ -2,7 +2,7 @@
 
 describe('Help', function () {
     var access, page1, stateSpy,  mockPipAppBar,  mockPipHelp,
-        stateProvider, $controller, scope, $rootScope;
+        stateProvider, $controller, scope, $rootScope, getPagesStub;
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
@@ -15,7 +15,7 @@ describe('Help', function () {
             stateSpy = sinon.spy(stateProvider, 'state');
         });
 
-        module('pipHelp.Page');
+        module('pipHelp');
         module(function($provide){
             $provide.service('pipAppBar', function(){
                 this.showMenuNavIcon = angular.noop;
@@ -23,54 +23,38 @@ describe('Help', function () {
                 this.showShadowSm = angular.noop;
                 this.showLocalActions = angular.noop;
             });
-            $provide.service('pipHelp', function() {
-                this.addPage = angular.noop;
-                this.setDefaultPage = angular.noop;
-                this.getPages = getPages;
-                this.getDefaultPage = angular.noop;
-                this.$get = function () {
-                    return {
-                        /** @see getPages */
-                        getPages: getPages
-                    };
-                }
-                function getPages() {
-                    var pages = [{
-                        state: 'test',
-                        title: 'test help page',
-                        visible: true,
-                        access: angular.noop,
-                        stateConfig: {
-                            url: '/test',
-                            template: '<h1>This is test page in help inserted through provider</h1>'
-                        }
-                    }, {
-                        state: 'tes2',
-                        title: 'test2 help page',
-                        access: angular.noop,
-                        stateConfig: {
-                            url: '/test2',
-                            template: '<h1>This is test page in help inserted through provider</h1>'
-                        }
-                    }];
-                    return pages;
-                }
-            });
+
         });
     });
 
-    beforeEach(inject(function () {
-        this.timeout(3000);
-    }));
     beforeEach(inject(function (_$controller_, pipAppBar, pipHelp, _$rootScope_) {
         $controller = _$controller_;
         mockPipAppBar = pipAppBar;
         mockPipHelp = pipHelp;
         $rootScope = _$rootScope_;
+        scope = $rootScope.$new();
     }));
 
     beforeEach(function(){
-        scope = {};
+        getPagesStub = sinon.stub(mockPipHelp, 'getPages').returns([{
+            state: 'test',
+            title: 'test help page',
+            visible: true,
+            access: angular.noop,
+            stateConfig: {
+                url: '/test',
+                template: '<h1>This is test page in help inserted through provider</h1>'
+            }
+        }, {
+            state: 'tes2',
+            title: 'test2 help page',
+            access: angular.noop,
+            stateConfig: {
+                url: '/test2',
+                template: '<h1>This is test page in help inserted through provider</h1>'
+            }
+        }]);
+
         $controller('pipHelpPageController', {
             $scope: scope,
             $rootScope: $rootScope,
@@ -81,6 +65,7 @@ describe('Help', function () {
     });
 
     it('init', function () {
+        expect(getPagesStub.called).to.equal(true);
         expect(scope.pages.length).to.equal(1);
 
     });
