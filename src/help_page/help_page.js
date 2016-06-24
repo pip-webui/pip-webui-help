@@ -42,7 +42,6 @@
             }
         });
         $scope.selected = {};
-
         if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
