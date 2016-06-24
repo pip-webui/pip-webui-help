@@ -75,7 +75,7 @@ describe('Help', function () {
             expect(getDefaultPageStub.called).to.equal(false);
 
         });
-    })
+    });
 
     describe('if current state help', function () {
         beforeEach(function () {
@@ -127,6 +127,12 @@ describe('Help', function () {
 
         it('onNavigationSelect when have state', function () {
             scope.onNavigationSelect('test');
+            expect(scope.selected.page.state).to.equal('test');
+            expect(scope.selected.page.stateConfig.url).to.equal('/test');
+        });
+
+        it('onDropdownSelect when have state', function () {
+            scope.onDropdownSelect({state:'test'});
             expect(scope.selected.page.state).to.equal('test');
             expect(scope.selected.page.stateConfig.url).to.equal('/test');
         });
