@@ -1,39 +1,48 @@
-'use strict';
-
 describe('HelpService', function () {
+    'use strict';
+
     var access, page1,
         stateProvider,
         service, stateSpy;
 
     beforeEach(module('pipTest.UserParty'));
     beforeEach(module('pipTest.General'));
-    beforeEach(module('pipState'));
-    beforeEach(module('pipRest'));
-    beforeEach(function () {
 
+    beforeEach(module(function ($provide) {
+        stateSpy = sinon.spy();
+
+        $provide.provider('pipAuthState', function () {
+            this.state = stateSpy;
+            this.redirect = angular.noop;
+
+            this.$get = {};
+        });
+
+        $provide.provider('pipState', function () {
+            this.state = angular.noop;
+            this.$get = {};
+        });
+    }));
+
+    beforeEach(module('pipState'));
+    beforeEach(module('pipHelp'));
+
+    beforeEach(function () {
         access = angular.noop;
         page1 = {
             state: 'test',
             title: 'test help page',
             stateConfig: {
                 url: '/test',
-                template: '<h1>This is test page in help inserted through provider</h1>'
+                template: '<h1>This is test page in help inserted7 through provider</h1>'
             }
         };
-
-        module('pipState', function (pipAuthStateProvider) {
-            stateProvider = pipAuthStateProvider;
-            stateSpy = sinon.spy(stateProvider, 'state');
-        });
-
-        module('pipHelp');
     });
 
     beforeEach(inject(function (pipHelp) {
-
-        this.timeout(3000);
         service = pipHelp;
     }));
+
     it('should be able to add new page and get list of added pages', function () {
         service.addPage(page1);
 
@@ -43,8 +52,6 @@ describe('HelpService', function () {
             access: access,
             stateConfig: {}
         });
-
-        expect(stateSpy.called).to.isDefined;
 
         expect(service.getDefaultPage().state).to.equal('help.' + page1.state);
         expect(service.getDefaultPage().title).to.equal(page1.title);
@@ -56,7 +63,7 @@ describe('HelpService', function () {
                 state: 'test',
                 stateConfig: {}
             });
-        }).to.throw(true);
+        }).to.throw(Error);
     });
 
     it('should be able to add new page and get list of added pages', function () {
@@ -78,7 +85,42 @@ describe('HelpService', function () {
 
         expect(function () {
             service.setDefaultPage('abc');
-        }).to.throw(true);
+        }).to.throw(Error);
+    });
+
+    it('should be get pages after add', function () {
+        var pages;
+
+        service.addPage(page1);
+
+        service.addPage({
+            state: 'test2',
+            visible: false,
+            access: access,
+            stateConfig: {}
+        });
+
+        pages = service.getPages();
+
+        expect(pages.length).to.equal(2);
+    });
+
+    it('should be get errors if validation fall', function () {
+        expect(function () {
+            service.addPage();
+        }).to.throw('Invalid object');
+
+        expect(function () {
+            service.addPage({});
+        }).to.throw('Page should have valid Angular UI router state name');
+
+        expect(function () {
+            service.addPage({state:'test', access: true});
+        }).to.throw('"access" should be a function');
+
+        expect(function () {
+            service.addPage({state:'test', access: angular.noop});
+        }).to.throw('Invalid state configuration object');
     });
 
 });
