@@ -15,28 +15,49 @@ describe('Help', function () {
             stateSpy = sinon.spy(stateProvider, 'state');
         });
 
+        module('pipHelp.Page');
         module(function($provide){
             $provide.service('pipAppBar', function(){
+                this.showMenuNavIcon = angular.noop;
+                this.showTitleText = angular.noop;
+                this.showShadowSm = angular.noop;
+                this.showLocalActions = angular.noop;
             });
-            $provide.service('pipHelp', function(){
-                this.addPage = sinon.spy(stateProvider, 'state');
+            $provide.service('pipHelp', function() {
+                this.addPage = angular.noop;
                 this.setDefaultPage = angular.noop;
-                this.getPages = angular.noop;
+                this.getPages = getPages;
                 this.getDefaultPage = angular.noop;
-
                 this.$get = function () {
                     return {
-                        getPages: function(){ console.log('a')},
-                        getDefaultPage: angular.noop,
-                        addPage: angular.noop,
-                        setDefaultPage: angular.noop
+                        /** @see getPages */
+                        getPages: getPages
                     };
-                };
+                }
+                function getPages() {
+                    var pages = [{
+                        state: 'test',
+                        title: 'test help page',
+                        visible: true,
+                        access: angular.noop,
+                        stateConfig: {
+                            url: '/test',
+                            template: '<h1>This is test page in help inserted through provider</h1>'
+                        }
+                    }, {
+                        state: 'tes2',
+                        title: 'test2 help page',
+                        access: angular.noop,
+                        stateConfig: {
+                            url: '/test2',
+                            template: '<h1>This is test page in help inserted through provider</h1>'
+                        }
+                    }];
+                    return pages;
+                }
             });
         });
     });
-
-    beforeEach(module('pipHelp'));
 
     beforeEach(inject(function () {
         this.timeout(3000);
@@ -58,7 +79,9 @@ describe('Help', function () {
             $state: {current:{name: 'help1'}}
         });
     });
+
     it('init', function () {
+        expect(scope.pages.length).to.equal(1);
 
     });
 

@@ -1,18 +1,3 @@
-/**
- * @file Registration of all help components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipHelp', [
-        'pipHelp.Service',
-        'pipHelp.Page'
-    ]);
-
-})(window.angular);
-
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -60,6 +45,21 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
+ * @file Registration of all help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipHelp', [
+        'pipHelp.Service',
+        'pipHelp.Page'
+    ]);
+
+})(window.angular);
+
+/**
  * @file Page template for help components
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -99,11 +99,13 @@ module.run(['$templateCache', function($templateCache) {
      */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
+        console.log(pipHelp.getPages());
         $scope.pages = _.filter(pipHelp.getPages(), function (page) {
             if (page.visible && (page.access !== angular.noop ? page.access($rootScope.$user, page) : true)) {
                 return page;
             }
         });
+        console.log($scope.pages);
         $scope.selected = {};
 
         if ($state.current.name !== 'help') {
