@@ -2,7 +2,6 @@ describe('HelpService', function () {
     'use strict';
 
     var access, page1,
-        stateProvider,
         service, stateSpy;
 
     beforeEach(module('pipTest.UserParty'));

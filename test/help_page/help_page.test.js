@@ -145,8 +145,7 @@ describe('Help', function () {
                 scope.onDropdownSelect({});
                 expect(scope.selected.page).to.be.undefined;
             });
-        })
+        });
     });
-
 
 });
