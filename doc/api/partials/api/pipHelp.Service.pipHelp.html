@@ -16,6 +16,7 @@ This module requires the &#39;pipState&#39; module.</p>
 <ul class="methods"><li><h3 id="methods_addpage">addPage(pageObj)</h3>
 <div class="addpage"><div class="piphelp-service-piphelp-addpage-page"><p>This method allows add new page into navigation menu. It accepts config object to define new state
 with needed params.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L139">View source</a></p>
 </div><h5 id="methods_addpage_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>pageObj</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Configuration object contains settings for another page</p>
 </div></td></tr><tr><td>pageObj.state</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;string&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Name of page state which is available via UI router</p>
 </div></td></tr><tr><td>pageObj.title</td><td><a href="" class="label type-hint type-hint-object">Object.&lt;string&gt;</a></td><td><div class="piphelp-service-piphelp-addpage-page"><p>Page title in the navigation menu.</p>
@@ -40,6 +41,7 @@ pipHelpProvider.addPage({
 </li>
 <li><h3 id="methods_getdefaultpage">getDefaultPage()</h3>
 <div class="getdefaultpage"><div class="piphelp-service-piphelp-getdefaultpage-page"><p>This method return name of the default state.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L101">View source</a></p>
 </div><h5 id="methods_getdefaultpage_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piphelp-service-piphelp-getdefaultpage-page"><p>Name of the state</p>
 </div></td></tr></table><h4 id="methods_getdefaultpage_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-getdefaultpage-page"><pre class="prettyprint linenums">
@@ -51,6 +53,7 @@ pipHelpProvider.getDefaultPage();
 </li>
 <li><h3 id="methods_getpages">getPages()</h3>
 <div class="getpages"><div class="piphelp-service-piphelp-getpages-page"><p>This method returns asset of all pages registered in the Help component.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L79">View source</a></p>
 </div><h5 id="methods_getpages_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array&lt;Object&gt;</a></td><td><div class="piphelp-service-piphelp-getpages-page"><p>List of registered states</p>
 </div></td></tr></table><h4 id="methods_getpages_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-getpages-page"><pre class="prettyprint linenums">
@@ -63,6 +66,7 @@ pipHelpProvider.getPages();
 <li><h3 id="methods_setdefaultpage">setDefaultPage(name)</h3>
 <div class="setdefaultpage"><div class="piphelp-service-piphelp-setdefaultpage-page"><p>This method establishes passed state as default which is redirected at after transfer on abstract
 state</p>
+<p><a href="https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L185">View source</a></p>
 </div><h5 id="methods_setdefaultpage_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piphelp-service-piphelp-setdefaultpage-page"><p>Name of the state</p>
 </div></td></tr></tbody></table><h4 id="methods_setdefaultpage_example">Example</h4>
 <div class="example"><div class="piphelp-service-piphelp-setdefaultpage-page"><pre class="prettyprint linenums">

@@ -66,6 +66,8 @@
                  * @description
                  * This method returns asset of all pages registered in the Help component.
                  *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L79 View source}
+                 *
                  * @returns {Array<Object>} List of registered states
                  *
                  * @example
@@ -85,6 +87,8 @@
                  *
                  * @description
                  * This method return name of the default state.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L101 View source}
                  *
                  * @returns {string} Name of the state
                  *
@@ -108,6 +112,8 @@
                  * @description
                  * This method allows add new page into navigation menu. It accepts config object to define new state
                  * with needed params.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L139 View source}
                  *
                  * @param {Object} pageObj Configuration object contains settings for another page
                  * @param {Object.<string>} pageObj.state   Name of page state which is available via UI router
@@ -166,6 +172,8 @@
                  * @description
                  * This method establishes passed state as default which is redirected at after transfer on abstract
                  * state
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L185 View source}
                  *
                  * @param {Object} name     Name of the state
                  *

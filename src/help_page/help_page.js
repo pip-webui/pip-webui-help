@@ -28,6 +28,9 @@
      * The controller is used for the root Help component.
      * It manages available pages provide navigation through those ones.
      *
+     * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L40 View source}
+     *
+     *
      * @param {Object} $rootScope   Root scope object
      * @param {Object} $scope       Scope for the current controller
      * @param {Object} $state       UI Router service
@@ -62,6 +65,8 @@
          * @description
          * It redirects to a passed state.
          *
+         * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L72 View source}
+         *
          * @param {Object} state    State configuration object
          */
         function onDropdownSelect(state) {
@@ -85,6 +90,8 @@
          *
          * @description
          * It redirects to a passed state.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L98 View source}
          *
          * @param {string} state    Name of the target state.
          */
