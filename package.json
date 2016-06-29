@@ -24,9 +24,9 @@
   "private": true,
   "scripts": {
     "build": "gulp build",
-    "lint": "gulp less-lint && gulp js-lint",
+    "lint": "gulp lint",
     "samples": "gulp launch",
-    "test": "karma start"
+    "test": "gulp test"
   },
   "dependencies": {},
   "devDependencies": {
@@ -41,6 +41,7 @@
     "pip-webui-pictures": "git+https://github.com/pip-webui/pip-webui-pictures.git",
     "pip-webui-rest": "git+https://github.com/pip-webui/pip-webui-rest.git",
     "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git",
-    "pip-webui-test": "git+https://github.com/pip-webui/pip-webui-test.git"
+    "pip-webui-test": "git+https://github.com/pip-webui/pip-webui-test.git",
+    "gulp": "^3.9.1"
   }
 }

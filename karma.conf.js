@@ -21,7 +21,8 @@ module.exports = function (config) {
             '../node_modules/pip-webui-controls/dist/pip-webui-controls.js',
             '../node_modules/pip-webui-nav/dist/pip-webui-nav.js',
             '../node_modules/pip-webui-test/dist/pip-webui-test.js',
-            '../node_modules/angular-mocks/angular-mocks.js',
+            '../node_modules/pip-webui-tasks/node_modules/angular-mocks/angular-mocks.js',  // for old NPM versions
+            '../node_modules/angular-mocks/angular-mocks.js',  // for new NPM folders system
             '../temp/pip-webui-help-html.js',
             '../node_modules/pip-webui-lib/dist/pip-webui-lib-test.js',
             '**/*.js',
