@@ -42,7 +42,7 @@ describe('HelpService', function () {
         service = pipHelp;
     }));
 
-    describe('Add pages', function () {
+    describe('"addPages" method', function () {
         it('should be able to add new page and get list of added pages', function () {
             service.addPage(page1);
 
@@ -62,7 +62,7 @@ describe('HelpService', function () {
         });
     });
 
-    describe('Default state', function () {
+    describe('"getDefaultPages/setDefaultPages" methods', function () {
         it('default state', function () {
 
             service.addPage(page1);
@@ -81,7 +81,7 @@ describe('HelpService', function () {
 
             service.setDefaultPage('test2');
 
-            expect(stateSpy.called).to.isDefined;
+            expect(stateSpy.called).to.not.be.an('undefined');
 
             expect(service.getDefaultPage().state).to.equal('help.test2');
 
@@ -91,8 +91,8 @@ describe('HelpService', function () {
         });
     });
 
-    describe('Get pages', function () {
-        it('if have some pages', function () {
+    describe('"getPages" method', function () {
+        it('should be able to add new page', function () {
             service.addPage(page1);
             service.addPage({
                 state: 'test2',
@@ -104,28 +104,31 @@ describe('HelpService', function () {
             expect(service.getPages().length).to.equal(2);
         });
 
-        it('if pages variables empty', function () {
+        it('should not have any predefined pages', function () {
             expect(service.getPages().length).to.equal(0);
         });
     });
 
-    describe('Validation function', function () {
-        it('should be get errors if invalid object', function () {
+    describe('"validatePage" method', function () {
+        it('should throw an error when passed \'undefined\'', function () {
             expect(function () {
                 service.addPage();
             }).to.throw('Invalid object');
         });
-        it('should be get errors if page should have valid Angular UI router state name', function () {
+
+        it('should throw an errors when passed config object doesn\'t have state name' , function () {
             expect(function () {
                 service.addPage({});
             }).to.throw('Page should have valid Angular UI router state name');
         });
-        it('should be get errors if "access" should be a function', function () {
+
+        it('should throw an error when "access" field is not a function', function () {
             expect(function () {
                 service.addPage({state: 'test', access: true});
             }).to.throw('"access" should be a function');
         });
-        it('should be get errors if invalid state configuration object', function () {
+
+        it('should throw an error when config object is invalid', function () {
             expect(function () {
                 service.addPage({state: 'test', access: angular.noop});
             }).to.throw('Invalid state configuration object');

@@ -42,11 +42,13 @@
             }
         });
         $scope.selected = {};
+
         if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
             initSelect(pipHelp.getDefaultPage().state);
         }
+
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
@@ -101,6 +103,7 @@
             $scope.selected.page = _.find($scope.pages, function (page) {
                 return page.state === state;
             });
+
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
             $scope.selected.pageId = state;
         }
