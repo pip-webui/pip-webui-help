@@ -26,7 +26,8 @@
     "build": "gulp build",
     "lint": "gulp lint",
     "samples": "gulp launch",
-    "test": "gulp test"
+    "test": "gulp test",
+    "clean": "gulp clean"
   },
   "dependencies": {},
   "devDependencies": {

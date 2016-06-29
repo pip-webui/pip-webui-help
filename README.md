@@ -147,17 +147,17 @@ npm install
 npm update
 ```
 
-Then run the **gulp** tasks:
+Then run the **npm** scripts (located in `package.json`):
 
 ```bash
 # To clean '/build' and '/dist' directories
-gulp clean
+npm run clean
 
-# To build distribution files in the `/dist` directory
-gulp build
+# To build distribution files in the '/dist' directory
+npm run build
 
 # To launch samples (build will open samples/index page in web browser)
-gulp launch
+npm run samples
 ```
 
 For more details on how the build process works and additional commands (available for testing and
