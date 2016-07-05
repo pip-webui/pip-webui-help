@@ -1,13 +1,14 @@
 # <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Help page module
 
-This module provides extendable help-page for LOB applications based on [Pip.WebUI framework](https://github.com/pip-webui/pip-webui). 
-Help services allows to fill the help page with predefined and custom tabs. Routing is done by navigating to /#help url.
+This module provides extendable help page for LOB applications based on [Pip.WebUI framework](https://github.com/pip-webui/pip-webui). 
+Help services allows to fill the help with predefined and custom tabs. Routing is done by navigating to **/#help** url.
 
+TBD: Replace the image with realistic help content
 <div style="border: 1px solid #ccc">
   <img src="https://github.com/pip-webui/pip-webui-help/blob/master/doc/HelpSample.png" alt="Help Page Sample" style="display:block;">
 </div>
 
-Help service allows to fill the help with predefined and custom tabs
+Help service allows to fill the help page with predefined and custom tabs
 
 ```javascript
 angular
@@ -28,7 +29,8 @@ angular
 ## Learn more about the module
 
 - [API Reference](http://htmlpreview.github.io/?https://github.com/pip-webui/pip-webui-help/blob/master/doc/api/index.html)
-- [Examples Online](http://webui.pipdevs.com/pip-webui-help/index.html)
+- [Online Samples](http://webui.pipdevs.com/pip-webui-help/index.html)
+- [Development Guide](doc/Development.md)
 - [Pip.WebUI Framework](https://github.com/pip-webui/pip-webui)
 - [Pip.WebUI Official Website](http://www.pipwebui.org)
 
