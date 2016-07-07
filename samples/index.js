@@ -19,9 +19,9 @@
     ]);
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, pipTheme) {
-            // Sample controller code here...
+        function ($scope, $rootScope, pipTheme, pipAppBar) {
             pipTheme.setCurrentTheme('blue');
+            pipAppBar.showLanguage();
         }
     );
 

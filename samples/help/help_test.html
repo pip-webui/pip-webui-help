@@ -1,14 +1,21 @@
-<h1>The first test page</h1>
+<h2 class="text-title tm0 bm24">{{ 'FIRST_TEST_PAGE' | translate }}</h2>
 
-<h2>Code to add this page</h2>
-<pre>
-     pipHelpProvider.addPage({
-            state: 'test',
-            title: 'Test help page',
-            auth: true,
-            stateConfig: {
-                url: '/test',
-                templateUrl: 'help/help_test.html'
-            }
-        });
+<h3 class="text-subhead2 tm0">{{ 'CODE_TO_ADD_PAGE' | translate }}</h3>
+
+<pre class="text-body1 color-window-bg p16">
+    <strong>JS:</strong>
+
+        <strong>pipHelpProvider.addPage</strong>({
+               state: 'test',
+               title: {{ 'TEST_HELP_PAGE' | translate }},
+               auth: true,
+               stateConfig: {
+                   url: '/test',
+                   templateUrl: 'help/help_test.html'
+               }
+           });
+
+    <strong>HTML {{ 'TEMPLATE' | translate}}:</strong>
+
+            &lt;h2&gt;{{ 'FIRST_TEST_PAGE' | translate }}&lt;/h2&gt;
 </pre>
