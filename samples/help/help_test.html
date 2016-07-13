@@ -8,9 +8,9 @@
         <strong>pipHelpProvider.addPage</strong>({
                state: 'test',
                title: {{ 'TEST_HELP_PAGE' | translate }},
-               auth: true,
                stateConfig: {
                    url: '/test',
+                   auth: false,
                    templateUrl: 'help/help_test.html'
                }
            });

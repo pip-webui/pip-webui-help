@@ -14,7 +14,7 @@
     function config(pipStateProvider) {
         pipStateProvider.state('help', {
             url: '/help',
-            auth: true,
+            auth: false,
             controller: 'pipHelpPageController',
             templateUrl: 'help_page/help_page.html'
         });

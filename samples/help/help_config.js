@@ -25,9 +25,9 @@
         pipHelpProvider.addPage({
             state: 'test',
             title: 'TEST_HELP_PAGE',
-            auth: true,
             stateConfig: {
                 url: '/test',
+                auth: false,
                 templateUrl: 'help/help_test.html'
             }
         });
@@ -35,13 +35,13 @@
         pipHelpProvider.addPage({
             state: 'test2',
             title: 'TEST_HELP_PAGE_2',
-            auth: true,
             visible: true,
             stateConfig: {
                 url: '/test2',
+                auth: false,
                 template: '<h2 class="text-title tm0 bm24">{{ \'SECOND_TEST_PAGE\' | translate }}</h2>\n' +
                 '<h3 class="text-subhead2 tm0">{{ \'CODE_TO_ADD_PAGE\' | translate }}</h3>\n' +
-                '\n<pre class="text-body1 color-window-bg p16">\n     <strong>pipHelpProvider.addPage</strong>({\n            state: \'test2\',\n            title: {{\'TEST_HELP_PAGE_2\' | translate }},\n            auth: true,\n            visible: true,\n            stateConfig: {\n                url: \'/test2\',\n                template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h1>\'\n            }\n        });\n</pre>' // eslint-disable-line
+                '\n<pre class="text-body1 color-window-bg p16">\n     <strong>pipHelpProvider.addPage</strong>({\n            state: \'test2\',\n            title: {{\'TEST_HELP_PAGE_2\' | translate }},\n            visible: true,\n            stateConfig: {\n                url: \'/test2\',\n                template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h1>\'\n            }\n        });\n</pre>' // eslint-disable-line
             }
         });
 

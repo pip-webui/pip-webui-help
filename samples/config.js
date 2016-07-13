@@ -18,9 +18,9 @@
 
             // Set global constants
             pipAppBarProvider.appTitleText('Sample Application');
-            pipAppBarProvider.globalSecondaryActions([
-                {name: 'global.signout', title: 'Signout', state: 'signout'}
-            ]);
+            // pipAppBarProvider.globalSecondaryActions([
+            //     {name: 'global.signout', title: 'Signout', state: 'signout'}
+            // ]);
 
             // Configure REST API
             pipRestProvider.serverUrl('http://alpha.pipservices.net');
@@ -28,25 +28,19 @@
             // Configure entry pages
 
             // Configure default states
-            pipAuthStateProvider.unauthorizedState('signin');
+            pipAuthStateProvider.unauthorizedState('help');
             pipAuthStateProvider.authorizedState('help');
 
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path === '') {
-                    return '/signin';
-                }
-
-                return '/help';
-            });
+            $urlRouterProvider.otherwise('/help');
 
             // Configure navigation menu
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'Help', url: '/help'}]
-                },
+                }/*,
                 {
                     links: [{title: 'Signout', url: '/signout'}]
-                }
+                }*/
             ]);
 
         }
