@@ -6,17 +6,13 @@ This document provides high-level instructions on how to build and test the libr
 * [Installing](#install)
 * [Building](#build)
 * [Testing](#test)
-* [Contributing](#contrib) 
+* [Contributing](#contrib)
 
 ## <a name="setup"></a> Environment Setup
 
-TBD...
+Must be installed **[Node.js](https://nodejs.org/)**. If not installed, you can download [here](https://nodejs.org/en/download/).
 
 ## <a name="install"></a> Installing
-
-TBD...
-
-## <a name="build"></a> Building
 
 Projects environment deploy is occurred using npm and gulp.
 
@@ -29,6 +25,8 @@ npm install
 # Or update
 npm update
 ```
+
+## <a name="build"></a> Building
 
 Then run the **npm** scripts (located in `package.json`):
 
@@ -48,15 +46,23 @@ debugging) developers should read the [Build Instructions](docs/guides/BUILD.md)
 
 ## <a name="test"></a> Testing
 
-TBD...
+Run **gulp** task:
+
+```bash
+# to test
+gulp test
+
+# for linting codestyle
+gulp js-lint
+```
 
 ## <a name="contrib"></a> Contributing
 
 Developers interested in contributing should read the following guidelines:
 
-* [Issue Guidelines]()
-* [Contributing Guidelines]()
-* [Coding guidelines]()
+* [Issue Guidelines](https://github.com/pip-webui/pip-webui/blob/master/doc/Contributing.md#bugs)
+* [Contributing Guidelines](https://github.com/pip-webui/pip-webui/blob/master/doc/Contributing.md)
+* [Coding guidelines](https://github.com/pip-webui/pip-webui/blob/master/doc/Contributing.md#style-guide)
 
 > Please do **not** ask general questions in an issue. Issues are only to report bugs, request
   enhancements, or request new features. For general questions and discussions, use the
