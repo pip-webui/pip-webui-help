@@ -16,7 +16,7 @@ No fixes in this version
 <br/>
 
 ### 0.0.0 (2016-01-01) Template
--------
+----------
 
 #### Enhancements:
 
