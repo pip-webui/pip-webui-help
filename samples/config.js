@@ -56,7 +56,7 @@
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'Help', url: '/help'}]
-                },
+                }/*, Links only for publishing samples
                 {
                     links: links
                 }/*,
