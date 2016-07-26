@@ -1,18 +1,3 @@
-/**
- * @file Registration of all help components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipHelp', [
-        'pipHelp.Service',
-        'pipHelp.Page'
-    ]);
-
-})(window.angular);
-
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -60,6 +45,21 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
+ * @file Registration of all help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipHelp', [
+        'pipHelp.Service',
+        'pipHelp.Page'
+    ]);
+
+})(window.angular);
+
+/**
  * @file Page template for help components
  * @copyright Digital Living Software Corp. 2014-2016
  */
@@ -77,7 +77,7 @@ module.run(['$templateCache', function($templateCache) {
     function config(pipStateProvider) {
         pipStateProvider.state('help', {
             url: '/help',
-            auth: true,
+            auth: false,
             controller: 'pipHelpPageController',
             templateUrl: 'help_page/help_page.html'
         });
@@ -90,6 +90,9 @@ module.run(['$templateCache', function($templateCache) {
      * @description
      * The controller is used for the root Help component.
      * It manages available pages provide navigation through those ones.
+     *
+     * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L40 View source}
+     *
      *
      * @param {Object} $rootScope   Root scope object
      * @param {Object} $scope       Scope for the current controller
@@ -105,11 +108,13 @@ module.run(['$templateCache', function($templateCache) {
             }
         });
         $scope.selected = {};
+
         if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
             initSelect(pipHelp.getDefaultPage().state);
         }
+
         appHeader();
 
         $scope.onNavigationSelect = onNavigationSelect;
@@ -122,6 +127,8 @@ module.run(['$templateCache', function($templateCache) {
          *
          * @description
          * It redirects to a passed state.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L72 View source}
          *
          * @param {Object} state    State configuration object
          */
@@ -147,6 +154,8 @@ module.run(['$templateCache', function($templateCache) {
          * @description
          * It redirects to a passed state.
          *
+         * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L98 View source}
+         *
          * @param {string} state    Name of the target state.
          */
         function onNavigationSelect(state) {
@@ -164,6 +173,7 @@ module.run(['$templateCache', function($templateCache) {
             $scope.selected.page = _.find($scope.pages, function (page) {
                 return page.state === state;
             });
+
             $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
             $scope.selected.pageId = state;
         }
@@ -238,6 +248,8 @@ module.run(['$templateCache', function($templateCache) {
                  * @description
                  * This method returns asset of all pages registered in the Help component.
                  *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L79 View source}
+                 *
                  * @returns {Array<Object>} List of registered states
                  *
                  * @example
@@ -257,6 +269,8 @@ module.run(['$templateCache', function($templateCache) {
                  *
                  * @description
                  * This method return name of the default state.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L101 View source}
                  *
                  * @returns {string} Name of the state
                  *
@@ -280,6 +294,8 @@ module.run(['$templateCache', function($templateCache) {
                  * @description
                  * This method allows add new page into navigation menu. It accepts config object to define new state
                  * with needed params.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L139 View source}
                  *
                  * @param {Object} pageObj Configuration object contains settings for another page
                  * @param {Object.<string>} pageObj.state   Name of page state which is available via UI router
@@ -338,6 +354,8 @@ module.run(['$templateCache', function($templateCache) {
                  * @description
                  * This method establishes passed state as default which is redirected at after transfer on abstract
                  * state
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L185 View source}
                  *
                  * @param {Object} name     Name of the state
                  *
