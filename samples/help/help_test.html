@@ -1,21 +1,21 @@
-<h2 class="text-title tm0 bm24">{{ 'FIRST_TEST_PAGE' | translate }}</h2>
-
-<h3 class="text-subhead2 tm0">{{ 'CODE_TO_ADD_PAGE' | translate }}</h3>
+<h2 class="text-title tm0 bm24">{{:: 'FIRST_TEST_PAGE' | translate }}</h2>
 
 <pre class="text-body1 color-window-bg p16">
-    <strong>JS:</strong>
-
-        <strong>pipHelpProvider.addPage</strong>({
-               state: 'test',
-               title: {{ 'TEST_HELP_PAGE' | translate }},
-               stateConfig: {
-                   url: '/test',
-                   auth: false,
-                   templateUrl: 'help/help_test.html'
-               }
-           });
-
-    <strong>HTML {{ 'TEMPLATE' | translate}}:</strong>
-
-            &lt;h2&gt;{{ 'FIRST_TEST_PAGE' | translate }}&lt;/h2&gt;
+<h3 class="text-subhead2 m0">{{:: 'CODE_TO_ADD_PAGE' | translate}}</h3>
+<strong>JS:</strong>
+<code class="language-js">
+pipHelpProvider.addPage({
+       state: 'test',
+       title: {{:: 'TEST_HELP_PAGE' | translate }},
+       stateConfig: {
+           url: '/test',
+           auth: false,
+           templateUrl: 'help/help_test.html'
+       }
+   });
+</code>
+<strong>HTML {{:: 'TEMPLATE' | translate}}:</strong>
+<code class="language-markup">
+&lt;h2&gt;{{:: 'FIRST_TEST_PAGE' | translate }}&lt;/h2&gt;
+</code>
 </pre>

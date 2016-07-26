@@ -26,6 +26,13 @@
             state: 'test',
             title: 'TEST_HELP_PAGE',
             stateConfig: {
+                controller: function($timeout) {
+                    $timeout(function() {
+                        $('pre code').each(function(i, block) {
+                            Prism.highlightElement(block);
+                        });
+                    });
+                },
                 url: '/test',
                 auth: false,
                 templateUrl: 'help/help_test.html'
@@ -37,11 +44,17 @@
             title: 'TEST_HELP_PAGE_2',
             visible: true,
             stateConfig: {
+                controller: function($timeout) {
+                    $timeout(function() {
+                        $('pre code').each(function(i, block) {
+                            Prism.highlightElement(block);
+                        });
+                    });
+                },
                 url: '/test2',
                 auth: false,
                 template: '<h2 class="text-title tm0 bm24">{{ \'SECOND_TEST_PAGE\' | translate }}</h2>\n' +
-                '<h3 class="text-subhead2 tm0">{{ \'CODE_TO_ADD_PAGE\' | translate }}</h3>\n' +
-                '\n<pre class="text-body1 color-window-bg p16">\n     <strong>pipHelpProvider.addPage</strong>({\n            state: \'test2\',\n            title: {{\'TEST_HELP_PAGE_2\' | translate }},\n            visible: true,\n            stateConfig: {\n                url: \'/test2\',\n                template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h1>\'\n            }\n        });\n</pre>' // eslint-disable-line
+                '\n<pre class="color-window-bg p16">\n<h3 class="text-subhead2 m0">{{:: \'CODE_TO_ADD_PAGE\' | translate}}</h3>\n<code class="language-js">pipHelpProvider.addPage({\n    state: \'test2\',\n    title: {{\'TEST_HELP_PAGE_2\' | translate }},\n    visible: true,\n    stateConfig: {\n      url: \'/test2\',\n      template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h2>\'\n    }\n});\n</code></pre>' // eslint-disable-line
             }
         });
 
