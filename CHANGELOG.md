@@ -5,18 +5,18 @@
 
 #### Enhancements:
 
-* **help** Extensible application help 
+* **help** Extensible application help
 
 #### Breaking Changes
 * API in most controls was changed since the previous version
 
 #### Bug Fixes
-No fixes in this version 
+No fixes in this version
 
 <br/>
 
 ### 0.0.0 (2016-01-01) Template
--------
+----------
 
 #### Enhancements:
 
