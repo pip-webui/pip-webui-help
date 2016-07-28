@@ -1,49 +1,57 @@
-# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Help page module
+# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Extensible help page
 
-This module provides extendable help page for LOB applications based on [Pip.WebUI framework](https://github.com/pip-webui/pip-webui).
-Help services allows to fill the help with predefined and custom tabs. Routing is done by navigating to **/#help** url.
+![](https://img.shields.io/badge/license-MIT-blue.svg)
 
-TBD: Replace the image with realistic help content
+Any non-trivial application contains complex functionality. To use it effectively, user may need extra help.
+Pip.WebUI.Help module implements extensible help page that can be filled with tabs by application developers.
+Each tab may contain help information on various topics
+
+### pipHelp provider
+
+pipHelp provider allows to configure Help page and fill it with tabs.
+
+```javascript
+pipHelpProvider.addTab({
+    state: 'custom',
+    title: 'Custom tab',
+    auth: true,
+    stateConfig: {
+        url: '/custom',
+        templateUrl: 'help_custom_tab.html'
+    }
+});
+```
+
+### Help page
+
+Help page implemented as extensible container that can be filled with content tabs.
+It can navigated to using **help** state or **/#help** route.
+
+Todo: Replace the image with more realistic help content
 <div style="border: 1px solid #ccc">
   <img src="https://github.com/pip-webui/pip-webui-help/blob/master/doc/HelpSample.png" alt="Help Page Sample" style="display:block;">
 </div>
 
-Help service allows to fill the help page with predefined and custom tabs
-
-```javascript
-angular
-    .module('appHelp', ['pipHelp'])
-    .config(function (pipHelpProvider) {
-        pipHelpProvider.addPage({
-            state: 'test',
-            title: 'Test help page',
-            auth: true,
-            stateConfig: {
-                url: '/test',
-                template: '<h1>This is test page in help inserted through provider</h1>'
-            }
-        })
-    });
-```
-
 ## Learn more about the module
 
-- [API Reference](http://htmlpreview.github.io/?https://github.com/pip-webui/pip-webui-help/blob/master/doc/api/index.html)
-- [Online Samples](http://webui.pipdevs.com/pip-webui-help/index.html)
-- [Development Guide](doc/DeveloperGuide.md)
-- [User Guide](doc/UserGuide.md)
-- [Pip.WebUI Framework](https://github.com/pip-webui/pip-webui)
-- [Pip.WebUI Official Website](http://www.pipwebui.org)
+- [User's guide](doc/UsersGuide.md)
+- [Online samples](http://webui.pipdevs.com/pip-webui-help/index.html)
+- [API reference](http://webui-api.pipdevs.com/pip-webui-help/index.html)
+- [Developer's guide](doc/DevelopersGuide.md)
+- [Changelog](CHANGELOG.md)
+- [Pip.WebUI project website](http://www.pipwebui.org)
+- [Pip.WebUI project wiki](https://github.com/pip-webui/pip-webui/wiki)
+- [Pip.WebUI discussion forum](https://groups.google.com/forum/#!forum/pip-webui)
+- [Pip.WebUI team blog](https://pip-webui.blogspot.com/)
 
 ## <a name="dependencies"></a>Module dependencies
 
-* <a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a>
-* <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a>
-* <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a>
-* <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a>
-* <a href="https://github.com/pip-webui/pip-webui-layouts">pip-webui-layouts</a>
+* [pip-webui-lib](https://github.com/pip-webui/pip-webui-lib): angular, angular material and other 3rd party libraries
+* [pip-webui-css](https://github.com/pip-webui/pip-webui-css): CSS styles and web components
+* [pip-webui-core](https://github.com/pip-webui/pip-webui-core): localization and other core services
+* [pip-webui-layouts](https://github.com/pip-webui/pip-webui-layouts): document layout
+* [pip-webui-nav](https://github.com/pip-webui/pip-webui-nav): navigation dropdown
 
 ## <a name="license"></a>License
 
 This module is released under [MIT license](License) and totally free for commercial and non-commercial use.
-
