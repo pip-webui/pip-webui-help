@@ -50,11 +50,11 @@ and dynamically add there tabs during configure and run phases.
 ```javascript
     pipHelpProvider.addTab({
         state: 'custom',
-        title: 'Custom',
+        title: 'Custom tab',
         stateConfig: {
-            controller:'customController',
+            controller:'CustomTabController',
             url: '/custom',
-            templateUrl: 'custom.html'
+            templateUrl: 'help_custom_tab.html'
         }
     });
 ```
@@ -77,6 +77,8 @@ and dynamically add there tabs during configure and run phases.
 
 ### Tab Configuration object
 
+Todo: Add description of the tab configuration fields
+
 
 ## <a name="help_page"></a> Help page
 
@@ -92,7 +94,7 @@ configured in **pipHelp** provider.
 ```javascript
 pipSideNavProvider.sections([{
     links: [
-        {title: 'Help', url: '/help'}
+        { title: 'Help', url: '/help' }
     ]
 }]);
 ```
