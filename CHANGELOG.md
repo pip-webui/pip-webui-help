@@ -1,15 +1,19 @@
-# Changelog
+# Pip.WebUI.Help Changelog
 
-### 1.0.0 (2016-05-01)
------
+## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
-#### Enhancements:
+Initial release with extensible help page and provider to fill it with content tabs
 
+<<<<<<< HEAD
 * **help** Extensible application help
+=======
+### Features
+>>>>>>> 439df8fc9b305e3f30f79b1d1eef173d8df7f552
 
-#### Breaking Changes
-* API in most controls was changed since the previous version
+* **help provider**: provider to configure extensible help page
+* **help page**: extensible help page
 
+<<<<<<< HEAD
 #### Bug Fixes
 No fixes in this version
 
@@ -19,15 +23,10 @@ No fixes in this version
 ----------
 
 #### Enhancements:
+=======
+### Breaking Changes
+No breaking changes in this version
+>>>>>>> 439df8fc9b305e3f30f79b1d1eef173d8df7f552
 
-* new performed features
-
-#### Breaking Changes
-* what has been changed
-
-#### Bug Fixes
-
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
-* [#1234](http://link_to_pull_request) Some description of new feature
+### Bug Fixes
+No fixes in this version 
