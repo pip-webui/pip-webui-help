@@ -77,7 +77,15 @@ and dynamically add there tabs during configure and run phases.
 
 ### Tab Configuration object
 
-Todo: Add description of the tab configuration fields
+* **state: String** - Name of tab state which is available via UI router. The name consists of 'settings.' + the short name tab
+* **title: String** - Tab title in the navigation menu.
+* **access: Function** - If it is true it will be available only for logged in users
+* **visible: Boolean** - If it is true the tab will be visible. By default **visible** equal true
+* **stateConfig: Object** - Configuration object in format like UI Router state
+    - Often contains fields:
+        + controller - name of the controller
+        + url - name of url
+        + templateUrl - url to the html template
 
 
 ## <a name="help_page"></a> Help page
