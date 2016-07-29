@@ -22,7 +22,7 @@
             TEMPLATE: 'шаблон'
         });
         // Register custom help page
-        pipHelpProvider.addPage({
+        pipHelpProvider.addTab({
             state: 'test',
             title: 'TEST_HELP_PAGE',
             stateConfig: {
@@ -39,7 +39,7 @@
             }
         });
 
-        pipHelpProvider.addPage({
+        pipHelpProvider.addTab({
             state: 'test2',
             title: 'TEST_HELP_PAGE_2',
             visible: true,
@@ -58,7 +58,7 @@
             }
         });
 
-        pipHelpProvider.setDefaultPage('test');
+        pipHelpProvider.setDefaultTab('test');
     });
 
 })(window.angular);

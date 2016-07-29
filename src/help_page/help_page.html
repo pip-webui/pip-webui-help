@@ -9,22 +9,22 @@
     <div class="pip-menu-container pip-help"
          ng-if="manager !== false">
         <md-list class="pip-menu pip-simple-list hide-xs"
-                 pip-selected="selected.pageIndex"
+                 pip-selected="selected.tabIndex"
                  pip-selected-watch="selected.navId"
                  pip-select="onNavigationSelect($event.id)">
             <md-list-item class="pip-simple-list-item pip-selectable"
-                          ng-repeat="page in pages track by page.state"
+                          ng-repeat="tab in tabs track by tab.state"
                           md-ink-ripple
-                          pip-id="{{::page.state }}">
-                <p> {{::page.title | translate}} </p>
+                          pip-id="{{::tab.state }}">
+                <p> {{::tab.title | translate}} </p>
             </md-list-item>
         </md-list>
 
         <div class="pip-content-container">
             <pip-dropdown class="hide-gt-xs"
-                          pip-actions="pages"
+                          pip-actions="tabs"
                           pip-dropdown-select="onDropdownSelect"
-                          pip-active-index="selected.pageIndex"></pip-dropdown>
+                          pip-active-index="selected.tabIndex"></pip-dropdown>
             <div class="pip-body layout-column flex" ui-view></div>
         </div>
     </div>

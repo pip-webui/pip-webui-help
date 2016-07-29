@@ -17,22 +17,22 @@ module.run(['$templateCache', function($templateCache) {
     '    <div class="pip-menu-container pip-help"\n' +
     '         ng-if="manager !== false">\n' +
     '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
-    '                 pip-selected="selected.pageIndex"\n' +
+    '                 pip-selected="selected.tabIndex"\n' +
     '                 pip-selected-watch="selected.navId"\n' +
     '                 pip-select="onNavigationSelect($event.id)">\n' +
     '            <md-list-item class="pip-simple-list-item pip-selectable"\n' +
-    '                          ng-repeat="page in pages track by page.state"\n' +
+    '                          ng-repeat="tab in tabs track by tab.state"\n' +
     '                          md-ink-ripple\n' +
-    '                          pip-id="{{::page.state }}">\n' +
-    '                <p> {{::page.title | translate}} </p>\n' +
+    '                          pip-id="{{::tab.state }}">\n' +
+    '                <p> {{::tab.title | translate}} </p>\n' +
     '            </md-list-item>\n' +
     '        </md-list>\n' +
     '\n' +
     '        <div class="pip-content-container">\n' +
     '            <pip-dropdown class="hide-gt-xs"\n' +
-    '                          pip-actions="pages"\n' +
+    '                          pip-actions="tabs"\n' +
     '                          pip-dropdown-select="onDropdownSelect"\n' +
-    '                          pip-active-index="selected.pageIndex"></pip-dropdown>\n' +
+    '                          pip-active-index="selected.tabIndex"></pip-dropdown>\n' +
     '            <div class="pip-body layout-column flex" ui-view></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
@@ -89,7 +89,7 @@ module.run(['$templateCache', function($templateCache) {
      *
      * @description
      * The controller is used for the root Help component.
-     * It manages available pages provide navigation through those ones.
+     * It manages available tabs provide navigation through those ones.
      *
      * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L40 View source}
      *
@@ -102,9 +102,9 @@ module.run(['$templateCache', function($templateCache) {
      */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
-        $scope.pages = _.filter(pipHelp.getPages(), function (page) {
-            if (page.visible && (page.access !== angular.noop ? page.access($rootScope.$user, page) : true)) {
-                return page;
+        $scope.tabs = _.filter(pipHelp.getTabs(), function (tab) {
+            if (tab.visible && (tab.access !== angular.noop ? tab.access($rootScope.$user, tab) : true)) {
+                return tab;
             }
         });
         $scope.selected = {};
@@ -112,7 +112,7 @@ module.run(['$templateCache', function($templateCache) {
         if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
-            initSelect(pipHelp.getDefaultPage().state);
+            initSelect(pipHelp.getDefaultTab().state);
         }
 
         appHeader();
@@ -161,7 +161,7 @@ module.run(['$templateCache', function($templateCache) {
         function onNavigationSelect(state) {
             initSelect(state);
 
-            if ($scope.selected.page) {
+            if ($scope.selected.tab) {
                 $state.go(state);
             }
         }
@@ -170,12 +170,12 @@ module.run(['$templateCache', function($templateCache) {
          * Set selected item for highlighting in the nav menu
          */
         function initSelect(state) {
-            $scope.selected.page = _.find($scope.pages, function (page) {
-                return page.state === state;
+            $scope.selected.tab = _.find($scope.tabs, function (tab) {
+                return tab.state === state;
             });
 
-            $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
-            $scope.selected.pageId = state;
+            $scope.selected.tabIndex = _.indexOf($scope.tabs, $scope.selected.tab);
+            $scope.selected.tabId = state;
         }
     }
 })(window.angular, window._);
@@ -202,34 +202,34 @@ module.run(['$templateCache', function($templateCache) {
     angular.module('pipHelp.Service', ['pipState'])
         .provider('pipHelp',
             ['pipAuthStateProvider', function (pipAuthStateProvider) {
-                var defaultPage,
-                    pages = [];
+                var defaultTab,
+                    tabs = [];
 
-                /** @see addPage */
-                this.addPage = addPage;
+                /** @see addTab */
+                this.addTab = addTab;
 
-                /** @see setDefaultPage */
-                this.setDefaultPage = setDefaultPage;
+                /** @see setDefaultTab */
+                this.setDefaultTab = setDefaultTab;
 
-                /** @see getPages */
-                this.getPages = getPages;
+                /** @see getTabs */
+                this.getTabs = getTabs;
 
-                /** @see getDefaultPage */
-                this.getDefaultPage = getDefaultPage;
+                /** @see getDefaultTab */
+                this.getDefaultTab = getDefaultTab;
 
                 this.$get = function () {
                     return {
-                        /** @see getPages */
-                        getPages: getPages,
+                        /** @see getTabs */
+                        getTabs: getTabs,
 
-                        /** @see getDefaultPage */
-                        getDefaultPage: getDefaultPage,
+                        /** @see getDefaultTab */
+                        getDefaultTab: getDefaultTab,
 
-                        /** @see addPage */
-                        addPage: addPage,
+                        /** @see addTab */
+                        addTab: addTab,
 
-                        /** @see setDefaultPage */
-                        setDefaultPage: setDefaultPage
+                        /** @see setDefaultTab */
+                        setDefaultTab: setDefaultTab
                     };
                 };
 
@@ -242,11 +242,11 @@ module.run(['$templateCache', function($templateCache) {
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#getPages
+                 * @name pipHelp.Service.pipHelp#getTabs
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
-                 * This method returns asset of all pages registered in the Help component.
+                 * This method returns asset of all tabs registered in the Help component.
                  *
                  * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L79 View source}
                  *
@@ -255,16 +255,16 @@ module.run(['$templateCache', function($templateCache) {
                  * @example
                  * <pre>
                  * // on the config phase
-                 * pipHelpProvider.getPages();
+                 * pipHelpProvider.getTabs();
                  * </pre>
                  */
-                function getPages() {
-                    return _.clone(pages, true);
+                function getTabs() {
+                    return _.clone(tabs, true);
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#getDefaultPage
+                 * @name pipHelp.Service.pipHelp#getDefaultTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
@@ -277,39 +277,39 @@ module.run(['$templateCache', function($templateCache) {
                  * @example
                  * <pre>
                  * // on the config phase
-                 * pipHelpProvider.getDefaultPage();
+                 * pipHelpProvider.getDefaultTab();
                  * </pre>
                  */
-                function getDefaultPage() {
-                    return _.clone(_.find(pages, function (page) {
-                        return page.state === defaultPage;
+                function getDefaultTab() {
+                    return _.clone(_.find(tabs, function (tab) {
+                        return tab.state === defaultTab;
                     }), true);
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#addPage
+                 * @name pipHelp.Service.pipHelp#addTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
-                 * This method allows add new page into navigation menu. It accepts config object to define new state
+                 * This method allows add new tab into navigation menu. It accepts config object to define new state
                  * with needed params.
                  *
                  * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L139 View source}
                  *
-                 * @param {Object} pageObj Configuration object contains settings for another page
-                 * @param {Object.<string>} pageObj.state   Name of page state which is available via UI router
-                 * @param {Object.<string>} pageObj.title   Page title in the navigation menu.
-                 * @param {Object.<boolean>} pageObj.access If it is true it will be available only for logged in users
-                 * @param {Object.<boolean>} pageObj.visible If it is true the page will be visible
-                 * @param {Object.<Object>} pageObj.stateConfig  Configuration object in format like UI Router state
+                 * @param {Object} tabObj Configuration object contains settings for another tab
+                 * @param {Object.<string>} tabObj.state   Name of tab state which is available via UI router
+                 * @param {Object.<string>} tabObj.title   Tab title in the navigation menu.
+                 * @param {Object.<boolean>} tabObj.access If it is true it will be available only for logged in users
+                 * @param {Object.<boolean>} tabObj.visible If it is true the tab will be visible
+                 * @param {Object.<Object>} tabObj.stateConfig  Configuration object in format like UI Router state
                  *
                  * @example
                  * <pre>
                  *  // on the config phase
-                 *  pipHelpProvider.addPage({
+                 *  pipHelpProvider.addTab({
                  *      state: 'test',
-                 *      title: 'Test help page',
+                 *      title: 'Test help tab',
                  *      auth: true,
                  *      stateConfig: {
                  *          url: '/test',
@@ -318,37 +318,37 @@ module.run(['$templateCache', function($templateCache) {
                  *  });
                  * </pre>
                  */
-                function addPage(pageObj) {
-                    var page;
+                function addTab(tabObj) {
+                    var tab;
 
-                    validatePage(pageObj);
+                    validateTab(tabObj);
 
-                    page = _.find(pages, function (page) {
-                        return page.state === getFullStateName(pageObj.state);
+                    tab = _.find(tabs, function (tab) {
+                        return tab.state === getFullStateName(tabObj.state);
                     });
-                    if (page) {
-                        throw new Error('Page with state name "' + pageObj.state + '" is already registered');
+                    if (tab) {
+                        throw new Error('Tab with state name "' + tabObj.state + '" is already registered');
                     }
 
-                    pages.push({
-                        state: getFullStateName(pageObj.state),
-                        title: pageObj.title,
-                        access: pageObj.access || angular.noop,
-                        visible: pageObj.visible || true,
-                        stateConfig: _.clone(pageObj.stateConfig, true)
+                    tabs.push({
+                        state: getFullStateName(tabObj.state),
+                        title: tabObj.title,
+                        access: tabObj.access || angular.noop,
+                        visible: tabObj.visible || true,
+                        stateConfig: _.clone(tabObj.stateConfig, true)
                     });
 
-                    pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
+                    pipAuthStateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
 
                     // if we just added first state and no default state is specified
-                    if (_.isUndefined(defaultPage) && pages.length === 1) {
-                        setDefaultPage(pageObj.state);
+                    if (_.isUndefined(defaultTab) && tabs.length === 1) {
+                        setDefaultTab(tabObj.state);
                     }
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#setDefaultPage
+                 * @name pipHelp.Service.pipHelp#setDefaultTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
@@ -361,21 +361,21 @@ module.run(['$templateCache', function($templateCache) {
                  *
                  * @example
                  * <pre>
-                 * pipHelpProvider.setDefaultPage('test');
+                 * pipHelpProvider.setDefaultTab('test');
                  * </pre>
                  */
-                function setDefaultPage(name) {
-                    var page, error;
+                function setDefaultTab(name) {
+                    var tab, error;
 
-                    page = _.find(pages, function (page) {
-                        return page.state === getFullStateName(name);
+                    tab = _.find(tabs, function (tab) {
+                        return tab.state === getFullStateName(name);
                     });
-                    if (!page) {
-                        error = new Error('Page with state name "' + name + '" is not registered');
+                    if (!tab) {
+                        error = new Error('Tab with state name "' + name + '" is not registered');
                         throw error;
                     }
 
-                    defaultPage = getFullStateName(name);
+                    defaultTab = getFullStateName(name);
 
                     pipAuthStateProvider.redirect('help', getFullStateName(name));
                 }
@@ -384,20 +384,20 @@ module.run(['$templateCache', function($templateCache) {
                  * This method validates passed state.
                  * If it is incorrect it will throw an error.
                  */
-                function validatePage(pageObj) {
-                    if (!pageObj || !_.isObject(pageObj)) {
+                function validateTab(tabObj) {
+                    if (!tabObj || !_.isObject(tabObj)) {
                         throw new Error('Invalid object');
                     }
 
-                    if (!pageObj.state || pageObj.state === '') {
-                        throw new Error('Page should have valid Angular UI router state name');
+                    if (!tabObj.state || tabObj.state === '') {
+                        throw new Error('Tab should have valid Angular UI router state name');
                     }
 
-                    if (pageObj.access && !_.isFunction(pageObj.access)) {
+                    if (tabObj.access && !_.isFunction(tabObj.access)) {
                         throw new Error('"access" should be a function');
                     }
 
-                    if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig)) {
+                    if (!tabObj.stateConfig || !_.isObject(tabObj.stateConfig)) {
                         throw new Error('Invalid state configuration object');
                     }
                 }

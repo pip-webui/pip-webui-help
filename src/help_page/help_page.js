@@ -26,7 +26,7 @@
      *
      * @description
      * The controller is used for the root Help component.
-     * It manages available pages provide navigation through those ones.
+     * It manages available tabs provide navigation through those ones.
      *
      * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_page/help_page.js#L40 View source}
      *
@@ -39,9 +39,9 @@
      */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
-        $scope.pages = _.filter(pipHelp.getPages(), function (page) {
-            if (page.visible && (page.access !== angular.noop ? page.access($rootScope.$user, page) : true)) {
-                return page;
+        $scope.tabs = _.filter(pipHelp.getTabs(), function (tab) {
+            if (tab.visible && (tab.access !== angular.noop ? tab.access($rootScope.$user, tab) : true)) {
+                return tab;
             }
         });
         $scope.selected = {};
@@ -49,7 +49,7 @@
         if ($state.current.name !== 'help') {
             initSelect($state.current.name);
         } else {
-            initSelect(pipHelp.getDefaultPage().state);
+            initSelect(pipHelp.getDefaultTab().state);
         }
 
         appHeader();
@@ -98,7 +98,7 @@
         function onNavigationSelect(state) {
             initSelect(state);
 
-            if ($scope.selected.page) {
+            if ($scope.selected.tab) {
                 $state.go(state);
             }
         }
@@ -107,12 +107,12 @@
          * Set selected item for highlighting in the nav menu
          */
         function initSelect(state) {
-            $scope.selected.page = _.find($scope.pages, function (page) {
-                return page.state === state;
+            $scope.selected.tab = _.find($scope.tabs, function (tab) {
+                return tab.state === state;
             });
 
-            $scope.selected.pageIndex = _.indexOf($scope.pages, $scope.selected.page);
-            $scope.selected.pageId = state;
+            $scope.selected.tabIndex = _.indexOf($scope.tabs, $scope.selected.tab);
+            $scope.selected.tabId = state;
         }
     }
 })(window.angular, window._);

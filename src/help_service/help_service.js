@@ -20,34 +20,34 @@
     angular.module('pipHelp.Service', ['pipState'])
         .provider('pipHelp',
             function (pipAuthStateProvider) {
-                var defaultPage,
-                    pages = [];
+                var defaultTab,
+                    tabs = [];
 
-                /** @see addPage */
-                this.addPage = addPage;
+                /** @see addTab */
+                this.addTab = addTab;
 
-                /** @see setDefaultPage */
-                this.setDefaultPage = setDefaultPage;
+                /** @see setDefaultTab */
+                this.setDefaultTab = setDefaultTab;
 
-                /** @see getPages */
-                this.getPages = getPages;
+                /** @see getTabs */
+                this.getTabs = getTabs;
 
-                /** @see getDefaultPage */
-                this.getDefaultPage = getDefaultPage;
+                /** @see getDefaultTab */
+                this.getDefaultTab = getDefaultTab;
 
                 this.$get = function () {
                     return {
-                        /** @see getPages */
-                        getPages: getPages,
+                        /** @see getTabs */
+                        getTabs: getTabs,
 
-                        /** @see getDefaultPage */
-                        getDefaultPage: getDefaultPage,
+                        /** @see getDefaultTab */
+                        getDefaultTab: getDefaultTab,
 
-                        /** @see addPage */
-                        addPage: addPage,
+                        /** @see addTab */
+                        addTab: addTab,
 
-                        /** @see setDefaultPage */
-                        setDefaultPage: setDefaultPage
+                        /** @see setDefaultTab */
+                        setDefaultTab: setDefaultTab
                     };
                 };
 
@@ -60,11 +60,11 @@
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#getPages
+                 * @name pipHelp.Service.pipHelp#getTabs
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
-                 * This method returns asset of all pages registered in the Help component.
+                 * This method returns asset of all tabs registered in the Help component.
                  *
                  * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L79 View source}
                  *
@@ -73,16 +73,16 @@
                  * @example
                  * <pre>
                  * // on the config phase
-                 * pipHelpProvider.getPages();
+                 * pipHelpProvider.getTabs();
                  * </pre>
                  */
-                function getPages() {
-                    return _.clone(pages, true);
+                function getTabs() {
+                    return _.clone(tabs, true);
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#getDefaultPage
+                 * @name pipHelp.Service.pipHelp#getDefaultTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
@@ -95,39 +95,39 @@
                  * @example
                  * <pre>
                  * // on the config phase
-                 * pipHelpProvider.getDefaultPage();
+                 * pipHelpProvider.getDefaultTab();
                  * </pre>
                  */
-                function getDefaultPage() {
-                    return _.clone(_.find(pages, function (page) {
-                        return page.state === defaultPage;
+                function getDefaultTab() {
+                    return _.clone(_.find(tabs, function (tab) {
+                        return tab.state === defaultTab;
                     }), true);
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#addPage
+                 * @name pipHelp.Service.pipHelp#addTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
-                 * This method allows add new page into navigation menu. It accepts config object to define new state
+                 * This method allows add new tab into navigation menu. It accepts config object to define new state
                  * with needed params.
                  *
                  * {@link https://github.com/pip-webui/pip-webui-help/blob/master/src/help_service/help_service.js#L139 View source}
                  *
-                 * @param {Object} pageObj Configuration object contains settings for another page
-                 * @param {Object.<string>} pageObj.state   Name of page state which is available via UI router
-                 * @param {Object.<string>} pageObj.title   Page title in the navigation menu.
-                 * @param {Object.<boolean>} pageObj.access If it is true it will be available only for logged in users
-                 * @param {Object.<boolean>} pageObj.visible If it is true the page will be visible
-                 * @param {Object.<Object>} pageObj.stateConfig  Configuration object in format like UI Router state
+                 * @param {Object} tabObj Configuration object contains settings for another tab
+                 * @param {Object.<string>} tabObj.state   Name of tab state which is available via UI router
+                 * @param {Object.<string>} tabObj.title   Tab title in the navigation menu.
+                 * @param {Object.<boolean>} tabObj.access If it is true it will be available only for logged in users
+                 * @param {Object.<boolean>} tabObj.visible If it is true the tab will be visible
+                 * @param {Object.<Object>} tabObj.stateConfig  Configuration object in format like UI Router state
                  *
                  * @example
                  * <pre>
                  *  // on the config phase
-                 *  pipHelpProvider.addPage({
+                 *  pipHelpProvider.addTab({
                  *      state: 'test',
-                 *      title: 'Test help page',
+                 *      title: 'Test help tab',
                  *      auth: true,
                  *      stateConfig: {
                  *          url: '/test',
@@ -136,37 +136,37 @@
                  *  });
                  * </pre>
                  */
-                function addPage(pageObj) {
-                    var page;
+                function addTab(tabObj) {
+                    var tab;
 
-                    validatePage(pageObj);
+                    validateTab(tabObj);
 
-                    page = _.find(pages, function (page) {
-                        return page.state === getFullStateName(pageObj.state);
+                    tab = _.find(tabs, function (tab) {
+                        return tab.state === getFullStateName(tabObj.state);
                     });
-                    if (page) {
-                        throw new Error('Page with state name "' + pageObj.state + '" is already registered');
+                    if (tab) {
+                        throw new Error('Tab with state name "' + tabObj.state + '" is already registered');
                     }
 
-                    pages.push({
-                        state: getFullStateName(pageObj.state),
-                        title: pageObj.title,
-                        access: pageObj.access || angular.noop,
-                        visible: pageObj.visible || true,
-                        stateConfig: _.clone(pageObj.stateConfig, true)
+                    tabs.push({
+                        state: getFullStateName(tabObj.state),
+                        title: tabObj.title,
+                        access: tabObj.access || angular.noop,
+                        visible: tabObj.visible || true,
+                        stateConfig: _.clone(tabObj.stateConfig, true)
                     });
 
-                    pipAuthStateProvider.state(getFullStateName(pageObj.state), pageObj.stateConfig);
+                    pipAuthStateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
 
                     // if we just added first state and no default state is specified
-                    if (_.isUndefined(defaultPage) && pages.length === 1) {
-                        setDefaultPage(pageObj.state);
+                    if (_.isUndefined(defaultTab) && tabs.length === 1) {
+                        setDefaultTab(tabObj.state);
                     }
                 }
 
                 /**
                  * @ngdoc method
-                 * @name pipHelp.Service.pipHelp#setDefaultPage
+                 * @name pipHelp.Service.pipHelp#setDefaultTab
                  * @methodOf pipHelp.Service.pipHelp
                  *
                  * @description
@@ -179,21 +179,21 @@
                  *
                  * @example
                  * <pre>
-                 * pipHelpProvider.setDefaultPage('test');
+                 * pipHelpProvider.setDefaultTab('test');
                  * </pre>
                  */
-                function setDefaultPage(name) {
-                    var page, error;
+                function setDefaultTab(name) {
+                    var tab, error;
 
-                    page = _.find(pages, function (page) {
-                        return page.state === getFullStateName(name);
+                    tab = _.find(tabs, function (tab) {
+                        return tab.state === getFullStateName(name);
                     });
-                    if (!page) {
-                        error = new Error('Page with state name "' + name + '" is not registered');
+                    if (!tab) {
+                        error = new Error('Tab with state name "' + name + '" is not registered');
                         throw error;
                     }
 
-                    defaultPage = getFullStateName(name);
+                    defaultTab = getFullStateName(name);
 
                     pipAuthStateProvider.redirect('help', getFullStateName(name));
                 }
@@ -202,20 +202,20 @@
                  * This method validates passed state.
                  * If it is incorrect it will throw an error.
                  */
-                function validatePage(pageObj) {
-                    if (!pageObj || !_.isObject(pageObj)) {
+                function validateTab(tabObj) {
+                    if (!tabObj || !_.isObject(tabObj)) {
                         throw new Error('Invalid object');
                     }
 
-                    if (!pageObj.state || pageObj.state === '') {
-                        throw new Error('Page should have valid Angular UI router state name');
+                    if (!tabObj.state || tabObj.state === '') {
+                        throw new Error('Tab should have valid Angular UI router state name');
                     }
 
-                    if (pageObj.access && !_.isFunction(pageObj.access)) {
+                    if (tabObj.access && !_.isFunction(tabObj.access)) {
                         throw new Error('"access" should be a function');
                     }
 
-                    if (!pageObj.stateConfig || !_.isObject(pageObj.stateConfig)) {
+                    if (!tabObj.stateConfig || !_.isObject(tabObj.stateConfig)) {
                         throw new Error('Invalid state configuration object');
                     }
                 }
