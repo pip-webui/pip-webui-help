@@ -112,4 +112,4 @@ pipSideNavProvider.sections([{
 If you have any questions regarding the module, you can ask them using our 
 [discussion forum](https://groups.google.com/forum/#!forum/pip-webui).
 
-Bugs related to this module can be reported using [github issues](https://github.com/pip-webui/pip-webui-test/issues).
+Bugs related to this module can be reported using [github issues](https://github.com/pip-webui/pip-webui-help/issues).
