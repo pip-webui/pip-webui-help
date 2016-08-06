@@ -1,36 +1,36 @@
 {
-  "name": "pip-webui-help",
-  "version": "1.0.0",
-  "description": "Extensible help page for Pip.WebUI",
-  "main": "",
-  "authors": [
-      {
-          "name": "Sergey Seroukhov",
-          "email": "seroukhov@gmail.com"
-      },
-      {
-          "name": "Katerina Negrienko",
-          "email": "katya@negrienko.com"
-      }
-  ],
-  "license": "MIT",
-  "keywords": [
-    "pip",
-    "webui",
-    "pages",
-    "help"
-  ],
-  "homepage": "https://github.com/pip-webui/pip-webui-help",
-  "ignore": [
-    ".gitignore",
-    "node_modules",
-    "bower_components",
-    "src",
-    "tests",
-    "samples",
-    "scripts",
-    "build.*",
-    "gulpfile.js",
-    "karma.conf.js"
-  ]
+    "name": "pip-webui-help",
+    "version": "1.0.0",
+    "description": "Extensible help page for Pip.WebUI",
+    "main": "",
+    "authors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Katerina Negrienko",
+            "email": "katya@negrienko.com"
+        }
+    ],
+    "license": "MIT",
+    "keywords": [
+        "pip",
+        "webui",
+        "pages",
+        "help"
+    ],
+    "homepage": "https://github.com/pip-webui/pip-webui-help",
+    "ignore": [
+        ".gitignore",
+        "node_modules",
+        "bower_components",
+        "src",
+        "tests",
+        "samples",
+        "scripts",
+        "build.*",
+        "gulpfile.js",
+        "karma.conf.js"
+    ]
 }
