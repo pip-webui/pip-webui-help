@@ -1,4 +1,4 @@
-# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Extensible help page
+# <img src="https://github.com/pip-webui/pip-webui/raw/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Extensible help page
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -29,7 +29,7 @@ It can navigated to using **help** state or **/#help** route.
 
 Todo: Replace the image with more realistic help content
 <div style="border: 1px solid #ccc">
-  <img src="https://github.com/pip-webui/pip-webui-help/blob/master/doc/HelpSample.png" alt="Help Page Sample" style="display:block;">
+  <img src="https://github.com/pip-webui/pip-webui-help/raw/master/doc/HelpSample.png" alt="Help Page Sample" style="display:block;">
 </div>
 
 ## Learn more about the module
