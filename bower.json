@@ -1,6 +1,6 @@
 {
     "name": "pip-webui-help",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "description": "Extensible help page for Pip.WebUI",
     "main": "",
     "authors": [
