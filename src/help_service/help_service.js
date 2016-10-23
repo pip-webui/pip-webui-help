@@ -13,13 +13,11 @@
      * @description
      * This service is provided an interface to manage the Help component.
      * It is available on the config and run application phases. On the both phases the interface is the same.
-     * This module requires the 'pipState' module.
-     *
-     * @requires pipState
+     * This module requires the '$state' module.
      */
-    angular.module('pipHelp.Service', ['pipState'])
+    angular.module('pipHelp.Service', ['ui.router'])
         .provider('pipHelp',
-            function (pipAuthStateProvider) {
+            function ($stateProvider) {
                 var defaultTab,
                     tabs = [];
 
@@ -156,7 +154,7 @@
                         stateConfig: _.clone(tabObj.stateConfig, true)
                     });
 
-                    pipAuthStateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
+                    $stateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
 
                     // if we just added first state and no default state is specified
                     if (_.isUndefined(defaultTab) && tabs.length === 1) {
@@ -195,7 +193,7 @@
 
                     defaultTab = getFullStateName(name);
 
-                    pipAuthStateProvider.redirect('help', getFullStateName(name));
+                    $stateProvider.redirect('help', getFullStateName(name));
                 }
 
                 /**

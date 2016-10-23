@@ -11,14 +11,14 @@ describe('Help', function () {
         module(function ($provide) {
             stateSpy = sinon.spy();
 
-            $provide.provider('pipAuthState', function () {
+            $provide.provider('pipRouting', function () {
                 this.state = stateSpy;
                 this.redirect = angular.noop;
 
                 this.$get = {};
             });
 
-            $provide.provider('pipState', function () {
+            $provide.provider('pipRouting', function () {
                 this.state = angular.noop;
                 this.$get = {};
             });

@@ -10,20 +10,20 @@ describe('HelpService', function () {
     beforeEach(module(function ($provide) {
         stateSpy = sinon.spy();
 
-        $provide.provider('pipAuthState', function () {
+        $provide.provider('$state', function () {
             this.state = stateSpy;
             this.redirect = angular.noop;
 
             this.$get = {};
         });
 
-        $provide.provider('pipState', function () {
+        $provide.provider('$state', function () {
             this.state = angular.noop;
             this.$get = {};
         });
     }));
 
-    beforeEach(module('pipState'));
+    beforeEach(module('pipRouting'));
     beforeEach(module('pipHelp'));
 
     beforeEach(function () {

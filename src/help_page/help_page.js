@@ -6,13 +6,13 @@
 (function (angular, _) {
     'use strict';
 
-    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
+    angular.module('pipHelp.Page', ['ui.router', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
         'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
-    function config(pipStateProvider) {
-        pipStateProvider.state('help', {
+    function config($stateProvider) {
+        $stateProvider.state('help', {
             url: '/help',
             auth: false,
             controller: 'pipHelpPageController',
