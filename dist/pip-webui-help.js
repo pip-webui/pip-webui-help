@@ -1,18 +1,3 @@
-/**
- * @file Registration of all help components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function (angular) {
-    'use strict';
-
-    angular.module('pipHelp', [
-        'pipHelp.Service',
-        'pipHelp.Page'
-    ]);
-
-})(window.angular);
-
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -58,6 +43,21 @@ module.run(['$templateCache', function($templateCache) {
     '</pip-document>');
 }]);
 })();
+
+/**
+ * @file Registration of all help components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function (angular) {
+    'use strict';
+
+    angular.module('pipHelp', [
+        'pipHelp.Service',
+        'pipHelp.Page'
+    ]);
+
+})(window.angular);
 
 /**
  * @file Page template for help components
