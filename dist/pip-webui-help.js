@@ -67,15 +67,15 @@ module.run(['$templateCache', function($templateCache) {
 (function (angular, _) {
     'use strict';
 
-    config.$inject = ['pipStateProvider'];
+    config.$inject = ['$stateProvider'];
     HelpPageController.$inject = ['$rootScope', '$scope', '$state', 'pipAppBar', 'pipHelp'];
-    angular.module('pipHelp.Page', ['pipState', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
+    angular.module('pipHelp.Page', ['ui.router', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
         'pipHelp.Templates'])
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
-    function config(pipStateProvider) {
-        pipStateProvider.state('help', {
+    function config($stateProvider) {
+        $stateProvider.state('help', {
             url: '/help',
             auth: false,
             controller: 'pipHelpPageController',
@@ -195,13 +195,11 @@ module.run(['$templateCache', function($templateCache) {
      * @description
      * This service is provided an interface to manage the Help component.
      * It is available on the config and run application phases. On the both phases the interface is the same.
-     * This module requires the 'pipState' module.
-     *
-     * @requires pipState
+     * This module requires the '$state' module.
      */
-    angular.module('pipHelp.Service', ['pipState'])
+    angular.module('pipHelp.Service', ['ui.router'])
         .provider('pipHelp',
-            ['pipAuthStateProvider', function (pipAuthStateProvider) {
+            ['$stateProvider', function ($stateProvider) {
                 var defaultTab,
                     tabs = [];
 
@@ -338,7 +336,7 @@ module.run(['$templateCache', function($templateCache) {
                         stateConfig: _.clone(tabObj.stateConfig, true)
                     });
 
-                    pipAuthStateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
+                    $stateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
 
                     // if we just added first state and no default state is specified
                     if (_.isUndefined(defaultTab) && tabs.length === 1) {
@@ -377,7 +375,7 @@ module.run(['$templateCache', function($templateCache) {
 
                     defaultTab = getFullStateName(name);
 
-                    pipAuthStateProvider.redirect('help', getFullStateName(name));
+                    $stateProvider.redirect('help', getFullStateName(name));
                 }
 
                 /**
