@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular, _) {
+(function () {
     'use strict';
 
     angular.module('pipHelp.Page', ['ui.router', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
@@ -39,7 +39,7 @@
      */
     function HelpPageController($rootScope, $scope, $state, pipAppBar, pipHelp) {
 
-        $scope.tabs = _.filter(pipHelp.getTabs(), function (tab) {
+        $scope.tabs = _.filter(pipHelp.getTabs(), function (tab: any) {
             if (tab.visible && (tab.access !== angular.noop ? tab.access($rootScope.$user, tab) : true)) {
                 return tab;
             }
@@ -107,7 +107,7 @@
          * Set selected item for highlighting in the nav menu
          */
         function initSelect(state) {
-            $scope.selected.tab = _.find($scope.tabs, function (tab) {
+            $scope.selected.tab = _.find($scope.tabs, function (tab: any) {
                 return tab.state === state;
             });
 
@@ -115,4 +115,4 @@
             $scope.selected.tabId = state;
         }
     }
-})(window.angular, window._);
+})();

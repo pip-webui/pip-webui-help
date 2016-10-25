@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-(function (angular, _) {
+(function () {
     'use strict';
 
     /**
@@ -17,7 +17,7 @@
      */
     angular.module('pipHelp.Service', ['ui.router'])
         .provider('pipHelp',
-            function ($stateProvider) {
+            function ($stateProvider): any {
                 var defaultTab,
                     tabs = [];
 
@@ -75,7 +75,7 @@
                  * </pre>
                  */
                 function getTabs() {
-                    return _.clone(tabs, true);
+                    return _.cloneDeep(tabs);
                 }
 
                 /**
@@ -97,9 +97,9 @@
                  * </pre>
                  */
                 function getDefaultTab() {
-                    return _.clone(_.find(tabs, function (tab) {
+                    return _.cloneDeep(_.find(tabs, function (tab) {
                         return tab.state === defaultTab;
-                    }), true);
+                    }));
                 }
 
                 /**
@@ -151,7 +151,7 @@
                         title: tabObj.title,
                         access: tabObj.access || angular.noop,
                         visible: tabObj.visible || true,
-                        stateConfig: _.clone(tabObj.stateConfig, true)
+                        stateConfig: _.cloneDeep(tabObj.stateConfig)
                     });
 
                     $stateProvider.state(getFullStateName(tabObj.state), tabObj.stateConfig);
@@ -219,4 +219,4 @@
                 }
             });
 
-})(window.angular, window._);
+})();
