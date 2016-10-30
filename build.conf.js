@@ -2,7 +2,8 @@ module.exports = {
     module: {
         name: 'pipHelp',
         styles: 'help',
-        export: 'pip'
+        export: 'pip',
+        standalone: 'pip.help'
     },
     build: {
         js: false,
