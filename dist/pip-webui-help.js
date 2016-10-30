@@ -1,51 +1,4 @@
-(function(module) {
-try {
-  module = angular.module('pipHelp.Templates');
-} catch (e) {
-  module = angular.module('pipHelp.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('help_page/help_page.html',
-    '<!--\n' +
-    '@file Help page\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
-    '\n' +
-    '<pip-document width="800" min-height="400">\n' +
-    '    <div class="pip-menu-container pip-help"\n' +
-    '         ng-if="manager !== false">\n' +
-    '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
-    '                 pip-selected="selected.tabIndex"\n' +
-    '                 pip-selected-watch="selected.navId"\n' +
-    '                 pip-select="onNavigationSelect($event.id)">\n' +
-    '            <md-list-item class="pip-simple-list-item pip-selectable"\n' +
-    '                          ng-repeat="tab in tabs track by tab.state"\n' +
-    '                          md-ink-ripple\n' +
-    '                          pip-id="{{::tab.state }}">\n' +
-    '                <p> {{::tab.title | translate}} </p>\n' +
-    '            </md-list-item>\n' +
-    '        </md-list>\n' +
-    '\n' +
-    '        <div class="pip-content-container">\n' +
-    '            <pip-dropdown class="hide-gt-xs"\n' +
-    '                          pip-actions="tabs"\n' +
-    '                          pip-dropdown-select="onDropdownSelect"\n' +
-    '                          pip-active-index="selected.tabIndex"></pip-dropdown>\n' +
-    '            <div class="pip-body layout-column flex" ui-view></div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div class="layout-column layout-align-center-center flex"\n' +
-    '         ng-if="manager === false">\n' +
-    '        {{::\'ERROR_400\' | translate}}\n' +
-    '    </div>\n' +
-    '</pip-document>');
-}]);
-})();
-
-
-
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function () {
     'use strict';
     angular.module('pipHelp', [
@@ -53,7 +6,7 @@ module.run(['$templateCache', function($templateCache) {
         'pipHelp.Page'
     ]);
 })();
-
+},{}],2:[function(require,module,exports){
 (function () {
     'use strict';
     config.$inject = ['$stateProvider'];
@@ -110,7 +63,7 @@ module.run(['$templateCache', function($templateCache) {
         }
     }
 })();
-
+},{}],3:[function(require,module,exports){
 (function () {
     'use strict';
     angular.module('pipHelp.Service', ['ui.router'])
@@ -188,7 +141,56 @@ module.run(['$templateCache', function($templateCache) {
         }
     }]);
 })();
+},{}],4:[function(require,module,exports){
+(function(module) {
+try {
+  module = angular.module('pipHelp.Templates');
+} catch (e) {
+  module = angular.module('pipHelp.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('help_page/help_page.html',
+    '<!--\n' +
+    '@file Help page\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
+    '\n' +
+    '<pip-document width="800" min-height="400">\n' +
+    '    <div class="pip-menu-container pip-help"\n' +
+    '         ng-if="manager !== false">\n' +
+    '        <md-list class="pip-menu pip-simple-list hide-xs"\n' +
+    '                 pip-selected="selected.tabIndex"\n' +
+    '                 pip-selected-watch="selected.navId"\n' +
+    '                 pip-select="onNavigationSelect($event.id)">\n' +
+    '            <md-list-item class="pip-simple-list-item pip-selectable"\n' +
+    '                          ng-repeat="tab in tabs track by tab.state"\n' +
+    '                          md-ink-ripple\n' +
+    '                          pip-id="{{::tab.state }}">\n' +
+    '                <p> {{::tab.title | translate}} </p>\n' +
+    '            </md-list-item>\n' +
+    '        </md-list>\n' +
+    '\n' +
+    '        <div class="pip-content-container">\n' +
+    '            <pip-dropdown class="hide-gt-xs"\n' +
+    '                          pip-actions="tabs"\n' +
+    '                          pip-dropdown-select="onDropdownSelect"\n' +
+    '                          pip-active-index="selected.tabIndex"></pip-dropdown>\n' +
+    '            <div class="pip-body layout-column flex" ui-view></div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="layout-column layout-align-center-center flex"\n' +
+    '         ng-if="manager === false">\n' +
+    '        {{::\'ERROR_400\' | translate}}\n' +
+    '    </div>\n' +
+    '</pip-document>');
+}]);
+})();
 
+
+
+},{}]},{},[2,3,1,4])
 
 
 //# sourceMappingURL=pip-webui-help.js.map

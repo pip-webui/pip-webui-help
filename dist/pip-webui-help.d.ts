@@ -1,2 +1,6 @@
+declare module pip {
 
 
+
+}
+
