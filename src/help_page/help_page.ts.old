@@ -6,8 +6,8 @@
 (function () {
     'use strict';
 
-    angular.module('pipHelp.Page', ['ui.router', 'pipHelp.Service', 'pipAppBar', 'pipSelected', 'pipTranslate',
-        'pipHelp.Templates'])
+    angular.module('pipHelp.Page', ['ui.router', 'pipHelp.Service', 'pipAppBar', 
+        'pipHelp.Templates']) // 'pipSelected', 'pipTranslate',
         .config(config)
         .controller('pipHelpPageController', HelpPageController);
 
@@ -77,10 +77,10 @@
          * Config appBar due to this page
          */
         function appHeader() {
-            pipAppBar.showMenuNavIcon();
-            pipAppBar.showTitleText('Help');
-            pipAppBar.showShadowSm();
-            pipAppBar.showLocalActions(null, []);
+            //pipAppBar.showMenuNavIcon();
+            //pipAppBar.showTitleText('Help');
+            //pipAppBar.showShadowSm();
+            //pipAppBar.showLocalActions(null, []);
         }
 
         /**

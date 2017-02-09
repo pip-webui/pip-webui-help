@@ -3,8 +3,9 @@
 
     var thisModule = angular.module('pipHelpConfig', ['pipHelp']);
 
-    thisModule.config(function (pipHelpProvider, pipTranslateProvider) {
+    thisModule.config(function (pipHelpProvider) {
 
+/*
         pipTranslateProvider.translations('en', {
             TEST_HELP_PAGE: 'Test help page',
             FIRST_TEST_PAGE: 'The first test page',
@@ -20,7 +21,7 @@
             CODE_TO_ADD_PAGE: 'Код для добавления этой страницы',
             TEST_HELP_PAGE_2: 'Тестовая страница help 2',
             TEMPLATE: 'шаблон'
-        });
+        });*/
         // Register custom help page
         pipHelpProvider.addTab({
             state: 'test',

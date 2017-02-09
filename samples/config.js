@@ -6,13 +6,13 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav',
+    var thisModule = angular.module('pipSampleConfig', [ 'pipSideNav',
         'pipAppBar', 'pipHelp', 'pipHelpConfig']);
 
     // Configure application services before start
     thisModule.config(
-        function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider,
-                  pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
+        function ($mdThemingProvider, $urlRouterProvider, pipSideNavProvider,
+                  pipAppBarProvider, $mdIconProvider) {
 
             var links = [
                 { title: 'Basic controls', href: '/pip-webui-controls/index.html'},
@@ -36,24 +36,24 @@
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
             // Set global constants
-            pipAppBarProvider.appTitleText('Sample Application');
+            //pipAppBarProvider.appTitleText('Sample Application');
             // pipAppBarProvider.globalSecondaryActions([
             //     {name: 'global.signout', title: 'Signout', state: 'signout'}
             // ]);
 
             // Configure REST API
-            pipRestProvider.serverUrl('http://alpha.pipservices.net');
+            //pipRestProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure entry pages
 
             // Configure default states
-            pipAuthStateProvider.unauthorizedState('help');
-            pipAuthStateProvider.authorizedState('help');
+            //pipAuthStateProvider.unauthorizedState('help');
+            //pipAuthStateProvider.authorizedState('help');
 
             $urlRouterProvider.otherwise('/help');
 
             // Configure navigation menu
-            pipSideNavProvider.sections([
+            /*pipSideNavProvider.sections([
                 {
                     links: [{title: 'Help', url: '/help'}]
                 }/*, Links only for publishing samples
@@ -62,8 +62,8 @@
                 }/*,
                 {
                     links: [{title: 'Signout', url: '/signout'}]
-                }*/
-            ]);
+                }
+            ]);*/
 
         }
     );

@@ -9,19 +9,19 @@
     var thisModule = angular.module('pipSample', [
         // 3rd Party Modules
         'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
-        'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
+        'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'ngAnimate', //  'angularFileUpload',
         // Application Configuration must go first
         'pipSampleConfig',
         // Modules from WebUI Framework
-        'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipLayout', 'pipNav',
+       'pipLayout', 'pipNav',
         // Sample Application Modules
-        'pipEntry', 'pipRest.State', 'pipHelp', 'pipHelpConfig'
+         'pipHelp', 'pipHelpConfig'
     ]);
 
     thisModule.controller('pipSampleController',
-        function ($scope, $rootScope, pipTheme, pipAppBar) {
-            pipTheme.setCurrentTheme('blue');
-            pipAppBar.showLanguage();
+        function ($scope, $rootScope) {
+           // pipTheme.setCurrentTheme('blue');
+            //pipAppBar.showLanguage();
         }
     );
 

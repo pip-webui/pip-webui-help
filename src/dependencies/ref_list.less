@@ -1,0 +1,143 @@
+// @file CSS styles for list of entity references
+// @copyright Digital Living Software Corp. 2014-2015
+.pip-dialog {
+  .pip-ref-list {
+    .pip-ref-list-item {
+      padding-right: 0;
+      max-width: 100%;
+      width: 100%;
+
+      //  & > div {
+      //   & > button {
+      //     display: none;
+      //   }
+      // }
+
+      & > button.md-ink-ripple {
+        padding: 0;
+        .md-ripple-container {
+          display: none;
+          width: 0;
+          height: 0;
+        }
+      }
+
+      p {
+        margin: 0
+      }
+
+      pip-markdown {
+        p {
+          margin: 0 !important;
+        }
+      }
+
+      .pip-pic {
+        margin-top: 16px;
+        margin-right: 16px;
+        cursor: pointer;
+        .flex-fixed();
+      }
+
+      img {
+        &.pip-pic, &.pip-pic-sm {
+          border-radius: 50%;
+        }
+      }
+
+      .pip-pic {
+        font-size: 16px;
+        height: 40px;
+        width: 40px;
+      }
+
+      .pip-pic-sm {
+        margin-top: 20px;
+        margin-right: 26px;
+        .flex-fixed();
+      }
+
+      .pip-pic-sm {
+        font-size: 14px;
+        height: 30px;
+        width: 30px;
+      }
+
+      .pip-content {
+        width: 100%;
+        .flex-var();
+        max-width: ~"calc(100% - 56px)";
+        padding-bottom: 13px;
+        padding-top: 16px;
+        line-height: normal;
+
+        .pip-details-title {
+          line-height: 1.5em;
+          margin-right: 8px;
+          .pip-title, .pip-subtitle {
+            min-height: 0;
+            padding-right: 0 !important;
+          }
+        }
+
+        .pip-title, .pip-text-bold, .pip-text {
+          .text-overflow();
+          &.pip-markdown {
+            p {
+              .text-overflow();
+            }
+          }
+        }
+        
+        .pip-title {
+          font: @font-subhead2;
+          margin-top: 1px !important;
+          margin-bottom: 0 !important;
+        }
+
+        .pip-subtitle {
+          font: @font-body1;
+          color: @color-secondary;
+          height: 17px;
+          margin-bottom: 4px !important;
+        }
+
+        .pip-text-bold {
+          .flex-var();
+          font: @font-body2;
+          margin-bottom: 4px !important;
+        }
+
+        .pip-text {
+          font: @font-body1;
+          max-height: 1.5em;
+          line-height: 1.5em;
+          margin-right: 16px;
+        }
+
+        .pip-text-lg {
+          font: @font-body1;
+          margin-right: 16px;
+          overflow: hidden;
+        }
+
+        .pip-icon {
+          width: 15px;
+          height: 15px;
+          vertical-align: middle;
+          margin-top: -1px;
+        }
+
+      }
+    }
+  }
+
+  .pip-ref-item::before {
+      .md-list-item-inner {
+        content: none;
+      }
+      .md-list-item-inner::before {
+        content: none;
+      }    
+  }
+}  
