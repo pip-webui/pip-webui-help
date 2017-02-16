@@ -1,5 +1,5 @@
 // Prevent junk from going into typescript definitions
-(() => {
+import {IHelpService} from '../help_service/HelpService';
 
 class HelpPageController {
     private _log: ng.ILogService;
@@ -15,14 +15,13 @@ class HelpPageController {
         $q: ng.IQService,
         $state: ng.ui.IStateService,
         pipNavService,
-        pipHelp,
-        $rootScope, 
-        $timeout
+        pipHelp: IHelpService,
+        $rootScope: ng.IRootScopeService, 
+        $timeout: angular.ITimeoutService
     ) {
         this._log = $log;
         this._q = $q;
         this._state = $state;
-        console.log(pipHelp.getTabs());
 
         this.tabs = _.filter(pipHelp.getTabs(), function (tab: any) {
               return tab;
@@ -75,6 +74,8 @@ class HelpPageController {
         }
     }
 }
+
+(() => {
 
 angular.module('pipHelp.Page', [
     'ui.router', 
