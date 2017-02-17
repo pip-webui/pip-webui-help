@@ -14,7 +14,7 @@ class HelpPageController {
         $log: ng.ILogService,
         $q: ng.IQService,
         $state: ng.ui.IStateService,
-        pipNavService,
+        pipNavService,//: pip.nav.INavService,
         pipHelp: IHelpService,
         $rootScope: ng.IRootScopeService, 
         $timeout: angular.ITimeoutService
