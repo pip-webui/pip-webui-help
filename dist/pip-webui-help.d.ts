@@ -1,6 +1,9 @@
 declare module pip.help {
 
 
+
+function configureHelpPageRoutes($stateProvider: any): void;
+
 export class HelpTab {
     state: string;
     title: string;
@@ -30,9 +33,6 @@ export class HelpConfig {
     titleLogo: boolean;
     isNavIcon: boolean;
 }
-
-
-function configureHelpPageRoutes($stateProvider: any): void;
 
 }
 
