@@ -1,8 +1,8 @@
 // CSS styles for help module
 // (�) Digital Living Software Corp. 2014-2016
 
-@pip-help-list-width: 300px;
-@pip-help-document-width: 960px;
+$pip-help-list-width: 300px;
+$pip-help-document-width: 960px;
 
 .pip-help {
 
@@ -23,12 +23,12 @@
 .pip-gt-sm {
   .pip-help { 
     md-list.pip-menu {
-      width: @pip-help-list-width;
-      min-width: @pip-help-list-width;
+      width: $pip-help-list-width;
+      min-width: $pip-help-list-width;
     }
 
     .pip-content-container {
-      width: ~"calc(100% - 300px)";
+      width: calc(100% - 300px);
     }
 
     pip-dropdown {
@@ -47,7 +47,7 @@
       display: none;
     }
     .pip-body {
-      min-height: ~"calc(100% - 64px)";
+      min-height: calc(100% - 64px);
     }
   }
 }

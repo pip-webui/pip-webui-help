@@ -36,7 +36,7 @@
         margin-top: 16px;
         margin-right: 16px;
         cursor: pointer;
-        .flex-fixed();
+        @include flex-fixed();
       }
 
       img {
@@ -54,7 +54,7 @@
       .pip-pic-sm {
         margin-top: 20px;
         margin-right: 26px;
-        .flex-fixed();
+        @include flex-fixed();
       }
 
       .pip-pic-sm {
@@ -65,8 +65,8 @@
 
       .pip-content {
         width: 100%;
-        .flex-var();
-        max-width: ~"calc(100% - 56px)";
+        @include flex-var();
+        max-width: calc(100% - 56px);
         padding-bottom: 13px;
         padding-top: 16px;
         line-height: normal;
@@ -81,42 +81,42 @@
         }
 
         .pip-title, .pip-text-bold, .pip-text {
-          .text-overflow();
+          @include text-overflow();
           &.pip-markdown {
             p {
-              .text-overflow();
+              @include text-overflow();
             }
           }
         }
         
         .pip-title {
-          font: @font-subhead2;
+          font: $font-subhead2;
           margin-top: 1px !important;
           margin-bottom: 0 !important;
         }
 
         .pip-subtitle {
-          font: @font-body1;
-          color: @color-secondary;
+          font: $font-body1;
+          color: $color-secondary;
           height: 17px;
           margin-bottom: 4px !important;
         }
 
         .pip-text-bold {
-          .flex-var();
-          font: @font-body2;
+          @include flex-var();
+          font: $font-body2;
           margin-bottom: 4px !important;
         }
 
         .pip-text {
-          font: @font-body1;
+          font: $font-body1;
           max-height: 1.5em;
           line-height: 1.5em;
           margin-right: 16px;
         }
 
         .pip-text-lg {
-          font: @font-body1;
+          font: $font-body1;
           margin-right: 16px;
           overflow: hidden;
         }

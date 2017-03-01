@@ -1,5 +1,5 @@
-// @file Reference Item CSS styles
-// @copyright Digital Living Software Corp. 2014-2015
+// $file Reference Item CSS styles
+// $copyright Digital Living Software Corp. 2014-2015
 
 // Implement the following structure (something close to)
 // pip-ref-item
@@ -10,14 +10,14 @@
 .pip-dialog {
   .pip-ref-item {
 
-    @ref-item-pic-size: 40px;
-    @ref-item-pic-size-sm: 30px;
-    @ref-item-pic-radius: 50%;
+    $ref-item-pic-size: 40px;
+    $ref-item-pic-size-sm: 30px;
+    $ref-item-pic-radius: 50%;
 
-    .flex();
-    .flex-direction(row);
-    .flex-vertical-content(center);
-    .flex-justify-content(start, flex-start);
+    @include flex();
+    @include flex-direction(row);
+    @include flex-vertical-content(center);
+    @include flex-justify-content(start, flex-start);
 
     height: 72px;
 
@@ -29,8 +29,8 @@
 
     .pip-pic {
       margin-right: 16px;
-      height: @ref-item-pic-size;
-      width: @ref-item-pic-size;
+      height: $ref-item-pic-size;
+      width: $ref-item-pic-size;
     }
 
     .md-no-style {
@@ -41,31 +41,31 @@
     .pip-pic-sm {
       margin: 3px 26px 3px 0;
 
-      height: @ref-item-pic-size-sm;
-      width: @ref-item-pic-size-sm;
+      height: $ref-item-pic-size-sm;
+      width: $ref-item-pic-size-sm;
     }
 
     .pip-content {
-      .text-overflow();
+      @include text-overflow();
 
       line-height: initial !important;
 
       .pip-title,
       .pip-subtitle {
         margin: 0;
-        .text-overflow();
+        @include text-overflow();
       }
 
       .pip-title {
         -webkit-user-select: auto;
-        font: @font-subhead2;
+        font: $font-subhead2;
         margin-top: 1px !important;
         margin-bottom: 4px !important;
       }
 
       .pip-subtitle {
-        font: @font-body1;
-        color: @color-secondary;
+        font: $font-body1;
+        color: $color-secondary;
       }
 
       .pip-icon {
