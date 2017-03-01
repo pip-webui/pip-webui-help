@@ -54,8 +54,8 @@
                 },
                 url: '/test2',
                 auth: false,
-                template: '<h2 class="text-title tm0 bm24">{{ \'SECOND_TEST_PAGE\' | translate }}</h2>\n' +
-                '\n<pre class="color-window-bg p16">\n<h3 class="text-subhead2 m0">{{:: \'CODE_TO_ADD_PAGE\' | translate}}</h3>\n<code class="language-js">pipHelpProvider.addPage({\n    state: \'test2\',\n    title: {{\'TEST_HELP_PAGE_2\' | translate }},\n    visible: true,\n    stateConfig: {\n      url: \'/test2\',\n      template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h2>\'\n    }\n});\n</code></pre>' // eslint-disable-line
+                template: '<div style="padding:16px"><h2 class="text-title tm0 bm24">{{ \'SECOND_TEST_PAGE\' | translate }}</h2>\n' +
+                '\n<pre class="color-window-bg p16">\n<h3 class="text-subhead2 m0">{{:: \'CODE_TO_ADD_PAGE\' | translate}}</h3>\n<code class="language-js">pipHelpProvider.addPage({\n    state: \'test2\',\n    title: {{\'TEST_HELP_PAGE_2\' | translate }},\n    visible: true,\n    stateConfig: {\n      url: \'/test2\',\n      template: \'&lt;h2>{{ \'SECOND_TEST_PAGE\' | translate }}&lt;/h2>\'\n    }\n});\n</code></pre></div>' // eslint-disable-line
             }
         });
 
