@@ -8,7 +8,7 @@ export interface IHelpService {
     showTitleText (newTitleText: string): string;
     showTitleLogo(newTitleLogo: string);
     setDefaultTab(name: string): void;
-    showNavIcon(value): boolean;
+    showNavIcon(value: boolean): boolean;
     getTabs(): HelpTab[];
 }
 
