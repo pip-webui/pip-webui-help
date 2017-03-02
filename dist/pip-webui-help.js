@@ -131,8 +131,8 @@ var HelpService_1 = require("../help_service/HelpService");
 var HelpProvider = (function () {
     HelpProvider.$inject = ['$stateProvider'];
     function HelpProvider($stateProvider) {
+        this.$stateProvider = $stateProvider;
         this._config = new HelpConfig_1.HelpConfig();
-        this._stateProvider = $stateProvider;
     }
     HelpProvider.prototype.getFullStateName = function (state) {
         return 'help.' + state;
@@ -162,7 +162,7 @@ var HelpProvider = (function () {
             visible: tabObj.visible !== false,
             stateConfig: _.cloneDeep(tabObj.stateConfig)
         });
-        this._stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
+        this.$stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
         if (typeof _.isUndefined(this._config.defaultTab) && this._config.tabs.length === 1) {
             this.setDefaultTab(tabObj.state);
         }

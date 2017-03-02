@@ -39,7 +39,7 @@ export interface IHelpService {
     showTitleText(newTitleText: string): string;
     showTitleLogo(newTitleLogo: string): any;
     setDefaultTab(name: string): void;
-    showNavIcon(value: any): boolean;
+    showNavIcon(value: boolean): boolean;
     getTabs(): HelpTab[];
 }
 export class HelpService implements IHelpService {

@@ -12,13 +12,11 @@ export interface IHelpProvider extends ng.IServiceProvider {
 class HelpProvider implements IHelpProvider {
     private _service: HelpService;
     private _config: HelpConfig = new HelpConfig();
-    private _stateProvider: ng.ui.IStateProvider;
 
-    constructor($stateProvider: ng.ui.IStateProvider) {
-        this._stateProvider = $stateProvider;
+    constructor(private $stateProvider: ng.ui.IStateProvider) {
     }
 
-    public getFullStateName(state): string {
+    public getFullStateName(state: string): string {
         return 'help.' + state;
     }
 
@@ -32,7 +30,7 @@ class HelpProvider implements IHelpProvider {
         return _.cloneDeep(defaultTab);
     }
 
-    public addTab(tabObj: HelpTab) {
+    public addTab(tabObj: HelpTab): void {
         let existingTab: HelpTab;
         this.validateTab(tabObj);
         existingTab = _.find(this._config.tabs, (p) => {
@@ -50,7 +48,7 @@ class HelpProvider implements IHelpProvider {
             visible: tabObj.visible !== false,
             stateConfig: _.cloneDeep(tabObj.stateConfig)
         });
-        this._stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
+        this.$stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
 
         // if we just added first state and no default state is specified
         if (typeof _.isUndefined(this._config.defaultTab) && this._config.tabs.length === 1) {
@@ -67,7 +65,7 @@ class HelpProvider implements IHelpProvider {
         }
 
         this._config.defaultTab = this.getFullStateName(name);
-        //this._stateProvider.go(this._config.defaultTab);
+        //this.$stateProvider.go(this._config.defaultTab);
             //pipAuthStateProvider.redirect('help', getFullStateName(name));
     }
 
