@@ -51,7 +51,7 @@ class HelpService implements IHelpService {
     }
 
     public setDefaultTab(name: string): void {
-        if (!_.find(this._config.tabs, function (tab) {
+        if (!_.find(this._config.tabs, (tab) => {
             return tab.state === 'help.' + name;
         })) {
             throw new Error('Tab with state name "' + name + '" is not registered');
@@ -61,7 +61,7 @@ class HelpService implements IHelpService {
     }
 
     public getDefaultTab() {
-        var defaultTab;
+        let defaultTab;
         defaultTab = _.find(this._config.tabs, function (p) {
             return p.state === defaultTab;
         });
@@ -113,9 +113,9 @@ class HelpProvider implements IHelpProvider {
     }
 
     public getDefaultTab(): HelpTab {
-        var defaultTab;
+        let defaultTab;
 
-        defaultTab = _.find(this._config.tabs, function (p) {
+        defaultTab = _.find(this._config.tabs, (p) => {
             return p.state === defaultTab;
         });
 
@@ -123,10 +123,10 @@ class HelpProvider implements IHelpProvider {
     }
 
     public addTab(tabObj: any) {
-        var existingTab: HelpTab;
+        let existingTab: HelpTab;
 
         this.validateTab(tabObj);
-        existingTab = _.find(this._config.tabs, function (p) {
+        existingTab = _.find(this._config.tabs, (p) => {
             return p.state === 'help.' + tabObj.state;
         });
         if (existingTab) {
@@ -151,7 +151,7 @@ class HelpProvider implements IHelpProvider {
 
     public setDefaultTab(name: string): void {
         // TODO [apidhirnyi] extract expression inside 'if' into variable. It isn't readable now.
-        if (!_.find(this._config.tabs, function (tab) {
+        if (!_.find(this._config.tabs, (tab) => {
             return tab.state === 'help.' + name;
         })) {
             throw new Error('Tab with state name "' + name + '" is not registered');
