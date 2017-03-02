@@ -3,41 +3,39 @@ import {IHelpService} from '../help_service/HelpService';
 import {HelpTab} from '../help_common/HelpTab';
 import {HelpPageSelectedTab} from '../help_common/HelpPageSelectedTab';
 
-class HelpPageController {
-    private _log: ng.ILogService;
-    private _q: ng.IQService;
-    private _state: ng.ui.IStateService;
+interface IHelpPage {
+    tabs: HelpTab[];
+    selected: HelpPageSelectedTab;
+    onDropdownSelect: Function;
+    onNavigationSelect(state: string): void;
+}
 
+class HelpPageController implements IHelpPage {
     public tabs: HelpTab[];
     public selected: HelpPageSelectedTab;
     public onDropdownSelect: Function;
 
     constructor(
-        $log: ng.ILogService,
-        $q: ng.IQService,
-        $state: ng.ui.IStateService,
-        pipNavService,//: pip.nav.INavService,
-        pipHelp: IHelpService,
+        private $log: ng.ILogService,
+        private $state: ng.ui.IStateService,
         $rootScope: ng.IRootScopeService, 
-        $timeout: angular.ITimeoutService
+        $timeout: angular.ITimeoutService,
+        pipNavService,//: pip.nav.INavService,
+        pipHelp: IHelpService
     ) {
-        this._log = $log;
-        this._q = $q;
-        this._state = $state;
 
         this.tabs = _.filter(pipHelp.getTabs(), (tab: any) =>{
-              return tab;
-                /*if (tab.visible === true && (tab.access ? tab.access($rootScope.$user, tab) : true)) {
+            if (tab.visible === true) {
                     return tab;
-                }*/
-            });
+            }
+        });
 
         this.tabs = _.sortBy(this.tabs, 'index');
 
         this.selected = new HelpPageSelectedTab();
-        if (this._state.current.name !== 'help') {
-            this.initSelect(this._state.current.name);
-        } else if (this._state.current.name === 'help' && pipHelp.getDefaultTab()) {
+        if (this.$state.current.name !== 'help') {
+            this.initSelect(this.$state.current.name);
+        } else if (this.$state.current.name === 'help' && pipHelp.getDefaultTab()) {
             this.initSelect(pipHelp.getDefaultTab().state);
         } else {
             $timeout(() => {
@@ -60,7 +58,7 @@ class HelpPageController {
         }
     }
 
-    private initSelect(state: string) {
+    private initSelect(state: string): void {
         this.selected.tab = _.find(this.tabs, (tab: HelpTab) => {
             return tab.state === state;
         });
@@ -68,11 +66,11 @@ class HelpPageController {
         this.selected.tabId = state;
     }
 
-    public onNavigationSelect(state: string) {
+    public onNavigationSelect(state: string): void {
         this.initSelect(state);
 
         if (this.selected.tab) {
-            this._state.go(state);
+            this.$state.go(state);
         }
     }
 }

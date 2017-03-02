@@ -1,8 +1,8 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}(g.pip || (g.pip = {})).help = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function () {
     'use strict';
-    var thisModule = angular.module('pipHelp.Translate', []);
-    thisModule.filter('translate', ['$injector', function ($injector) {
+    angular.module('pipHelp.Translate', [])
+        .filter('translate', ['$injector', function ($injector) {
         var pipTranslate = $injector.has('pipTranslate')
             ? $injector.get('pipTranslate') : null;
         return function (key) {
@@ -46,21 +46,22 @@ exports.HelpTab = HelpTab;
 Object.defineProperty(exports, "__esModule", { value: true });
 var HelpPageSelectedTab_1 = require("../help_common/HelpPageSelectedTab");
 var HelpPageController = (function () {
-    HelpPageController.$inject = ['$log', '$q', '$state', 'pipNavService', 'pipHelp', '$rootScope', '$timeout'];
-    function HelpPageController($log, $q, $state, pipNavService, pipHelp, $rootScope, $timeout) {
+    HelpPageController.$inject = ['$log', '$state', '$rootScope', '$timeout', 'pipNavService', 'pipHelp'];
+    function HelpPageController($log, $state, $rootScope, $timeout, pipNavService, pipHelp) {
         var _this = this;
-        this._log = $log;
-        this._q = $q;
-        this._state = $state;
+        this.$log = $log;
+        this.$state = $state;
         this.tabs = _.filter(pipHelp.getTabs(), function (tab) {
-            return tab;
+            if (tab.visible === true) {
+                return tab;
+            }
         });
         this.tabs = _.sortBy(this.tabs, 'index');
         this.selected = new HelpPageSelectedTab_1.HelpPageSelectedTab();
-        if (this._state.current.name !== 'help') {
-            this.initSelect(this._state.current.name);
+        if (this.$state.current.name !== 'help') {
+            this.initSelect(this.$state.current.name);
         }
-        else if (this._state.current.name === 'help' && pipHelp.getDefaultTab()) {
+        else if (this.$state.current.name === 'help' && pipHelp.getDefaultTab()) {
             this.initSelect(pipHelp.getDefaultTab().state);
         }
         else {
@@ -91,7 +92,7 @@ var HelpPageController = (function () {
     HelpPageController.prototype.onNavigationSelect = function (state) {
         this.initSelect(state);
         if (this.selected.tab) {
-            this._state.go(state);
+            this.$state.go(state);
         }
     };
     return HelpPageController;
