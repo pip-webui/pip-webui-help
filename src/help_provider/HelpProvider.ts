@@ -13,8 +13,7 @@ class HelpProvider implements IHelpProvider {
     private _service: HelpService;
     private _config: HelpConfig = new HelpConfig();
 
-    constructor(private $stateProvider: ng.ui.IStateProvider) {
-    }
+    constructor( private $stateProvider: ng.ui.IStateProvider) {}
 
     public getFullStateName(state: string): string {
         return 'help.' + state;
