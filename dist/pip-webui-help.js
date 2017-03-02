@@ -116,7 +116,7 @@ function configureHelpPageRoutes($stateProvider) {
         .state('help', {
         url: '/help?party_id',
         auth: true,
-        controllerAs: 'vm',
+        controllerAs: '$ctrl',
         controller: 'pipHelpPageController',
         templateUrl: 'help_page/HelpPage.html'
     });
@@ -302,13 +302,13 @@ module.run(['$templateCache', function($templateCache) {
     '              class="pip-help">\n' +
     '\n' +
     '    <div class="pip-menu-container"\n' +
-    '         ng-hide="vm.manager === false || !vm.tabs || vm.tabs.length < 1">\n' +
+    '         ng-hide="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
     '        <md-list class="pip-menu pip-simple-list"\n' +
-    '                 pip-selected="vm.selected.tabIndex"\n' +
-    '                 pip-selected-watch="vm.selected.navId"\n' +
-    '                 pip-select="vm.onNavigationSelect($event.id)">\n' +
+    '                 pip-selected="$ctrl.selected.tabIndex"\n' +
+    '                 pip-selected-watch="$ctrl.selected.navId"\n' +
+    '                 pip-select="$ctrl.onNavigationSelect($event.id)">\n' +
     '            <md-list-item class="pip-simple-list-item pip-selectable flex"\n' +
-    '                          ng-repeat="tab in vm.tabs track by tab.state" \n' +
+    '                          ng-repeat="tab in $ctrl.tabs track by tab.state" \n' +
     '                          md-ink-ripple\n' +
     '                          pip-id="{{:: tab.state }}">\n' +
     '                <p>{{::tab.title | translate}}</p>\n' +
@@ -316,15 +316,15 @@ module.run(['$templateCache', function($templateCache) {
     '        </md-list>\n' +
     '\n' +
     '        <div class="pip-content-container">\n' +
-    '            <pip-dropdown pip-actions="vm.tabs"\n' +
-    '                          pip-dropdown-select="vm.onDropdownSelect"\n' +
-    '                          pip-active-index="vm.selected.tabIndex"></pip-dropdown>\n' +
+    '            <pip-dropdown pip-actions="$ctrl.tabs"\n' +
+    '                          pip-dropdown-select="$ctrl.onDropdownSelect"\n' +
+    '                          pip-active-index="$ctrl.selected.tabIndex"></pip-dropdown>\n' +
     '\n' +
     '            <div class="pip-body p0 layout-column" ui-view></div>\n' +
     '        </div>\n' +
     '    </div>\n' +
     '    <div class="layout-column layout-align-center-center flex"\n' +
-    '         ng-show="vm.manager === false || !vm.tabs || vm.tabs.length < 1">\n' +
+    '         ng-show="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
     '        {{::\'ERROR_400\' | translate}}\n' +
     '    </div>\n' +
     '</pip-document>');

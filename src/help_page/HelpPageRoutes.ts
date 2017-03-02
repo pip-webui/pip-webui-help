@@ -5,7 +5,7 @@ function configureHelpPageRoutes($stateProvider) {
         .state('help', {
             url: '/help?party_id',
             auth: true,
-            controllerAs: 'vm',
+            controllerAs: '$ctrl',
             controller: 'pipHelpPageController',
             templateUrl: 'help_page/HelpPage.html'
         });      
