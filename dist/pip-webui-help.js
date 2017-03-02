@@ -117,10 +117,9 @@ var HelpConfig = (function () {
 }());
 exports.HelpConfig = HelpConfig;
 var HelpService = (function () {
-    HelpService.$inject = ['$rootScope', 'config'];
-    function HelpService($rootScope, config) {
+    HelpService.$inject = ['config'];
+    function HelpService(config) {
         "ngInject";
-        this._rootScope = $rootScope;
         this._config = config;
     }
     HelpService.prototype.getFullStateName = function (state) {
@@ -135,9 +134,10 @@ var HelpService = (function () {
         this._config.defaultTab = this.getFullStateName(name);
     };
     HelpService.prototype.getDefaultTab = function () {
+        var _this = this;
         var defaultTab;
         defaultTab = _.find(this._config.tabs, function (p) {
-            return p.state === defaultTab;
+            return p.state === _this._config.defaultTab;
         });
         return _.cloneDeep(defaultTab);
     };
@@ -201,7 +201,7 @@ var HelpProvider = (function () {
             stateConfig: _.cloneDeep(tabObj.stateConfig)
         });
         this._stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
-        if (typeof this._config.defaultTab === 'undefined' && this._config.tabs.length === 1) {
+        if (typeof _.isUndefined(this._config.defaultTab) && this._config.tabs.length === 1) {
             this.setDefaultTab(tabObj.state);
         }
     };
@@ -242,17 +242,18 @@ var HelpProvider = (function () {
         return this._config.titleLogo;
     };
     HelpProvider.prototype.showNavIcon = function (value) {
-        if (value !== null && value !== undefined) {
+        if (!_.isNull(value) && !_.isUndefined(value)) {
             this._config.isNavIcon = !!value;
         }
         return this._config.isNavIcon;
     };
-    HelpProvider.prototype.$get = ['$rootScope', '$state', function ($rootScope, $state) {
+    HelpProvider.prototype.$get = function () {
         "ngInject";
-        if (this._service == null)
-            this._service = new HelpService($rootScope, this._config);
+        if (_.isNull(this._service) || _.isUndefined(this._service)) {
+            this._service = new HelpService(this._config);
+        }
         return this._service;
-    }];
+    };
     return HelpProvider;
 }());
 angular
@@ -281,7 +282,37 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('help_page/HelpPage.html',
-    '<md-toolbar class="pip-appbar-ext"></md-toolbar><pip-document width="800" min-height="400" class="pip-help"><div class="pip-menu-container" ng-hide="vm.manager === false || !vm.tabs || vm.tabs.length < 1"><md-list class="pip-menu pip-simple-list" pip-selected="vm.selected.tabIndex" pip-selected-watch="vm.selected.navId" pip-select="vm.onNavigationSelect($event.id)"><md-list-item class="pip-simple-list-item pip-selectable flex" ng-repeat="tab in vm.tabs track by tab.state" md-ink-ripple="" pip-id="{{:: tab.state }}"><p>{{::tab.title | translate}}</p></md-list-item></md-list><div class="pip-content-container"><pip-dropdown pip-actions="vm.tabs" pip-dropdown-select="vm.onDropdownSelect" pip-active-index="vm.selected.tabIndex"></pip-dropdown><div class="pip-body p0 layout-column" ui-view=""></div></div></div><div class="layout-column layout-align-center-center flex" ng-show="vm.manager === false || !vm.tabs || vm.tabs.length < 1">{{::\'ERROR_400\' | translate}}</div></pip-document>');
+    '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
+    '<pip-document width="800" min-height="400"\n' +
+    '              class="pip-help">\n' +
+    '\n' +
+    '    <div class="pip-menu-container"\n' +
+    '         ng-hide="vm.manager === false || !vm.tabs || vm.tabs.length < 1">\n' +
+    '        <md-list class="pip-menu pip-simple-list"\n' +
+    '                 pip-selected="vm.selected.tabIndex"\n' +
+    '                 pip-selected-watch="vm.selected.navId"\n' +
+    '                 pip-select="vm.onNavigationSelect($event.id)">\n' +
+    '            <md-list-item class="pip-simple-list-item pip-selectable flex"\n' +
+    '                          ng-repeat="tab in vm.tabs track by tab.state" \n' +
+    '                          md-ink-ripple\n' +
+    '                          pip-id="{{:: tab.state }}">\n' +
+    '                <p>{{::tab.title | translate}}</p>\n' +
+    '            </md-list-item>\n' +
+    '        </md-list>\n' +
+    '\n' +
+    '        <div class="pip-content-container">\n' +
+    '            <pip-dropdown pip-actions="vm.tabs"\n' +
+    '                          pip-dropdown-select="vm.onDropdownSelect"\n' +
+    '                          pip-active-index="vm.selected.tabIndex"></pip-dropdown>\n' +
+    '\n' +
+    '            <div class="pip-body p0 layout-column" ui-view></div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="layout-column layout-align-center-center flex"\n' +
+    '         ng-show="vm.manager === false || !vm.tabs || vm.tabs.length < 1">\n' +
+    '        {{::\'ERROR_400\' | translate}}\n' +
+    '    </div>\n' +
+    '</pip-document>');
 }]);
 })();
 

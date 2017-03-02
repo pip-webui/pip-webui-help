@@ -10,17 +10,17 @@ export class HelpTab {
 }
 
 export interface IHelpService {
-    getDefaultTab();
-    showTitleText (newTitleText);
-    showTitleLogo(newTitleLogo);
-    setDefaultTab(name: string);
-    showNavIcon(value);
-    getTabs();
+    getDefaultTab(): HelpTab;
+    showTitleText (newTitleText: string): string;
+    showTitleLogo(newTitleLogo: string);
+    setDefaultTab(name: string): void;
+    showNavIcon(value): boolean;
+    getTabs(): HelpTab[];
 }
 
 export interface IHelpProvider extends ng.IServiceProvider {
     getDefaultTab(): HelpTab;
-    addTab(tabObj: HelpTab);
+    addTab(tabObj: HelpTab): void;
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }
@@ -30,19 +30,17 @@ export class HelpConfig {
     public defaultTab: string;
     public tabs: HelpTab[] = [];
     public titleText: string = 'SETTINGS_TITLE';
-    public titleLogo: boolean = null;
+    public titleLogo: string = null;
     public isNavIcon: boolean = true;
 
 }
 
 class HelpService implements IHelpService {
     private _config: HelpConfig;
-    private _rootScope: ng.IRootScopeService;
 
-    public constructor($rootScope: ng.IRootScopeService, 
-                       config: HelpConfig) {
+    public constructor(
+        config: HelpConfig) {
         "ngInject";
-        this._rootScope = $rootScope;
         this._config = config;
     }
 
@@ -60,15 +58,15 @@ class HelpService implements IHelpService {
         this._config.defaultTab = this.getFullStateName(name);
     }
 
-    public getDefaultTab() {
-        let defaultTab;
+    public getDefaultTab(): HelpTab {
+        let defaultTab: HelpTab;
         defaultTab = _.find(this._config.tabs, (p: HelpTab) => {
-            return p.state === defaultTab;
+            return p.state === this._config.defaultTab;
         });
         return _.cloneDeep(defaultTab);
     }
 
-    public showTitleText (newTitleText: string) {
+    public showTitleText (newTitleText: string): string {
         if (newTitleText) {
             this._config.titleText = newTitleText;
             this._config.titleLogo = null;
@@ -77,7 +75,7 @@ class HelpService implements IHelpService {
         return this._config.titleText;
     }
 
-    public showTitleLogo(newTitleLogo) {
+    public showTitleLogo(newTitleLogo: string) {
         if (newTitleLogo) {
             this._config.titleLogo = newTitleLogo;
             this._config.titleText = null;
@@ -86,7 +84,7 @@ class HelpService implements IHelpService {
         return this._config.titleLogo;
     }
 
-    public showNavIcon(value: boolean) {
+    public showNavIcon(value: boolean): boolean {
         if (value !== null && value !== undefined) {
             this._config.isNavIcon = !!value;
         }
@@ -124,7 +122,6 @@ class HelpProvider implements IHelpProvider {
 
     public addTab(tabObj: HelpTab) {
         let existingTab: HelpTab;
-
         this.validateTab(tabObj);
         existingTab = _.find(this._config.tabs, (p) => {
             return p.state === 'help.' + tabObj.state;
@@ -144,14 +141,14 @@ class HelpProvider implements IHelpProvider {
         this._stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
 
         // if we just added first state and no default state is specified
-        if (typeof this._config.defaultTab === 'undefined' && this._config.tabs.length === 1) {
+        if (typeof _.isUndefined(this._config.defaultTab) && this._config.tabs.length === 1) {
             this.setDefaultTab(tabObj.state);
         }
     }
 
     public setDefaultTab(name: string): void {
         // TODO [apidhirnyi] extract expression inside 'if' into variable. It isn't readable now.
-        if (!_.find(this._config.tabs, (tab) => {
+        if (!_.find(this._config.tabs, (tab: HelpTab) => {
             return tab.state === 'help.' + name;
         })) {
             throw new Error('Tab with state name "' + name + '" is not registered');
@@ -194,7 +191,7 @@ class HelpProvider implements IHelpProvider {
         return this._config.titleText;
     }
 
-    public showTitleLogo(newTitleLogo) {
+    public showTitleLogo(newTitleLogo: string): string {
         if (newTitleLogo) {
             this._config.titleLogo = newTitleLogo;
             this._config.titleText = null;
@@ -203,19 +200,20 @@ class HelpProvider implements IHelpProvider {
         return this._config.titleLogo;
     }
 
-    public showNavIcon(value) {
-        if (value !== null && value !== undefined) {
+    public showNavIcon(value: boolean): boolean {
+        if (!_.isNull(value) && !_.isUndefined(value)) {
             this._config.isNavIcon = !!value;
         }
 
         return this._config.isNavIcon;
     }
 
-    public $get($rootScope, $state) {
+    public $get() {
         "ngInject";
 
-        if (this._service == null)
-            this._service = new HelpService($rootScope, this._config);
+        if (_.isNull(this._service) || _.isUndefined(this._service)) {
+            this._service = new HelpService(this._config);
+        }
         
         return this._service;
     }
