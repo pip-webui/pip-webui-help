@@ -3,7 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-import './help_service/HelpService';
+import './help_provider/HelpProvider';
 import './help_page/HelpPageController';
 
 angular.module('pipHelp', [

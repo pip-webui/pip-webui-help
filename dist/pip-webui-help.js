@@ -13,12 +13,38 @@
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var HelpConfig = (function () {
+    function HelpConfig() {
+        this.tabs = [];
+        this.titleText = 'SETTINGS_TITLE';
+        this.titleLogo = null;
+        this.isNavIcon = true;
+    }
+    return HelpConfig;
+}());
+exports.HelpConfig = HelpConfig;
+},{}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var HelpPageSelectedTab = (function () {
     function HelpPageSelectedTab() {
     }
     return HelpPageSelectedTab;
 }());
 exports.HelpPageSelectedTab = HelpPageSelectedTab;
+},{}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var HelpTab = (function () {
+    function HelpTab() {
+    }
+    return HelpTab;
+}());
+exports.HelpTab = HelpTab;
+},{}],5:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var HelpPageSelectedTab_1 = require("../help_common/HelpPageSelectedTab");
 var HelpPageController = (function () {
     HelpPageController.$inject = ['$log', '$q', '$state', 'pipNavService', 'pipHelp', '$rootScope', '$timeout'];
     function HelpPageController($log, $q, $state, pipNavService, pipHelp, $rootScope, $timeout) {
@@ -30,7 +56,7 @@ var HelpPageController = (function () {
             return tab;
         });
         this.tabs = _.sortBy(this.tabs, 'index');
-        this.selected = new HelpPageSelectedTab();
+        this.selected = new HelpPageSelectedTab_1.HelpPageSelectedTab();
         if (this._state.current.name !== 'help') {
             this.initSelect(this._state.current.name);
         }
@@ -82,7 +108,7 @@ var HelpPageController = (function () {
         .controller('pipHelpPageController', HelpPageController);
 })();
 require("./HelpPageRoutes");
-},{"./HelpPageRoutes":3}],3:[function(require,module,exports){
+},{"../help_common/HelpPageSelectedTab":3,"./HelpPageRoutes":6}],6:[function(require,module,exports){
 'use strict';
 configureHelpPageRoutes.$inject = ['$stateProvider'];
 function configureHelpPageRoutes($stateProvider) {
@@ -97,79 +123,15 @@ function configureHelpPageRoutes($stateProvider) {
 }
 angular.module('pipHelp.Page')
     .config(configureHelpPageRoutes);
-},{}],4:[function(require,module,exports){
-'use strict';
+},{}],7:[function(require,module,exports){
+"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var HelpTab = (function () {
-    function HelpTab() {
-    }
-    return HelpTab;
-}());
-exports.HelpTab = HelpTab;
-var HelpConfig = (function () {
-    function HelpConfig() {
-        this.tabs = [];
-        this.titleText = 'SETTINGS_TITLE';
-        this.titleLogo = null;
-        this.isNavIcon = true;
-    }
-    return HelpConfig;
-}());
-exports.HelpConfig = HelpConfig;
-var HelpService = (function () {
-    HelpService.$inject = ['config'];
-    function HelpService(config) {
-        "ngInject";
-        this._config = config;
-    }
-    HelpService.prototype.getFullStateName = function (state) {
-        return 'help.' + state;
-    };
-    HelpService.prototype.setDefaultTab = function (name) {
-        if (!_.find(this._config.tabs, function (tab) {
-            return tab.state === 'help.' + name;
-        })) {
-            throw new Error('Tab with state name "' + name + '" is not registered');
-        }
-        this._config.defaultTab = this.getFullStateName(name);
-    };
-    HelpService.prototype.getDefaultTab = function () {
-        var _this = this;
-        var defaultTab;
-        defaultTab = _.find(this._config.tabs, function (p) {
-            return p.state === _this._config.defaultTab;
-        });
-        return _.cloneDeep(defaultTab);
-    };
-    HelpService.prototype.showTitleText = function (newTitleText) {
-        if (newTitleText) {
-            this._config.titleText = newTitleText;
-            this._config.titleLogo = null;
-        }
-        return this._config.titleText;
-    };
-    HelpService.prototype.showTitleLogo = function (newTitleLogo) {
-        if (newTitleLogo) {
-            this._config.titleLogo = newTitleLogo;
-            this._config.titleText = null;
-        }
-        return this._config.titleLogo;
-    };
-    HelpService.prototype.showNavIcon = function (value) {
-        if (value !== null && value !== undefined) {
-            this._config.isNavIcon = !!value;
-        }
-        return this._config.isNavIcon;
-    };
-    HelpService.prototype.getTabs = function () {
-        return _.cloneDeep(this._config.tabs);
-    };
-    return HelpService;
-}());
+var HelpConfig_1 = require("../help_common/HelpConfig");
+var HelpService_1 = require("../help_service/HelpService");
 var HelpProvider = (function () {
     HelpProvider.$inject = ['$stateProvider'];
     function HelpProvider($stateProvider) {
-        this._config = new HelpConfig();
+        this._config = new HelpConfig_1.HelpConfig();
         this._stateProvider = $stateProvider;
     }
     HelpProvider.prototype.getFullStateName = function (state) {
@@ -250,7 +212,7 @@ var HelpProvider = (function () {
     HelpProvider.prototype.$get = function () {
         "ngInject";
         if (_.isNull(this._service) || _.isUndefined(this._service)) {
-            this._service = new HelpService(this._config);
+            this._service = new HelpService_1.HelpService(this._config);
         }
         return this._service;
     };
@@ -259,21 +221,74 @@ var HelpProvider = (function () {
 angular
     .module('pipHelp.Service', [])
     .provider('pipHelp', HelpProvider);
-},{}],5:[function(require,module,exports){
+},{"../help_common/HelpConfig":2,"../help_service/HelpService":8}],8:[function(require,module,exports){
+'use strict';
+Object.defineProperty(exports, "__esModule", { value: true });
+var HelpService = (function () {
+    HelpService.$inject = ['_config'];
+    function HelpService(_config) {
+        "ngInject";
+        this._config = _config;
+    }
+    HelpService.prototype.getFullStateName = function (state) {
+        return 'help.' + state;
+    };
+    HelpService.prototype.setDefaultTab = function (name) {
+        if (!_.find(this._config.tabs, function (tab) {
+            return tab.state === 'help.' + name;
+        })) {
+            throw new Error('Tab with state name "' + name + '" is not registered');
+        }
+        this._config.defaultTab = this.getFullStateName(name);
+    };
+    HelpService.prototype.getDefaultTab = function () {
+        var _this = this;
+        var defaultTab;
+        defaultTab = _.find(this._config.tabs, function (p) {
+            return p.state === _this._config.defaultTab;
+        });
+        return _.cloneDeep(defaultTab);
+    };
+    HelpService.prototype.showTitleText = function (newTitleText) {
+        if (newTitleText) {
+            this._config.titleText = newTitleText;
+            this._config.titleLogo = null;
+        }
+        return this._config.titleText;
+    };
+    HelpService.prototype.showTitleLogo = function (newTitleLogo) {
+        if (newTitleLogo) {
+            this._config.titleLogo = newTitleLogo;
+            this._config.titleText = null;
+        }
+        return this._config.titleLogo;
+    };
+    HelpService.prototype.showNavIcon = function (value) {
+        if (value !== null && value !== undefined) {
+            this._config.isNavIcon = !!value;
+        }
+        return this._config.isNavIcon;
+    };
+    HelpService.prototype.getTabs = function () {
+        return _.cloneDeep(this._config.tabs);
+    };
+    return HelpService;
+}());
+exports.HelpService = HelpService;
+},{}],9:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./help_service/HelpService");
+require("./help_provider/HelpProvider");
 require("./help_page/HelpPageController");
 angular.module('pipHelp', [
     'pipHelp.Service',
     'pipHelp.Page'
 ]);
 __export(require("./help_service/HelpService"));
-__export(require("./help_page/HelpPageController"));
-},{"./help_page/HelpPageController":2,"./help_service/HelpService":4}],6:[function(require,module,exports){
+},{"./help_page/HelpPageController":5,"./help_provider/HelpProvider":7,"./help_service/HelpService":8}],10:[function(require,module,exports){
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -318,7 +333,7 @@ module.run(['$templateCache', function($templateCache) {
 
 
 
-},{}]},{},[6,1,2,3,4,5])(6)
+},{}]},{},[10,1,2,3,4,5,6,7,8,9])(10)
 });
 
 //# sourceMappingURL=pip-webui-help.js.map

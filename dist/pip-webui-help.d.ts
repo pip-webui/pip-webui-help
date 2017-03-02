@@ -1,13 +1,19 @@
 declare module pip.help {
 
 
+export class HelpConfig {
+    defaultTab: string;
+    tabs: HelpTab[];
+    titleText: string;
+    titleLogo: string;
+    isNavIcon: boolean;
+}
+
 export class HelpPageSelectedTab {
     tab: HelpTab;
     tabIndex: number;
     tabId: string;
 }
-
-function configureHelpPageRoutes($stateProvider: any): void;
 
 export class HelpTab {
     state: string;
@@ -17,6 +23,17 @@ export class HelpTab {
     visible: boolean;
     stateConfig: any;
 }
+
+
+function configureHelpPageRoutes($stateProvider: any): void;
+
+export interface IHelpProvider extends ng.IServiceProvider {
+    getDefaultTab(): HelpTab;
+    addTab(tabObj: HelpTab): void;
+    setDefaultTab(name: string): void;
+    getFullStateName(state: string): string;
+}
+
 export interface IHelpService {
     getDefaultTab(): HelpTab;
     showTitleText(newTitleText: string): string;
@@ -25,18 +42,16 @@ export interface IHelpService {
     showNavIcon(value: any): boolean;
     getTabs(): HelpTab[];
 }
-export interface IHelpProvider extends ng.IServiceProvider {
-    getDefaultTab(): HelpTab;
-    addTab(tabObj: HelpTab): void;
+export class HelpService implements IHelpService {
+    private _config;
+    constructor(_config: HelpConfig);
+    private getFullStateName(state);
     setDefaultTab(name: string): void;
-    getFullStateName(state: string): string;
-}
-export class HelpConfig {
-    defaultTab: string;
-    tabs: HelpTab[];
-    titleText: string;
-    titleLogo: string;
-    isNavIcon: boolean;
+    getDefaultTab(): HelpTab;
+    showTitleText(newTitleText: string): string;
+    showTitleLogo(newTitleLogo: string): string;
+    showNavIcon(value: boolean): boolean;
+    getTabs(): HelpTab[];
 }
 
 }

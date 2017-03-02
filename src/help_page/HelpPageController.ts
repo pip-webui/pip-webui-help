@@ -1,12 +1,7 @@
 // Prevent junk from going into typescript definitions
 import {IHelpService} from '../help_service/HelpService';
-import {HelpTab} from '../help_service/HelpService';
-
-export class HelpPageSelectedTab {
-    public tab: HelpTab;
-    public tabIndex: number;
-    public tabId: string;
-}
+import {HelpTab} from '../help_common/HelpTab';
+import {HelpPageSelectedTab} from '../help_common/HelpPageSelectedTab';
 
 class HelpPageController {
     private _log: ng.ILogService;
