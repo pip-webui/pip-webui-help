@@ -1,14 +1,21 @@
 // Prevent junk from going into typescript definitions
 import {IHelpService} from '../help_service/HelpService';
+import {HelpTab} from '../help_service/HelpService';
+
+export class HelpPageSelectedTab {
+    public tab: HelpTab;
+    public tabIndex: number;
+    public tabId: string;
+}
 
 class HelpPageController {
     private _log: ng.ILogService;
     private _q: ng.IQService;
     private _state: ng.ui.IStateService;
 
-    public tabs: any;
-    public selected: any;
-    public onDropdownSelect: any;
+    public tabs: HelpTab[];
+    public selected: HelpPageSelectedTab;
+    public onDropdownSelect: Function;
 
     constructor(
         $log: ng.ILogService,
@@ -23,7 +30,7 @@ class HelpPageController {
         this._q = $q;
         this._state = $state;
 
-        this.tabs = _.filter(pipHelp.getTabs(), function (tab: any) {
+        this.tabs = _.filter(pipHelp.getTabs(), (tab: any) =>{
               return tab;
                 /*if (tab.visible === true && (tab.access ? tab.access($rootScope.$user, tab) : true)) {
                     return tab;
@@ -32,13 +39,13 @@ class HelpPageController {
 
         this.tabs = _.sortBy(this.tabs, 'index');
 
-        this.selected = {};
+        this.selected = new HelpPageSelectedTab();
         if (this._state.current.name !== 'help') {
             this.initSelect(this._state.current.name);
         } else if (this._state.current.name === 'help' && pipHelp.getDefaultTab()) {
             this.initSelect(pipHelp.getDefaultTab().state);
         } else {
-            $timeout(function () {
+            $timeout(() => {
                 if (pipHelp.getDefaultTab()) {
                     this.initSelect(pipHelp.getDefaultTab().state);
                 }
@@ -59,9 +66,9 @@ class HelpPageController {
     }
 
     private initSelect(state: string) {
-        this.selected.tab = _.find(this.tabs, function (tab: any) {
-                    return tab.state === state;
-                });
+        this.selected.tab = _.find(this.tabs, (tab: HelpTab) => {
+            return tab.state === state;
+        });
         this.selected.tabIndex = _.indexOf(this.tabs, this.selected.tab);
         this.selected.tabId = state;
     }

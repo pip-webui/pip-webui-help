@@ -1,13 +1,18 @@
 declare module pip.help {
 
 
+export class HelpPageSelectedTab {
+    tab: HelpTab;
+    tabIndex: number;
+    tabId: string;
+}
 
 function configureHelpPageRoutes($stateProvider: any): void;
 
 export class HelpTab {
     state: string;
     title: string;
-    index: string;
+    index: number;
     access: boolean;
     visible: boolean;
     stateConfig: any;
@@ -22,7 +27,7 @@ export interface IHelpService {
 }
 export interface IHelpProvider extends ng.IServiceProvider {
     getDefaultTab(): HelpTab;
-    addTab(tabObj: any): any;
+    addTab(tabObj: HelpTab): any;
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }

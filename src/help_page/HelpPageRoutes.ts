@@ -8,8 +8,7 @@ function configureHelpPageRoutes($stateProvider) {
             controllerAs: 'vm',
             controller: 'pipHelpPageController',
             templateUrl: 'help_page/HelpPage.html'
-        });
-       
+        });      
 }
 
 angular.module('pipHelp.Page')

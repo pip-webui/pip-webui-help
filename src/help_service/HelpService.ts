@@ -3,7 +3,7 @@
 export class HelpTab {
     public state: string;
     public title: string;
-    public index: string;
+    public index: number;
     public access: boolean;
     public visible: boolean;
     public stateConfig: any;
@@ -20,7 +20,7 @@ export interface IHelpService {
 
 export interface IHelpProvider extends ng.IServiceProvider {
     getDefaultTab(): HelpTab;
-    addTab(tabObj: any);
+    addTab(tabObj: HelpTab);
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }
@@ -62,7 +62,7 @@ class HelpService implements IHelpService {
 
     public getDefaultTab() {
         let defaultTab;
-        defaultTab = _.find(this._config.tabs, function (p) {
+        defaultTab = _.find(this._config.tabs, (p: HelpTab) => {
             return p.state === defaultTab;
         });
         return _.cloneDeep(defaultTab);
@@ -113,16 +113,16 @@ class HelpProvider implements IHelpProvider {
     }
 
     public getDefaultTab(): HelpTab {
-        let defaultTab;
+        let defaultTab: HelpTab;
 
         defaultTab = _.find(this._config.tabs, (p) => {
-            return p.state === defaultTab;
+            return p.state === this._config.defaultTab;
         });
 
         return _.cloneDeep(defaultTab);
     }
 
-    public addTab(tabObj: any) {
+    public addTab(tabObj: HelpTab) {
         let existingTab: HelpTab;
 
         this.validateTab(tabObj);

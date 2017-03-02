@@ -13,6 +13,12 @@
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var HelpPageSelectedTab = (function () {
+    function HelpPageSelectedTab() {
+    }
+    return HelpPageSelectedTab;
+}());
+exports.HelpPageSelectedTab = HelpPageSelectedTab;
 var HelpPageController = (function () {
     HelpPageController.$inject = ['$log', '$q', '$state', 'pipNavService', 'pipHelp', '$rootScope', '$timeout'];
     function HelpPageController($log, $q, $state, pipNavService, pipHelp, $rootScope, $timeout) {
@@ -24,7 +30,7 @@ var HelpPageController = (function () {
             return tab;
         });
         this.tabs = _.sortBy(this.tabs, 'index');
-        this.selected = {};
+        this.selected = new HelpPageSelectedTab();
         if (this._state.current.name !== 'help') {
             this.initSelect(this._state.current.name);
         }
@@ -34,10 +40,10 @@ var HelpPageController = (function () {
         else {
             $timeout(function () {
                 if (pipHelp.getDefaultTab()) {
-                    this.initSelect(pipHelp.getDefaultTab().state);
+                    _this.initSelect(pipHelp.getDefaultTab().state);
                 }
-                if (!pipHelp.getDefaultTab() && this.tabs && this.tabs.length > 0) {
-                    this.initSelect(this.tabs[0].state);
+                if (!pipHelp.getDefaultTab() && _this.tabs && _this.tabs.length > 0) {
+                    _this.initSelect(_this.tabs[0].state);
                 }
             });
         }
@@ -170,9 +176,10 @@ var HelpProvider = (function () {
         return 'help.' + state;
     };
     HelpProvider.prototype.getDefaultTab = function () {
+        var _this = this;
         var defaultTab;
         defaultTab = _.find(this._config.tabs, function (p) {
-            return p.state === defaultTab;
+            return p.state === _this._config.defaultTab;
         });
         return _.cloneDeep(defaultTab);
     };
@@ -264,6 +271,7 @@ angular.module('pipHelp', [
     'pipHelp.Page'
 ]);
 __export(require("./help_service/HelpService"));
+__export(require("./help_page/HelpPageController"));
 },{"./help_page/HelpPageController":2,"./help_service/HelpService":4}],6:[function(require,module,exports){
 (function(module) {
 try {
