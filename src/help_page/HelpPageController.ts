@@ -20,11 +20,11 @@ class HelpPageController implements IHelpPage {
         private $state: ng.ui.IStateService,
         $rootScope: ng.IRootScopeService, 
         $timeout: angular.ITimeoutService,
-        pipNavService,//: pip.nav.INavService,
+        pipNavService: pip.nav.INavService,
         pipHelp: IHelpService
     ) {
 
-        this.tabs = _.filter(pipHelp.getTabs(), (tab: any) =>{
+        this.tabs = _.filter(pipHelp.getTabs(), (tab: HelpTab) =>{
             if (tab.visible === true) {
                     return tab;
             }

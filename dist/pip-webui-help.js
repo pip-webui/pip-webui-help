@@ -35,13 +35,23 @@ exports.HelpPageSelectedTab = HelpPageSelectedTab;
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var HelpStateConfig = (function () {
+    function HelpStateConfig() {
+        this.auth = false;
+    }
+    return HelpStateConfig;
+}());
+exports.HelpStateConfig = HelpStateConfig;
+},{}],5:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var HelpTab = (function () {
     function HelpTab() {
     }
     return HelpTab;
 }());
 exports.HelpTab = HelpTab;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var HelpPageSelectedTab_1 = require("../help_common/HelpPageSelectedTab");
@@ -109,7 +119,7 @@ var HelpPageController = (function () {
         .controller('pipHelpPageController', HelpPageController);
 })();
 require("./HelpPageRoutes");
-},{"../help_common/HelpPageSelectedTab":3,"./HelpPageRoutes":6}],6:[function(require,module,exports){
+},{"../help_common/HelpPageSelectedTab":3,"./HelpPageRoutes":7}],7:[function(require,module,exports){
 'use strict';
 configureHelpPageRoutes.$inject = ['$stateProvider'];
 function configureHelpPageRoutes($stateProvider) {
@@ -124,7 +134,7 @@ function configureHelpPageRoutes($stateProvider) {
 }
 angular.module('pipHelp.Page')
     .config(configureHelpPageRoutes);
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var HelpConfig_1 = require("../help_common/HelpConfig");
@@ -222,7 +232,7 @@ var HelpProvider = (function () {
 angular
     .module('pipHelp.Service', [])
     .provider('pipHelp', HelpProvider);
-},{"../help_common/HelpConfig":2,"../help_service/HelpService":8}],8:[function(require,module,exports){
+},{"../help_common/HelpConfig":2,"../help_service/HelpService":9}],9:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
 var HelpService = (function () {
@@ -276,7 +286,7 @@ var HelpService = (function () {
     return HelpService;
 }());
 exports.HelpService = HelpService;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
@@ -289,7 +299,7 @@ angular.module('pipHelp', [
     'pipHelp.Page'
 ]);
 __export(require("./help_service/HelpService"));
-},{"./help_page/HelpPageController":5,"./help_provider/HelpProvider":7,"./help_service/HelpService":8}],10:[function(require,module,exports){
+},{"./help_page/HelpPageController":6,"./help_provider/HelpProvider":8,"./help_service/HelpService":9}],11:[function(require,module,exports){
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -298,43 +308,13 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('help_page/HelpPage.html',
-    '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
-    '<pip-document width="800" min-height="400"\n' +
-    '              class="pip-help">\n' +
-    '\n' +
-    '    <div class="pip-menu-container"\n' +
-    '         ng-hide="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
-    '        <md-list class="pip-menu pip-simple-list"\n' +
-    '                 pip-selected="$ctrl.selected.tabIndex"\n' +
-    '                 pip-selected-watch="$ctrl.selected.navId"\n' +
-    '                 pip-select="$ctrl.onNavigationSelect($event.id)">\n' +
-    '            <md-list-item class="pip-simple-list-item pip-selectable flex"\n' +
-    '                          ng-repeat="tab in $ctrl.tabs track by tab.state" \n' +
-    '                          md-ink-ripple\n' +
-    '                          pip-id="{{:: tab.state }}">\n' +
-    '                <p>{{::tab.title | translate}}</p>\n' +
-    '            </md-list-item>\n' +
-    '        </md-list>\n' +
-    '\n' +
-    '        <div class="pip-content-container">\n' +
-    '            <pip-dropdown pip-actions="$ctrl.tabs"\n' +
-    '                          pip-dropdown-select="$ctrl.onDropdownSelect"\n' +
-    '                          pip-active-index="$ctrl.selected.tabIndex"></pip-dropdown>\n' +
-    '\n' +
-    '            <div class="pip-body p0 layout-column" ui-view></div>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '    <div class="layout-column layout-align-center-center flex"\n' +
-    '         ng-show="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
-    '        {{::\'ERROR_400\' | translate}}\n' +
-    '    </div>\n' +
-    '</pip-document>');
+    '<md-toolbar class="pip-appbar-ext"></md-toolbar><pip-document width="800" min-height="400" class="pip-help"><div class="pip-menu-container" ng-hide="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1"><md-list class="pip-menu pip-simple-list" pip-selected="$ctrl.selected.tabIndex" pip-selected-watch="$ctrl.selected.navId" pip-select="$ctrl.onNavigationSelect($event.id)"><md-list-item class="pip-simple-list-item pip-selectable flex" ng-repeat="tab in $ctrl.tabs track by tab.state" md-ink-ripple="" pip-id="{{:: tab.state }}"><p>{{::tab.title | translate}}</p></md-list-item></md-list><div class="pip-content-container"><pip-dropdown pip-actions="$ctrl.tabs" pip-dropdown-select="$ctrl.onDropdownSelect" pip-active-index="$ctrl.selected.tabIndex"></pip-dropdown><div class="pip-body p0 layout-column" ui-view=""></div></div></div><div class="layout-column layout-align-center-center flex" ng-show="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">{{::\'ERROR_400\' | translate}}</div></pip-document>');
 }]);
 })();
 
 
 
-},{}]},{},[10,1,2,3,4,5,6,7,8,9])(10)
+},{}]},{},[11,1,2,3,4,5,6,7,8,9,10])(11)
 });
 
 //# sourceMappingURL=pip-webui-help.js.map
