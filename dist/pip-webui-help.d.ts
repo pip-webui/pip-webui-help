@@ -26,10 +26,13 @@ export class HelpTab {
     state: string;
     title: string;
     index: number;
-    access: boolean;
+    access: Function;
     visible: boolean;
     stateConfig: HelpStateConfig;
 }
+
+
+function configureHelpPageRoutes($stateProvider: any): void;
 
 export interface IHelpProvider extends ng.IServiceProvider {
     getDefaultTab(): HelpTab;
@@ -37,9 +40,6 @@ export interface IHelpProvider extends ng.IServiceProvider {
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }
-
-
-function configureHelpPageRoutes($stateProvider: any): void;
 
 export interface IHelpService {
     getDefaultTab(): HelpTab;
