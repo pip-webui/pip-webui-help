@@ -1,5 +1,5 @@
 'use strict';
-
+(() => {
 function configureHelpPageRoutes($stateProvider) {
     $stateProvider
         .state('help', {
@@ -13,3 +13,4 @@ function configureHelpPageRoutes($stateProvider) {
 
 angular.module('pipHelp.Page')
     .config(configureHelpPageRoutes);
+})();

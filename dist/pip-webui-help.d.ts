@@ -31,15 +31,14 @@ export class HelpTab {
     stateConfig: HelpStateConfig;
 }
 
+
+
 export interface IHelpProvider extends ng.IServiceProvider {
     getDefaultTab(): HelpTab;
     addTab(tabObj: HelpTab): void;
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }
-
-
-function configureHelpPageRoutes($stateProvider: any): void;
 
 export interface IHelpService {
     getDefaultTab(): HelpTab;

@@ -25,7 +25,7 @@
         // Register custom help page
         pipHelpProvider.addTab({
             state: 'test',
-            title: 'TEST_HELP_PAGE',
+            title: 'Pege 1',
             stateConfig: {
                 controller: function($timeout) {
                     $timeout(function() {
@@ -42,7 +42,7 @@
 
         pipHelpProvider.addTab({
             state: 'test2',
-            title: 'TEST_HELP_PAGE_2',
+            title: 'Page 2',
             visible: true,
             stateConfig: {
                 controller: function($timeout) {
