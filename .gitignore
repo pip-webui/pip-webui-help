@@ -5,5 +5,6 @@
 /obj
 /temp
 /coverage
-npm-debug.log
+/debug.log
+/npm-debug.log
 build.secret.js
