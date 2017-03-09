@@ -1,5 +1,6 @@
 declare module pip.help {
 
+
 export class HelpConfig {
     defaultTab: string;
     tabs: HelpTab[];
@@ -29,7 +30,6 @@ export class HelpTab {
     visible: boolean;
     stateConfig: HelpStateConfig;
 }
-
 
 
 
