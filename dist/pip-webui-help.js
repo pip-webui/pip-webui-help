@@ -12,6 +12,7 @@
     angular.module('pipHelp.Translate', [])
         .filter('translate', filter);
 })();
+
 },{}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -25,6 +26,7 @@ var HelpConfig = (function () {
     return HelpConfig;
 }());
 exports.HelpConfig = HelpConfig;
+
 },{}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -34,6 +36,7 @@ var HelpPageSelectedTab = (function () {
     return HelpPageSelectedTab;
 }());
 exports.HelpPageSelectedTab = HelpPageSelectedTab;
+
 },{}],4:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -44,6 +47,7 @@ var HelpStateConfig = (function () {
     return HelpStateConfig;
 }());
 exports.HelpStateConfig = HelpStateConfig;
+
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -53,6 +57,7 @@ var HelpTab = (function () {
     return HelpTab;
 }());
 exports.HelpTab = HelpTab;
+
 },{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -121,6 +126,7 @@ var HelpPageController = (function () {
         .controller('pipHelpPageController', HelpPageController);
 })();
 require("./HelpPageRoutes");
+
 },{"../help_common/HelpPageSelectedTab":3,"./HelpPageRoutes":7}],7:[function(require,module,exports){
 'use strict';
 (function () {
@@ -138,6 +144,7 @@ require("./HelpPageRoutes");
     angular.module('pipHelp.Page')
         .config(configureHelpPageRoutes);
 })();
+
 },{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -236,6 +243,7 @@ var HelpProvider = (function () {
 angular
     .module('pipHelp.Service', [])
     .provider('pipHelp', HelpProvider);
+
 },{"../help_common/HelpConfig":2,"../help_service/HelpService":9}],9:[function(require,module,exports){
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -290,6 +298,7 @@ var HelpService = (function () {
     return HelpService;
 }());
 exports.HelpService = HelpService;
+
 },{}],10:[function(require,module,exports){
 "use strict";
 function __export(m) {
@@ -303,6 +312,7 @@ angular.module('pipHelp', [
     'pipHelp.Page'
 ]);
 __export(require("./help_service/HelpService"));
+
 },{"./help_page/HelpPageController":6,"./help_provider/HelpProvider":8,"./help_service/HelpService":9}],11:[function(require,module,exports){
 (function(module) {
 try {
