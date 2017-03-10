@@ -3,21 +3,13 @@ import {
     HelpTab
 } from "../common/HelpConfig";
 
-export interface IHelpService {
-    getDefaultTab(): HelpTab;
-    showTitleText(newTitleText: string): string;
-    showTitleLogo(newTitleLogo: string);
-    setDefaultTab(name: string): void;
-    showNavIcon(value: boolean): boolean;
-    getTabs(): HelpTab[];
-}
+import {
+    IHelpProvider
+} from "./IHelpProvider";
 
-export interface IHelpProvider extends ng.IServiceProvider {
-    getDefaultTab(): HelpTab;
-    addTab(tabObj: HelpTab): void;
-    setDefaultTab(name: string): void;
-    getFullStateName(state: string): string;
-}
+import {
+    IHelpService
+} from "./IHelpService";
 
 class HelpService implements IHelpService {
 

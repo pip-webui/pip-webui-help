@@ -1,7 +1,7 @@
 // Prevent junk from going into typescript definitions
 import {
     IHelpService
-} from '../common/HelpService';
+} from '../common/IHelpService';
 import {
     HelpTab,
     HelpPageSelectedTab

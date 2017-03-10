@@ -27,6 +27,14 @@ export class HelpPageSelectedTab {
     tabId: string;
 }
 
+
+export interface IHelpProvider extends ng.IServiceProvider {
+    getDefaultTab(): HelpTab;
+    addTab(tabObj: HelpTab): void;
+    setDefaultTab(name: string): void;
+    getFullStateName(state: string): string;
+}
+
 export interface IHelpService {
     getDefaultTab(): HelpTab;
     showTitleText(newTitleText: string): string;
@@ -34,12 +42,6 @@ export interface IHelpService {
     setDefaultTab(name: string): void;
     showNavIcon(value: boolean): boolean;
     getTabs(): HelpTab[];
-}
-export interface IHelpProvider extends ng.IServiceProvider {
-    getDefaultTab(): HelpTab;
-    addTab(tabObj: HelpTab): void;
-    setDefaultTab(name: string): void;
-    getFullStateName(state: string): string;
 }
 
 

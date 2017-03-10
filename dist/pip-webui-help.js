@@ -178,6 +178,12 @@ angular
     .module('pipHelp.Service', [])
     .provider('pipHelp', HelpProvider);
 },{"../common/HelpConfig":1}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+},{}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+},{}],5:[function(require,module,exports){
 {
     filter.$inject = ['$injector'];
     function filter($injector) {
@@ -190,7 +196,7 @@ angular
     angular.module('pipHelp.Translate', [])
         .filter('translate', filter);
 }
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var HelpConfig_1 = require("../common/HelpConfig");
@@ -258,7 +264,7 @@ var HelpPageController = (function () {
         .controller('pipHelpPageController', HelpPageController);
 })();
 require("./HelpPageRoutes");
-},{"../common/HelpConfig":1,"./HelpPageRoutes":5}],5:[function(require,module,exports){
+},{"../common/HelpConfig":1,"./HelpPageRoutes":7}],7:[function(require,module,exports){
 {
     configureHelpPageRoutes.$inject = ['$stateProvider'];
     function configureHelpPageRoutes($stateProvider) {
@@ -274,7 +280,7 @@ require("./HelpPageRoutes");
     angular.module('pipHelp.Page')
         .config(configureHelpPageRoutes);
 }
-},{}],6:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./common/HelpService");
@@ -283,7 +289,7 @@ angular.module('pipHelp', [
     'pipHelp.Service',
     'pipHelp.Page'
 ]);
-},{"./common/HelpService":2,"./page/HelpPageController":4}],7:[function(require,module,exports){
+},{"./common/HelpService":2,"./page/HelpPageController":6}],9:[function(require,module,exports){
 (function(module) {
 try {
   module = angular.module('pipHelp.Templates');
@@ -328,7 +334,7 @@ module.run(['$templateCache', function($templateCache) {
 
 
 
-},{}]},{},[7,1,2,3,4,5,6])(7)
+},{}]},{},[9,1,2,3,4,5,6,7,8])(9)
 });
 
 //# sourceMappingURL=pip-webui-help.js.map
