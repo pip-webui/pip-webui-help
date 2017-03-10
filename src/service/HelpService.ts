@@ -1,15 +1,7 @@
-import {
-    HelpConfig,
-    HelpTab
-} from "../common/HelpConfig";
-
-import {
-    IHelpProvider
-} from "./IHelpProvider";
-
-import {
-    IHelpService
-} from "./IHelpService";
+import { HelpConfig } from "./HelpConfig";
+import { HelpTab } from './HelpTab';
+import { IHelpService } from "./IHelpService";
+import { IHelpProvider } from "./IHelpService";
 
 class HelpService implements IHelpService {
 
@@ -192,5 +184,5 @@ class HelpProvider implements IHelpProvider, ng.IServiceProvider {
 
 
 angular
-    .module('pipHelp.Service', [])
+    .module('pipHelp.Service')
     .provider('pipHelp', HelpProvider);

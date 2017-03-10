@@ -1,5 +1,5 @@
 {
-    function filter ($injector: ng.auto.IInjectorService) {
+    function filter($injector: ng.auto.IInjectorService) {
          let pipTranslate: any = $injector.has('pipTranslate') 
             ? $injector.get('pipTranslate') : null;
 

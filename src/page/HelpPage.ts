@@ -1,11 +1,6 @@
-// Prevent junk from going into typescript definitions
-import {
-    IHelpService
-} from '../common/IHelpService';
-import {
-    HelpTab,
-    HelpPageSelectedTab
-} from '../common/HelpConfig';
+import { IHelpService } from '../service/IHelpService';
+import { HelpTab } from '../service/HelpTab';
+import { HelpPageSelectedTab } from '../service/HelpPageSelectedTab';
 
 interface IHelpPage {
     tabs: HelpTab[];
@@ -79,17 +74,6 @@ class HelpPageController implements IHelpPage, ng.IController {
     }
 }
 
-(() => {
-
-angular.module('pipHelp.Page', [
-    'ui.router', 
-    'pipHelp.Service',
-    'pipNav', 
-    'pipSelected',
-    'pipTranslate',
-    'pipHelp.Templates'
-    ])
+angular
+    .module('pipHelp.Page')
     .controller('pipHelpPageController', HelpPageController);
-})();
-
-import './HelpPageRoutes';
