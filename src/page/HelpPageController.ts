@@ -1,7 +1,11 @@
 // Prevent junk from going into typescript definitions
-import {IHelpService} from '../help_service/HelpService';
-import {HelpTab} from '../help_common/HelpTab';
-import {HelpPageSelectedTab} from '../help_common/HelpPageSelectedTab';
+import {
+    IHelpService
+} from '../common/HelpService';
+import {
+    HelpTab,
+    HelpPageSelectedTab
+} from '../common/HelpConfig';
 
 interface IHelpPage {
     tabs: HelpTab[];
@@ -10,7 +14,7 @@ interface IHelpPage {
     onNavigationSelect(state: string): void;
 }
 
-class HelpPageController implements IHelpPage {
+class HelpPageController implements IHelpPage, ng.IController {
     public tabs: HelpTab[];
     public selected: HelpPageSelectedTab;
     public onDropdownSelect: Function;

@@ -1,15 +1,10 @@
-﻿/**
- * @file Registration of all help components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-import './help_provider/HelpProvider';
-import './help_page/HelpPageController';
+﻿import './common/HelpService';
+import './page/HelpPageController';
 
 angular.module('pipHelp', [
     'pipHelp.Service',
     'pipHelp.Page'
 ]);
 
-export * from './help_service/HelpService';
-export * from './help_page/HelpPageController';
+export * from './common/HelpService';
+export * from './page/HelpPageController';
