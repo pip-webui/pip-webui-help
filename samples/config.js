@@ -52,7 +52,7 @@
             //pipAuthStateProvider.unauthorizedState('help');
             //pipAuthStateProvider.authorizedState('help');
 
-            $urlRouterProvider.otherwise('/help');
+            $urlRouterProvider.otherwise('/help/test1');
 
             // Configure navigation menu
             /*pipSideNavProvider.sections([
