@@ -63,6 +63,8 @@ class HelpPageController implements IHelpPage, ng.IController {
         });
         this.selected.tabIndex = _.indexOf(this.tabs, this.selected.tab);
         this.selected.tabId = state;
+        
+        this.$state.go(this.selected.tabId);
     }
 
     public onNavigationSelect(state: string): void {

@@ -71,6 +71,7 @@ var HelpPageController = (function () {
         });
         this.selected.tabIndex = _.indexOf(this.tabs, this.selected.tab);
         this.selected.tabId = state;
+        this.$state.go(this.selected.tabId);
     };
     HelpPageController.prototype.onNavigationSelect = function (state) {
         this.initSelect(state);
