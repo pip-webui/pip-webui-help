@@ -75,7 +75,6 @@ var HelpPageController = (function () {
     };
     HelpPageController.prototype.onNavigationSelect = function (state) {
         this.initSelect(state);
-        console.log('a', state);
         if (this.selected.tab) {
             this.$state.go(state);
         }
@@ -331,7 +330,37 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('page/HelpPage.html',
-    '<md-toolbar class="pip-appbar-ext"></md-toolbar><pip-document width="800" min-height="400" class="pip-help"><div class="pip-menu-container" ng-hide="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1"><md-list class="pip-menu pip-simple-list" pip-selected="$ctrl.selected.tabIndex" pip-selected-watch="$ctrl.selected.navId" pip-select="$ctrl.onNavigationSelect($event.id)"><md-list-item class="pip-simple-list-item pip-selectable flex" ng-repeat="tab in $ctrl.tabs track by tab.state" md-ink-ripple="" pip-id="{{:: tab.state }}"><p>{{::tab.title | translate}}</p></md-list-item></md-list><div class="pip-content-container"><pip-dropdown pip-actions="$ctrl.tabs" pip-dropdown-select="$ctrl.onDropdownSelect" pip-active-index="$ctrl.selected.tabIndex"></pip-dropdown><div class="pip-body p0 layout-column" ui-view=""></div></div></div><div class="layout-column layout-align-center-center flex" ng-show="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">{{::\'ERROR_400\' | translate}}</div></pip-document>');
+    '<md-toolbar class="pip-appbar-ext"></md-toolbar>\n' +
+    '<pip-document width="800" min-height="400"\n' +
+    '              class="pip-help">\n' +
+    '\n' +
+    '    <div class="pip-menu-container"\n' +
+    '         ng-hide="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
+    '        <md-list class="pip-menu pip-simple-list"\n' +
+    '                 pip-selected="$ctrl.selected.tabIndex"\n' +
+    '                 pip-selected-watch="$ctrl.selected.navId"\n' +
+    '                 pip-select="$ctrl.onNavigationSelect($event.id)">\n' +
+    '            <md-list-item class="pip-simple-list-item pip-selectable flex"\n' +
+    '                          ng-repeat="tab in $ctrl.tabs track by tab.state" \n' +
+    '                          md-ink-ripple\n' +
+    '                          pip-id="{{:: tab.state }}">\n' +
+    '                <p>{{::tab.title | translate}}</p>\n' +
+    '            </md-list-item>\n' +
+    '        </md-list>\n' +
+    '\n' +
+    '        <div class="pip-content-container">\n' +
+    '            <pip-dropdown pip-actions="$ctrl.tabs"\n' +
+    '                          pip-dropdown-select="$ctrl.onDropdownSelect"\n' +
+    '                          pip-active-index="$ctrl.selected.tabIndex"></pip-dropdown>\n' +
+    '\n' +
+    '            <div class="pip-body p0 layout-column" ui-view></div>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="layout-column layout-align-center-center flex"\n' +
+    '         ng-show="$ctrl.manager === false || !$ctrl.tabs || $ctrl.tabs.length < 1">\n' +
+    '        {{::\'ERROR_400\' | translate}}\n' +
+    '    </div>\n' +
+    '</pip-document>');
 }]);
 })();
 
