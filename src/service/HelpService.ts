@@ -1,49 +1,12 @@
-'use strict';
-
-export class HelpTab {
-    public state: string;
-    public title: string;
-    public index: string;
-    public access: boolean;
-    public visible: boolean;
-    public stateConfig: any;
-}
-
-export interface IHelpService {
-    getDefaultTab();
-    showTitleText (newTitleText);
-    showTitleLogo(newTitleLogo);
-    setDefaultTab(name: string);
-    showNavIcon(value);
-    getTabs();
-}
-
-export interface IHelpProvider extends ng.IServiceProvider {
-    getDefaultTab(): HelpTab;
-    addTab(tabObj: any);
-    setDefaultTab(name: string): void;
-    getFullStateName(state: string): string;
-}
-
-export class HelpConfig {
-
-    public defaultTab: string;
-    public tabs: HelpTab[] = [];
-    public titleText: string = 'SETTINGS_TITLE';
-    public titleLogo: boolean = null;
-    public isNavIcon: boolean = true;
-
-}
+import { HelpConfig } from "./HelpConfig";
+import { HelpTab } from './HelpTab';
+import { IHelpService } from "./IHelpService";
+import { IHelpProvider } from "./IHelpService";
 
 class HelpService implements IHelpService {
-    private _config: HelpConfig;
-    private _rootScope: ng.IRootScopeService;
 
-    public constructor($rootScope: ng.IRootScopeService, 
-                       config: HelpConfig) {
+    public constructor(private _config: HelpConfig) {
         "ngInject";
-        this._rootScope = $rootScope;
-        this._config = config;
     }
 
     private getFullStateName(state: string): string {
@@ -51,7 +14,7 @@ class HelpService implements IHelpService {
     }
 
     public setDefaultTab(name: string): void {
-        if (!_.find(this._config.tabs, function (tab) {
+        if (!_.find(this._config.tabs, (tab) => {
             return tab.state === 'help.' + name;
         })) {
             throw new Error('Tab with state name "' + name + '" is not registered');
@@ -60,15 +23,15 @@ class HelpService implements IHelpService {
         this._config.defaultTab = this.getFullStateName(name);
     }
 
-    public getDefaultTab() {
-        var defaultTab;
-        defaultTab = _.find(this._config.tabs, function (p) {
-            return p.state === defaultTab;
+    public getDefaultTab(): HelpTab {
+        let defaultTab: HelpTab;
+        defaultTab = _.find(this._config.tabs, (p: HelpTab) => {
+            return p.state === this._config.defaultTab;
         });
         return _.cloneDeep(defaultTab);
     }
 
-    public showTitleText (newTitleText: string) {
+    public showTitleText(newTitleText: string): string {
         if (newTitleText) {
             this._config.titleText = newTitleText;
             this._config.titleLogo = null;
@@ -77,7 +40,7 @@ class HelpService implements IHelpService {
         return this._config.titleText;
     }
 
-    public showTitleLogo(newTitleLogo) {
+    public showTitleLogo(newTitleLogo: string): string {
         if (newTitleLogo) {
             this._config.titleLogo = newTitleLogo;
             this._config.titleText = null;
@@ -86,47 +49,44 @@ class HelpService implements IHelpService {
         return this._config.titleLogo;
     }
 
-    public showNavIcon(value: boolean) {
+    public showNavIcon(value: boolean): boolean {
         if (value !== null && value !== undefined) {
             this._config.isNavIcon = !!value;
         }
 
         return this._config.isNavIcon;
     }
-    public getTabs() {
+
+    public getTabs(): HelpTab[] {
         return _.cloneDeep(this._config.tabs);
     }
 
 }
 
-class HelpProvider implements IHelpProvider {
+class HelpProvider implements IHelpProvider, ng.IServiceProvider {
     private _service: HelpService;
     private _config: HelpConfig = new HelpConfig();
-    private _stateProvider: ng.ui.IStateProvider;
 
-    constructor($stateProvider: ng.ui.IStateProvider) {
-        this._stateProvider = $stateProvider;
-    }
+    constructor(private $stateProvider: ng.ui.IStateProvider) { }
 
-    public getFullStateName(state): string {
+    public getFullStateName(state: string): string {
         return 'help.' + state;
     }
 
     public getDefaultTab(): HelpTab {
-        var defaultTab;
+        let defaultTab: HelpTab;
 
-        defaultTab = _.find(this._config.tabs, function (p) {
-            return p.state === defaultTab;
+        defaultTab = _.find(this._config.tabs, (p) => {
+            return p.state === this._config.defaultTab;
         });
 
         return _.cloneDeep(defaultTab);
     }
 
-    public addTab(tabObj: any) {
-        var existingTab: HelpTab;
-
+    public addTab(tabObj: HelpTab): void {
+        let existingTab: HelpTab;
         this.validateTab(tabObj);
-        existingTab = _.find(this._config.tabs, function (p) {
+        existingTab = _.find(this._config.tabs, (p) => {
             return p.state === 'help.' + tabObj.state;
         });
         if (existingTab) {
@@ -141,25 +101,25 @@ class HelpProvider implements IHelpProvider {
             visible: tabObj.visible !== false,
             stateConfig: _.cloneDeep(tabObj.stateConfig)
         });
-        this._stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
+        this.$stateProvider.state(this.getFullStateName(tabObj.state), tabObj.stateConfig);
 
         // if we just added first state and no default state is specified
-        if (typeof this._config.defaultTab === 'undefined' && this._config.tabs.length === 1) {
+        if (typeof _.isUndefined(this._config.defaultTab) && this._config.tabs.length === 1) {
             this.setDefaultTab(tabObj.state);
         }
     }
 
     public setDefaultTab(name: string): void {
         // TODO [apidhirnyi] extract expression inside 'if' into variable. It isn't readable now.
-        if (!_.find(this._config.tabs, function (tab) {
+        if (!_.find(this._config.tabs, (tab: HelpTab) => {
             return tab.state === 'help.' + name;
         })) {
             throw new Error('Tab with state name "' + name + '" is not registered');
         }
 
         this._config.defaultTab = this.getFullStateName(name);
-        //this._stateProvider.go(this._config.defaultTab);
-            //pipAuthStateProvider.redirect('help', getFullStateName(name));
+        //this.$stateProvider.go(this._config.defaultTab);
+        //pipAuthStateProvider.redirect('help', getFullStateName(name));
     }
 
     /**
@@ -185,7 +145,7 @@ class HelpProvider implements IHelpProvider {
         }
     }
 
-    public showTitleText (newTitleText: string): string {
+    public showTitleText(newTitleText: string): string {
         if (newTitleText) {
             this._config.titleText = newTitleText;
             this._config.titleLogo = null;
@@ -194,7 +154,7 @@ class HelpProvider implements IHelpProvider {
         return this._config.titleText;
     }
 
-    public showTitleLogo(newTitleLogo) {
+    public showTitleLogo(newTitleLogo: string): string {
         if (newTitleLogo) {
             this._config.titleLogo = newTitleLogo;
             this._config.titleText = null;
@@ -203,25 +163,26 @@ class HelpProvider implements IHelpProvider {
         return this._config.titleLogo;
     }
 
-    public showNavIcon(value) {
-        if (value !== null && value !== undefined) {
+    public showNavIcon(value: boolean): boolean {
+        if (!_.isNull(value) && !_.isUndefined(value)) {
             this._config.isNavIcon = !!value;
         }
 
         return this._config.isNavIcon;
     }
 
-    public $get($rootScope, $state) {
+    public $get(): IHelpService {
         "ngInject";
 
-        if (this._service == null)
-            this._service = new HelpService($rootScope, this._config);
-        
+        if (_.isNull(this._service) || _.isUndefined(this._service)) {
+            this._service = new HelpService(this._config);
+        }
+
         return this._service;
     }
 }
 
-angular
-    .module('pipHelp.Service', [])
-    .provider('pipHelp', HelpProvider);
 
+angular
+    .module('pipHelp.Service')
+    .provider('pipHelp', HelpProvider);
