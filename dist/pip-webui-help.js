@@ -11,7 +11,6 @@
     angular.module('pipHelp.Translate', [])
         .filter('translate', filter);
 }
-
 },{}],2:[function(require,module,exports){
 "use strict";
 function __export(m) {
@@ -25,7 +24,6 @@ angular.module('pipHelp', [
     'pipHelp.Page'
 ]);
 __export(require("./service"));
-
 },{"./page":5,"./service":12}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -86,7 +84,6 @@ var HelpPageController = (function () {
 angular
     .module('pipHelp.Page')
     .controller('pipHelpPageController', HelpPageController);
-
 },{"../service/HelpPageSelectedTab":7}],4:[function(require,module,exports){
 {
     configureHelpPageRoutes.$inject = ['$stateProvider'];
@@ -103,7 +100,6 @@ angular
     angular.module('pipHelp.Page')
         .config(configureHelpPageRoutes);
 }
-
 },{}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -117,7 +113,6 @@ angular.module('pipHelp.Page', [
 ]);
 require("./HelpPage");
 require("./HelpPageRoutes");
-
 },{"./HelpPage":3,"./HelpPageRoutes":4}],6:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -131,7 +126,6 @@ var HelpConfig = (function () {
     return HelpConfig;
 }());
 exports.HelpConfig = HelpConfig;
-
 },{}],7:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -141,7 +135,6 @@ var HelpPageSelectedTab = (function () {
     return HelpPageSelectedTab;
 }());
 exports.HelpPageSelectedTab = HelpPageSelectedTab;
-
 },{}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -289,7 +282,6 @@ var HelpProvider = (function () {
 angular
     .module('pipHelp.Service')
     .provider('pipHelp', HelpProvider);
-
 },{"./HelpConfig":6}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -300,7 +292,6 @@ var HelpStateConfig = (function () {
     return HelpStateConfig;
 }());
 exports.HelpStateConfig = HelpStateConfig;
-
 },{}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -310,11 +301,9 @@ var HelpTab = (function () {
     return HelpTab;
 }());
 exports.HelpTab = HelpTab;
-
 },{}],11:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-
 },{}],12:[function(require,module,exports){
 "use strict";
 function __export(m) {
@@ -332,7 +321,6 @@ __export(require("./HelpConfig"));
 __export(require("./HelpPageSelectedTab"));
 __export(require("./HelpTab"));
 __export(require("./HelpStateConfig"));
-
 },{"./HelpConfig":6,"./HelpPageSelectedTab":7,"./HelpService":8,"./HelpStateConfig":9,"./HelpTab":10}],13:[function(require,module,exports){
 (function(module) {
 try {
