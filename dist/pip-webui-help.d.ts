@@ -1,5 +1,6 @@
 declare module pip.help {
 
+
 export class HelpConfig {
     defaultTab: string;
     tabs: HelpTab[];
@@ -45,7 +46,6 @@ export interface IHelpProvider extends ng.IServiceProvider {
     setDefaultTab(name: string): void;
     getFullStateName(state: string): string;
 }
-
 
 
 
